@@ -1,8 +1,12 @@
 {
   "name": "leicester-aikikai-website",
   "version": "1.0.0",
+  "type": "module",
   "description": "Leicester Aikikai Dojo - Traditional Aikido in the East Midlands",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

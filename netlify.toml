@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "dist"
 
+# Specify Node.js version
+[build.environment]
+  NODE_VERSION = "18.18.0"
+
 # SPA fallback - redirect all requests to index.html for Vue Router
 [[redirects]]
   from = "/*"
