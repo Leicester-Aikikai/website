@@ -101,20 +101,24 @@
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Instructor Section -->
-          <h2 class="section-title text-center mt-5" id="the-instructor">The Instructor</h2>
-          <div class="section-divider"></div>
+      <!-- Instructor Section -->
+      <section id="the-instructor" class="text-white py-5" style="background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%); padding-bottom: 100px !important;">
+        <div class="container">
+          <h2 class="display-5 fw-bold text-center mb-4">The Instructor</h2>
+          <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 3rem;"></div>
 
           <div class="row align-items-center">
-            <div class="col-md-6">
-              <p class="text-muted mb-3">
+            <div class="col-md-6 mb-4 mb-md-0">
+              <p class="mb-3">
                 Antonios Pavlakis holds a fourth degree black belt - 4th dan - (yondan so-Hombu Fukushidoin 副指導員) and is the chief instructor at the Leicester Aikikai dojo.
               </p>
-              <p class="text-muted mb-3">
+              <p class="mb-3">
                 He started aikido in 1997 at the De Montfort University Aikido Club in Leicester under the instruction of Dave Lenton sensei (4th dan).
               </p>
-              <p class="text-muted mb-3">
+              <p class="mb-3">
                 In 2009, when Adoni received his teaching qualifications he became an assistant instructor at the DMU Aikido club and in May 2013 he started Leicester Aikikai dojo - レスター 合気道 道場.
               </p>
             </div>
@@ -128,13 +132,26 @@
             </div>
           </div>
         </div>
+
+        <!-- Wave divider -->
+        <div class="wave-divider">
+          <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+                <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+                <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
+              </g>
+            </g>
+          </svg>
+        </div>
       </section>
 
       <!-- Location Section -->
-      <section id="location" class="py-5 bg-gradient text-white">
+      <section id="location" class="py-5">
         <div class="container">
-          <h2 class="display-5 fw-bold text-center mb-4">Location and Times</h2>
-          <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 3rem;"></div>
+          <h2 class="section-title text-center">Location and Times</h2>
+          <div class="section-divider"></div>
 
           <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
