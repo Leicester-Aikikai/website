@@ -16,6 +16,7 @@
               src="/src/assets/img/antonis-pavlakis-with-iain-cooper.webp"
               alt="Antonis Pavlakis with Iain Cooper"
               class="img-fluid rounded shadow-lg"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -229,8 +230,75 @@
 </template>
 
 <script>
+import { setJsonLd, SITE_URL } from '../utils/seo.js'
+
 export default {
-  name: 'Events'
+  name: 'Events',
+  mounted() {
+    // Add structured data for upcoming/recent events
+    setJsonLd([
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        'name': 'Joint course with Melton Byakko-Kan Aikido',
+        'description': 'A joint aikido course at the Melton Byakko-Kan Aikido dojo with multiple instructors including Naoko Suzuki sensei, Terry Mickowski sensei, Andy Thompson sensei, and Antonis Pavlakis sensei.',
+        'startDate': '2023-12-10T11:00',
+        'endDate': '2023-12-10T15:00',
+        'eventStatus': 'https://schema.org/EventScheduled',
+        'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+        'location': {
+          '@type': 'Place',
+          'name': 'Jubilee Sports Centre',
+          'address': {
+            '@type': 'PostalAddress',
+            'streetAddress': 'Jubilee Street',
+            'addressLocality': 'Melton Mowbray',
+            'addressRegion': 'Leicestershire',
+            'postalCode': 'LE13 1ND',
+            'addressCountry': 'GB'
+          }
+        },
+        'organizer': {
+          '@type': 'Organization',
+          'name': 'Leicester Aikikai Dojo',
+          'url': SITE_URL
+        },
+        'offers': {
+          '@type': 'Offer',
+          'price': '20',
+          'priceCurrency': 'GBP',
+          'availability': 'https://schema.org/InStock',
+          'validFrom': '2023-11-01'
+        }
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        'name': 'Leicester Aikikai Events',
+        'description': 'Past and upcoming aikido events and courses at Leicester Aikikai Dojo',
+        'itemListElement': [
+          {
+            '@type': 'Event',
+            'name': 'Leicester Aikikai Dojo 10th Year Anniversary Course',
+            'description': '10th year anniversary course with guest instructors Ian Grubb 6th dan, Terry Mickowski 4th dan, Iain Cooper 3rd dan, and Antonis Pavlakis 3rd dan.',
+            'startDate': '2023-06-11T13:00',
+            'endDate': '2023-06-11T17:00',
+            'location': {
+              '@type': 'Place',
+              'name': 'Aylestone Leisure Centre',
+              'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': '2 Knighton Lane East',
+                'addressLocality': 'Leicester',
+                'postalCode': 'LE2 6LU',
+                'addressCountry': 'GB'
+              }
+            }
+          }
+        ]
+      }
+    ])
+  }
 }
 </script>
 

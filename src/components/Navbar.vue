@@ -1,60 +1,62 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top" :class="{ 'scrolled': isScrolled }" aria-label="Main navigation">
-    <div class="container">
-      <router-link to="/" class="navbar-brand d-flex align-items-center">
-        <svg class="me-2" style="height: 24px; width: 24px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-        </svg>
-        <span class="fs-4 fw-bold">Leicester Aikikai</span>
-      </router-link>
+  <header>
+    <nav class="navbar navbar-expand-lg fixed-top" :class="{ 'scrolled': isScrolled }" aria-label="Main navigation" role="navigation">
+      <div class="container">
+        <router-link to="/" class="navbar-brand d-flex align-items-center" aria-label="Leicester Aikikai home page">
+          <svg class="me-2" style="height: 24px; width: 24px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+          </svg>
+          <span class="fs-4 fw-bold">Leicester Aikikai</span>
+        </router-link>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link" :class="{ 'fw-bold': isActive('/') }">
-              Welcome
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <a href="/#our-journey" class="nav-link">Our Journey So Far</a>
-          </li>
-          <li class="nav-item">
-            <router-link to="/events" class="nav-link" :class="{ 'fw-bold': isActive('/events') }">
-              Events
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <a href="/#location" class="nav-link">Location and Times</a>
-          </li>
-          <li class="nav-item">
-            <a href="/#costs" class="nav-link">Costs</a>
-          </li>
-          <li class="nav-item">
-            <router-link to="/syllabus" class="nav-link" :class="{ 'fw-bold': isActive('/syllabus') }">
-              Syllabus
-            </router-link>
-          </li>
-          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-            <a href="/#faq" class="btn btn-gradient rounded-pill px-4 py-2 fw-bold">
-              FAQ
-            </a>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link" :class="{ 'fw-bold': isActive('/') }" aria-label="Welcome page">
+                Welcome
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <a href="/#our-journey" class="nav-link" aria-label="Our journey so far">Our Journey So Far</a>
+            </li>
+            <li class="nav-item">
+              <router-link to="/events" class="nav-link" :class="{ 'fw-bold': isActive('/events') }" aria-label="Events page">
+                Events
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <a href="/#location" class="nav-link" aria-label="Location and times">Location and Times</a>
+            </li>
+            <li class="nav-item">
+              <a href="/#costs" class="nav-link" aria-label="Costs information">Costs</a>
+            </li>
+            <li class="nav-item">
+              <router-link to="/syllabus" class="nav-link" :class="{ 'fw-bold': isActive('/syllabus') }" aria-label="Syllabus page">
+                Syllabus
+              </router-link>
+            </li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <a href="/#faq" class="btn btn-gradient rounded-pill px-4 py-2 fw-bold" aria-label="Frequently asked questions">
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 </template>
 
 <script>

@@ -19,6 +19,7 @@
               src="/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp"
               alt="Leicester Aikikai bokken shiko dachi circle exercise"
               class="img-fluid rounded shadow-lg"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -254,8 +255,103 @@
 </template>
 
 <script>
+import { setJsonLd, SITE_URL } from '../utils/seo.js'
+
 export default {
-  name: 'Syllabus'
+  name: 'Syllabus',
+  mounted() {
+    // Add structured data for aikido syllabus/course content
+    setJsonLd([
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        'name': 'Traditional Aikido Training Program',
+        'description': 'Comprehensive aikido training syllabus including taijutsu (body art), bokken (wooden sword), and jo (wooden staff) techniques following teachings of Kazuo Chiba shihan and Morihiro Saito shihan.',
+        'provider': {
+          '@type': 'Organization',
+          'name': 'Leicester Aikikai Dojo',
+          'url': SITE_URL
+        },
+        'hasCourseInstance': {
+          '@type': 'CourseInstance',
+          'courseMode': 'Onsite',
+          'location': {
+            '@type': 'Place',
+            'name': 'Aylestone Leisure Centre',
+            'address': {
+              '@type': 'PostalAddress',
+              'streetAddress': '2 Knighton Lane East',
+              'addressLocality': 'Leicester',
+              'postalCode': 'LE2 6LU',
+              'addressCountry': 'GB'
+            }
+          },
+          'courseSchedule': {
+            '@type': 'Schedule',
+            'repeatFrequency': 'P1W',
+            'byDay': 'Friday',
+            'startTime': '19:00',
+            'endTime': '21:00'
+          }
+        },
+        'educationalCredentialAwarded': 'Kyu and Dan Grades (UKA certified)',
+        'inLanguage': 'en-GB',
+        'teaches': 'Aikido martial art techniques including ukemi (falling), weapons training (bokken, jo, tanto), and traditional aikikai techniques'
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        'name': 'Aikido Weapons Training',
+        'description': 'Aikido weapons syllabus covering bokken and jo training',
+        'itemListElement': [
+          {
+            '@type': 'HowTo',
+            'name': 'Bokken Training (Wooden Sword)',
+            'description': 'Learn the five basic stances of sword, suburi (basic exercises), and kumitachi (partner practice) following Chiba sensei and Saito sensei teachings.',
+            'step': [
+              {
+                '@type': 'HowToStep',
+                'name': 'Five Basic Stances',
+                'text': 'Learn Chudan no Kamae (middle stance), Jodan no Kamae (high stance), Hasso no Kamae (8 stages), Waki Gamae (concealed stance), and Gedan no Kamae (lower stance)'
+              },
+              {
+                '@type': 'HowToStep',
+                'name': 'Suburi',
+                'text': 'Practice Chiba sensei\'s 8 suburi and Saito sensei\'s 7 suburi, shiho giri (4-direction cuts), and happo giri (8-direction cuts)'
+              },
+              {
+                '@type': 'HowToStep',
+                'name': 'Kumitachi',
+                'text': 'Partner practice with 6 kata: Ichi-no-tachi through Go-no-tachi, and Kimusubi-no-tachi'
+              }
+            ]
+          },
+          {
+            '@type': 'HowTo',
+            'name': 'Jo Training (Wooden Staff)',
+            'description': 'Learn the five basic stances of Jo, 20 Jo suburi, and Jo kata following Saito sensei and Chiba sensei teachings.',
+            'step': [
+              {
+                '@type': 'HowToStep',
+                'name': 'Five Basic Stances',
+                'text': 'Learn Chudan Jyunte, Chudan Gyakute, Jodan no Kamae, Hasso no Kamae, and vertical holding positions'
+              },
+              {
+                '@type': 'HowToStep',
+                'name': '20 Jo Suburi',
+                'text': 'Practice Saito sensei\'s 20 Jo suburi including Tsuki no bu, Uchi no bu, Katate no bu, Hasso no bu, and Nagare no bu'
+              },
+              {
+                '@type': 'HowToStep',
+                'name': 'Kata',
+                'text': 'Learn Chiba sensei\'s 9-count kata, Saito sensei\'s 13-count kata, and 31-count kata'
+              }
+            ]
+          }
+        ]
+      }
+    ])
+  }
 }
 </script>
 

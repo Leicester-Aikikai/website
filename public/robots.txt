@@ -1,0 +1,47 @@
+# robots.txt for Leicester Aikikai Dojo
+# Allow all search engines and AI crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://leicesteraikikai.co.uk/sitemap.xml
+
+# AI/LLM specific agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Crawl delay (optional, in seconds)
+Crawl-delay: 1
+

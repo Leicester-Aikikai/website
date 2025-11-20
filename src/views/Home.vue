@@ -22,6 +22,7 @@
               src="/src/assets/img/leicester-aikikai-aylestone-leisure-centre.jpeg"
               alt="Leicester Aikikai at Aylestone Leisure Centre"
               class="img-fluid rounded shadow-lg"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -325,8 +326,55 @@
 </template>
 
 <script>
+import { setJsonLd, getPersonSchema, SITE_URL } from '../utils/seo.js'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  mounted() {
+    // Add structured data for FAQ and Person
+    setJsonLd([
+      getPersonSchema(),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'Am I fit/flexible enough to start aikido?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Yes you are! The number one reason people state they will \'come later\' is to improve fitness. We work with anyone, at any level of fitness and you can improve fitness and flexibility while learning aikido.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What do I need to get started with aikido?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Just come along to one of our classes. The first class is free! Wear some loose fitting exercise clothes (not shorts as you spend time kneeling).'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Are there any other costs for aikido training?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Aikido is a great value activity, costs are very low and well defined. New members may also like to buy a suit (aikidogi) and aikido weapons (bokken, jo, tanto). We can provide advice and help with all these items.'
+            }
+          }
+        ]
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        '@id': `${SITE_URL}/#localbusiness`,
+        'name': 'Leicester Aikikai Dojo',
+        'priceRange': '££',
+        'paymentAccepted': 'Cash, Bank Transfer',
+        'currenciesAccepted': 'GBP'
+      }
+    ])
+  }
 }
 </script>
 
