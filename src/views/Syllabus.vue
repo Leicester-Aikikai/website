@@ -235,12 +235,24 @@
                     aria-expanded="true"
                     aria-controls="collapse6thKyu"
                   >
-                    <span class="fw-bold text-dark">
-                      6th Kyu <small class="text-muted">(the first grade in aikido)</small>
-                      <br>
-                      <small class="fw-normal">Junior belt colour: <span class="badge bg-danger">red</span></small>
-                    </span>
-                    <i class="bi bi-chevron-down"></i>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <span class="fw-bold text-dark">
+                            6th Kyu <small class="text-muted">(the first grade in aikido)</small>
+                            <br>
+                            <small class="fw-normal">Junior belt colour: <span class="badge bg-danger">red</span></small>
+                          </span>
+                          <div class="grade-description mt-2 p-2 border-start border-3 border-danger bg-light text-start" style="font-size: 0.9rem;">
+                            <span class="fw-bold text-dark">
+                              The 6th kyu grade provides a student with the foundation of stances, positioning and body movement,
+                              that is required for their progression in aikido.
+                            </span>
+                          </div>
+                        </div>
+                        <i class="bi bi-chevron-down ms-2"></i>
+                      </div>
+                    </div>
                   </button>
                 </h3>
               </div>
@@ -252,13 +264,6 @@
                     <p class="mb-1"><strong>10 solo exercises</strong></p>
                     <p class="mb-1"><strong>9 partner practice movements</strong></p>
                     <p class="mb-0"><strong>4 techniques</strong> - ikkyo, iriminage, shihonage, kokyu ho</p>
-                  </div>
-
-                  <div class="grade-description mb-4 p-3 border-start border-4 border-danger bg-light">
-                    <p class="fw-bold mb-0">
-                      The 6th kyu grade provides a student with the foundation of stances, positioning and body movement,
-                      that is required for their progression in aikido.
-                    </p>
                   </div>
 
                   <!-- Detailed Content Toggle -->
@@ -433,12 +438,23 @@
                     aria-expanded="false"
                     aria-controls="collapse5thKyu"
                   >
-                    <span class="fw-bold text-dark">
-                      5th Kyu <small class="text-muted">(the second grade in aikido)</small>
-                      <br>
-                      <small class="fw-normal">Junior belt colour: <span class="badge bg-warning text-dark">yellow</span></small>
-                    </span>
-                    <i class="bi bi-chevron-down"></i>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <span class="fw-bold text-dark">
+                            5th Kyu <small class="text-muted">(the second grade in aikido)</small>
+                            <br>
+                            <small class="fw-normal">Junior belt colour: <span class="badge bg-warning text-dark">yellow</span></small>
+                          </span>
+                          <div class="grade-description mt-2 p-2 border-start border-3 border-warning bg-light text-start" style="font-size: 0.9rem;">
+                            <span class="fw-bold text-dark">
+                              The 5th kyu grade introduces different techniques from standing and kneeling positions and from different attacks.
+                            </span>
+                          </div>
+                        </div>
+                        <i class="bi bi-chevron-down ms-2"></i>
+                      </div>
+                    </div>
                   </button>
                 </h3>
               </div>
@@ -449,12 +465,6 @@
                     <h4 class="h6 fw-bold mb-2">5th Kyu Overview</h4>
                     <p class="mb-1"><strong>7 techniques</strong> - ikkyo, nikyo, shiho nage, uchikaiten nage, tenchi nage, iriminage, kotegaeshi</p>
                     <p class="mb-0"><strong>6 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, katadori, morotedori, shomen uchi, yokomen uchi</p>
-                  </div>
-
-                  <div class="grade-description mb-4 p-3 border-start border-4 border-warning bg-light">
-                    <p class="fw-bold mb-0">
-                      The 5th kyu grade introduces different techniques from standing and kneeling positions and from different attacks.
-                    </p>
                   </div>
 
                   <!-- Detailed Content Toggle -->
@@ -575,12 +585,23 @@
                     aria-expanded="false"
                     aria-controls="collapse4thKyu"
                   >
-                    <span class="fw-bold text-dark">
-                      4th Kyu <small class="text-muted">(the third grade in aikido)</small>
-                      <br>
-                      <small class="fw-normal">Junior belt colour: <span class="badge" style="background-color: #ff8c00; color: white;">orange</span></small>
-                    </span>
-                    <i class="bi bi-chevron-down"></i>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <span class="fw-bold text-dark">
+                            4th Kyu <small class="text-muted">(the third grade in aikido)</small>
+                            <br>
+                            <small class="fw-normal">Junior belt colour: <span class="badge" style="background-color: #ff8c00; color: white;">orange</span></small>
+                          </span>
+                          <div class="grade-description mt-2 p-2 border-start border-3 bg-light text-start" style="border-color: #ff8c00 !important; font-size: 0.9rem;">
+                            <span class="fw-bold text-dark">
+                              The 4th kyu grade includes more throws from different attacks and focuses on contact, connection and ukemi.
+                            </span>
+                          </div>
+                        </div>
+                        <i class="bi bi-chevron-down ms-2"></i>
+                      </div>
+                    </div>
                   </button>
                 </h3>
               </div>
@@ -591,12 +612,6 @@
                     <h4 class="h6 fw-bold mb-2">4th Kyu Overview</h4>
                     <p class="mb-1"><strong>14 techniques</strong> - ikkyo, nikyo, sankyo, yonkyo, rokkyo, uchikaiten sankyo, shiho nage, uchikaiten nage, sotokaiten nage, irimi nage, udekime nage, tenchi nage, kotegaeshi, sumiotoshi</p>
                     <p class="mb-0"><strong>8 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, ryote dori, morote dori, kata dori, shomen uchi, yokomen uchi, tsuki</p>
-                  </div>
-
-                  <div class="grade-description mb-4 p-3 border-start border-4 bg-light" style="border-color: #ff8c00 !important;">
-                    <p class="fw-bold mb-0">
-                      The 4th kyu grade includes more throws from different attacks and focuses on contact, connection and ukemi.
-                    </p>
                   </div>
 
                   <!-- Detailed Content Toggle -->
@@ -754,12 +769,23 @@
                     aria-expanded="false"
                     aria-controls="collapse3rdKyu"
                   >
-                    <span class="fw-bold text-dark">
-                      3rd Kyu <small class="text-muted">(the fourth grade in aikido)</small>
-                      <br>
-                      <small class="fw-normal">Junior belt colour: <span class="badge bg-success">green</span></small>
-                    </span>
-                    <i class="bi bi-chevron-down"></i>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <span class="fw-bold text-dark">
+                            3rd Kyu <small class="text-muted">(the fourth grade in aikido)</small>
+                            <br>
+                            <small class="fw-normal">Junior belt colour: <span class="badge bg-success">green</span></small>
+                          </span>
+                          <div class="grade-description mt-2 p-2 border-start border-3 border-success bg-light text-start" style="font-size: 0.9rem;">
+                            <span class="fw-bold text-dark">
+                              The 3rd kyu grade introduces attacks with grabs from behind, and focuses on movement, contact, connection and ukemi.
+                            </span>
+                          </div>
+                        </div>
+                        <i class="bi bi-chevron-down ms-2"></i>
+                      </div>
+                    </div>
                   </button>
                 </h3>
               </div>
@@ -770,12 +796,6 @@
                     <h4 class="h6 fw-bold mb-2">3rd Kyu Overview</h4>
                     <p class="mb-1"><strong>17 techniques</strong> - ikkyo, nikyo, sankyo, yonkyo, gokyo, rokkyo, shiho nage, kaiten nage, sotokaiten nage, irimi nage, udekime nage, kotegaeshi, sumiotoshi, uchi irimi tenkan shihonage, uchi irimi tenkan kotegaeshi, uchi irimi tenkan udekime nage</p>
                     <p class="mb-0"><strong>11 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, ryote dori, morote dori, kata dori, ushiro ryote dori, ushiro ryo kata dori, ushiro munedakishime, shomen uchi, yokomen uchi, tsuki</p>
-                  </div>
-
-                  <div class="grade-description mb-4 p-3 border-start border-4 border-success bg-light">
-                    <p class="fw-bold mb-0">
-                      The 3rd kyu grade introduces attacks with grabs from behind, and focuses on movement, contact, connection and ukemi.
-                    </p>
                   </div>
 
                   <!-- Detailed Content Toggle -->
