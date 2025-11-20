@@ -137,13 +137,6 @@
                     <div class="mb-3">
                       <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.11.2025') }">2pm - 5pm</time>
                     </div>
-
-                    <div>
-                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Price:</strong>
-                      <div class="mt-1" :class="{ 'text-muted': isEventPast('22.11.2025') }">
-                        £15
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -367,7 +360,6 @@ export default {
             start: '14:00',
             end: '17:00'
           },
-          price: '£15',
           instructors: ['Philip Smith', 'Antonis Pavlakis']
         },
         {
