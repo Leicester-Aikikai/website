@@ -108,6 +108,46 @@
                 </div>
               </div>
 
+              <!-- Event - November 2025 -->
+              <div id="event-2025-11-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.11.2025') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('22.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="mb-2">
+                  <time :class="isEventPast('22.11.2025') ? 'text-muted' : 'fw-bold text-primary'">22.11.2025</time>
+                </div>
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.11.2025') }">Aikido Course at Fight Ministry Hull</h3>
+                    <p class="mb-3" :class="isEventPast('22.11.2025') ? 'text-muted' : ''">
+                      Aikido course at Fight Ministry in Hull with instructors Philip Smith shihan.
+                    </p>
+
+                    <div class="mb-3">
+                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Instructors:</strong>
+                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('22.11.2025') }">
+                        <li>Philip Smith</li>
+                        <li>Antonis Pavlakis</li>
+                      </ul>
+                    </div>
+
+                    <div class="mb-3">
+                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Location:</strong>
+                      <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('22.11.2025') }">Fight Ministry, Salisbury Hall, 1 Park Rd, Hull, HU3 1TD</address>
+                    </div>
+
+                    <div class="mb-3">
+                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.11.2025') }">2pm - 5pm</time>
+                    </div>
+
+                    <div>
+                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Price:</strong>
+                      <div class="mt-1" :class="{ 'text-muted': isEventPast('22.11.2025') }">
+                        £15
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Event Items -->
               <div id="event-2023-12-10" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('10.12.2023') }">
                 <div class="position-absolute start-0 rounded-circle" :class="isEventPast('10.12.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
@@ -311,6 +351,24 @@ export default {
           },
           price: '£10',
           instructors: ['Naoko Suzuki', 'Sergio Cardoso', 'Antonis Pavlakis', 'Terry Mickowski']
+        },
+        {
+          date: '22.11.2025',
+          title: 'Aikido Course at Fight Ministry Hull',
+          description: 'Aikido course at Fight Ministry in Hull with instructors Philip Smith sensei and Antonis Pavlakis sensei.',
+          type: 'course',
+          id: 'event-2025-11-22',
+          image: '/src/assets/img/leicester-aikikai-dojo-hall.jpg',
+          location: {
+            name: 'Fight Ministry',
+            address: 'Salisbury Hall, 1 Park Rd, Hull, HU3 1TD'
+          },
+          time: {
+            start: '14:00',
+            end: '17:00'
+          },
+          price: '£15',
+          instructors: ['Philip Smith', 'Antonis Pavlakis']
         },
         {
           date: '10.12.2023',
