@@ -101,7 +101,7 @@ const routes = [
     path: '/docs/welcome-to-aikido-uka-booklet.pdf',
     name: 'WelcomeBooklet',
     beforeEnter() {
-      window.location.href = '/src/assets/docs/welcome-to-aikido-uka-booklet.pdf'
+      window.location.href = '/docs/welcome-to-aikido-uka-booklet.pdf'
     },
     meta: {
       title: 'Welcome to Aikido - UKA Booklet :: Leicester Aikikai Dojo',
