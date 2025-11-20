@@ -39,17 +39,16 @@ This creates an optimized production build in the `/dist` directory.
      - Publish directory: `dist`
    - Deploy!
 
-**Configuration File** (`netlify.toml` - optional):
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
+**Configuration Files** (✅ Already included in project):
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-```
+The project includes `netlify.toml` and `public/_redirects` files that configure:
+- Build command and output directory
+- SPA routing (redirects all routes to index.html)
+- Security headers
+- Cache headers for assets
+- CORS configuration
+
+**No additional configuration needed** - Netlify will automatically detect and use these files!
 
 ### Option 2: Vercel (Free Tier Available)
 
