@@ -220,34 +220,739 @@
             Adults wear white belts until they reach their black belt. Juniors (under 18) wear coloured belts combined with tags.
           </p>
 
-          <!-- 6th Kyu -->
-          <div id="6th-kyu-syllabus" class="mb-5">
-            <h3 class="h3 fw-bold mb-3">6th Kyu <small class="text-muted">(the first grade in aikido)</small></h3>
-            <div class="gradient-border mb-4" style="width: 200px;"></div>
+          <!-- Grading Cards -->
+          <div class="accordion" id="gradingAccordion">
 
-            <div class="alert alert-info-custom mb-4" role="alert">
-              <h4 class="h6 fw-bold mb-2">6th Kyu Overview</h4>
-              <p class="mb-1"><strong>10 solo exercises</strong></p>
-              <p class="mb-1"><strong>9 partner practice movements</strong></p>
-              <p class="mb-0"><strong>4 techniques</strong> - ikkyo, iriminage, shihonage, kokyu ho</p>
+            <!-- 6th Kyu -->
+            <div class="card mb-3 shadow-sm" id="6th-kyu-syllabus">
+              <div class="card-header bg-white">
+                <h3 class="mb-0">
+                  <button
+                    class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse6thKyu"
+                    aria-expanded="true"
+                    aria-controls="collapse6thKyu"
+                  >
+                    <span class="fw-bold text-dark">
+                      6th Kyu <small class="text-muted">(the first grade in aikido)</small>
+                      <br>
+                      <small class="fw-normal">Junior belt colour: <span class="badge bg-danger">red</span></small>
+                    </span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </h3>
+              </div>
+
+              <div id="collapse6thKyu" class="collapse show" data-bs-parent="#gradingAccordion">
+                <div class="card-body">
+                  <div class="alert alert-info mb-4" role="alert">
+                    <h4 class="h6 fw-bold mb-2">6th Kyu Overview</h4>
+                    <p class="mb-1"><strong>10 solo exercises</strong></p>
+                    <p class="mb-1"><strong>9 partner practice movements</strong></p>
+                    <p class="mb-0"><strong>4 techniques</strong> - ikkyo, iriminage, shihonage, kokyu ho</p>
+                  </div>
+
+                  <div class="grade-description mb-4 p-3 border-start border-4 border-danger bg-light">
+                    <p class="fw-bold mb-0">
+                      The 6th kyu grade provides a student with the foundation of stances, positioning and body movement,
+                      that is required for their progression in aikido.
+                    </p>
+                  </div>
+
+                  <!-- Detailed Content Toggle -->
+                  <div class="mb-3">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details6thKyu"
+                      aria-expanded="false"
+                      aria-controls="details6thKyu"
+                    >
+                      <i class="bi bi-chevron-right me-1"></i> Show Detailed Techniques
+                    </button>
+                  </div>
+
+                  <div class="collapse" id="details6thKyu">
+                    <h5 class="fw-bold mb-3">Body movements - Solo exercises</h5>
+                  <div class="alert alert-danger alert-sm mb-4">
+                    <ul class="mb-0">
+                      <li>Tori Fune</li>
+                      <li>Ukemi - mae and ushiro</li>
+                      <li>Shikko - mae and ushiro</li>
+                      <li>Tenkan</li>
+                      <li>Irimi Tenkan</li>
+                      <li>Tsugi Ashi</li>
+                      <li>Ayumi Ashi</li>
+                      <li>Shomen Uchi</li>
+                      <li>Yokomen Uchi</li>
+                      <li>Chudan Tsuki</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Body movements - Partner exercises</h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert alert-danger alert-sm mb-3">
+                    <ul class="mb-0">
+                      <li>Irimi</li>
+                      <li>Kaiten</li>
+                      <li>Uchi Kaiten</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Gyaku hanmi katate dori</h6>
+                  <div class="alert alert-danger alert-sm mb-4">
+                    <ul class="mb-0">
+                      <li>Irimi</li>
+                      <li>Kaiten</li>
+                      <li>Uchi Kaiten</li>
+                      <li>Soto Kaiten</li>
+                      <li>Tenkan</li>
+                      <li>Ushiro Tenkan</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Tachi waza <small class="text-muted">(Standing techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert alert-danger alert-sm mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo omote <small class="text-muted">(In front)</small></li>
+                      <li>Ikkyo ura <small class="text-muted">(Behind)</small></li>
+                      <li>Irimi nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Gyaku hanmi katate dori</h6>
+                  <div class="alert alert-danger alert-sm mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo omote <small class="text-muted">(In front)</small></li>
+                      <li>Ikkyo ura <small class="text-muted">(Behind)</small></li>
+                      <li>Shiho nage omote <small class="text-muted">(In front)</small></li>
+                      <li>Shiho nage ura <small class="text-muted">(Behind)</small></li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Ryote dori</h6>
+                  <div class="alert alert-danger alert-sm mb-4">
+                    <ul class="mb-0">
+                      <li>Kokyu ho</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Suwari waza <small class="text-muted">(Kneeling techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert alert-danger alert-sm mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo omote</li>
+                      <li>Ikkyo ura</li>
+                      <li>Iriminage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Ryote dori</h6>
+                  <div class="alert alert-danger alert-sm mb-4">
+                    <ul class="mb-0">
+                      <li>Kokyu ho</li>
+                    </ul>
+                  </div>
+                  </div><!-- End details6thKyu collapse -->
+
+                  <!-- Terminology Section with Toggle -->
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h6 class="fw-bold mb-0">Aikido 6th Kyu Terminology</h6>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#terminology6thKyu"
+                        aria-expanded="false"
+                        aria-controls="terminology6thKyu"
+                      >
+                        <i class="bi bi-chevron-down"></i> Toggle
+                      </button>
+                    </div>
+
+                    <div class="collapse" id="terminology6thKyu">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="mb-2"><strong>Tori Fune:</strong> A rowing exercise. Also known as funakogi undo.</p>
+                          <p class="mb-2"><strong>Ukemi:</strong> Breakfall</p>
+                          <p class="mb-2"><strong>Mae:</strong> Forward</p>
+                          <p class="mb-2"><strong>Ushiro:</strong> Backward</p>
+                          <p class="mb-2"><strong>Omote:</strong> Front</p>
+                          <p class="mb-2"><strong>Ura:</strong> Behind</p>
+                          <p class="mb-2"><strong>Chudan:</strong> Middle</p>
+                          <p class="mb-2"><strong>Irimi:</strong> Enter. Moving forwards.</p>
+                          <p class="mb-2"><strong>Uchi:</strong> Inside</p>
+                          <p class="mb-2"><strong>Soto:</strong> Outside</p>
+                          <p class="mb-2"><strong>Kaiten:</strong> Rotation</p>
+                          <p class="mb-2"><strong>Tenkan:</strong> Turning movement. Doing a full 180 degrees pivot.</p>
+                          <p class="mb-2"><strong>Hanmi:</strong> Half-body stance. Aikido's basic triangular stance.</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p class="mb-2"><strong>Ai Hanmi:</strong> Matching stance. Same foot forward.</p>
+                          <p class="mb-2"><strong>Gyaku Hanmi:</strong> Opposite stance. Mirror image.</p>
+                          <p class="mb-2"><strong>Kamae:</strong> Stance. Basic position.</p>
+                          <p class="mb-2"><strong>Tachi Waza:</strong> Standing technique.</p>
+                          <p class="mb-2"><strong>Suwari Waza:</strong> Kneeling technique.</p>
+                          <p class="mb-2"><strong>Katate Dori:</strong> Wrist grip.</p>
+                          <p class="mb-2"><strong>Ryote Dori:</strong> Two hands holding two hands.</p>
+                          <p class="mb-2"><strong>Tsuki:</strong> Strike / thrust.</p>
+                          <p class="mb-2"><strong>Shomen uchi:</strong> Cut to the front of the head.</p>
+                          <p class="mb-2"><strong>Yokomen uchi:</strong> Strike to the side of the head.</p>
+                          <p class="mb-2"><strong>Kokyu:</strong> Breathing</p>
+                          <p class="mb-2"><strong>Kokyu ho:</strong> Breathing exercise and throwing technique.</p>
+                          <p class="mb-0"><strong>Chudan tsuki:</strong> Strike at the solar plexus.</p>
+                        </div>
+                      </div>
+                        </div>
+                      </div>
+                    </div><!-- End terminology collapse -->
+                  </div><!-- End terminology section -->
+                </div>
+              </div>
             </div>
 
-            <p class="text-muted mb-3">
-              The 6th kyu grade provides a student with the foundation of stances, positioning and body movement,
-              that is required for their progression in aikido.
-            </p>
+            <!-- 5th Kyu -->
+            <div class="card mb-3 shadow-sm" id="5th-kyu-syllabus">
+              <div class="card-header bg-white">
+                <h3 class="mb-0">
+                  <button
+                    class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-3 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse5thKyu"
+                    aria-expanded="false"
+                    aria-controls="collapse5thKyu"
+                  >
+                    <span class="fw-bold text-dark">
+                      5th Kyu <small class="text-muted">(the second grade in aikido)</small>
+                      <br>
+                      <small class="fw-normal">Junior belt colour: <span class="badge bg-warning text-dark">yellow</span></small>
+                    </span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </h3>
+              </div>
 
-            <p class="text-muted mb-4">
-              Junior belt colour: <span class="badge bg-danger">red</span>
-            </p>
-          </div>
+              <div id="collapse5thKyu" class="collapse" data-bs-parent="#gradingAccordion">
+                <div class="card-body">
+                  <div class="alert alert-info mb-4" role="alert">
+                    <h4 class="h6 fw-bold mb-2">5th Kyu Overview</h4>
+                    <p class="mb-1"><strong>7 techniques</strong> - ikkyo, nikyo, shiho nage, uchikaiten nage, tenchi nage, iriminage, kotegaeshi</p>
+                    <p class="mb-0"><strong>6 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, katadori, morotedori, shomen uchi, yokomen uchi</p>
+                  </div>
 
-          <div class="alert alert-info-custom" role="alert">
-            <p class="mb-0">
-              <strong>Note:</strong> For the complete grading syllabus with detailed techniques and requirements for each kyu grade,
-              please contact the dojo or visit during class times.
-            </p>
-          </div>
+                  <div class="grade-description mb-4 p-3 border-start border-4 border-warning bg-light">
+                    <p class="fw-bold mb-0">
+                      The 5th kyu grade introduces different techniques from standing and kneeling positions and from different attacks.
+                    </p>
+                  </div>
+
+                  <!-- Detailed Content Toggle -->
+                  <div class="mb-3">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details5thKyu"
+                      aria-expanded="false"
+                      aria-controls="details5thKyu"
+                    >
+                      <i class="bi bi-chevron-right me-1"></i> Show Detailed Techniques
+                    </button>
+                  </div>
+
+                  <div class="collapse" id="details5thKyu">
+
+                  <h5 class="fw-bold mb-3">Suwari waza <small class="text-muted">(Kneeling techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Katadori</h6>
+                  <div class="alert alert-warning mb-4">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Tachi waza <small class="text-muted">(Standing techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert alert-warning mb-3">
+                    <ul class="mb-0">
+                      <li>Nikyo - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                      <li>Kotegaeshi</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Gyaku hanmi katate dori</h6>
+                  <div class="alert alert-warning mb-3">
+                    <ul class="mb-0">
+                      <li>Nikyo - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                      <li>Uchi kaiten nage</li>
+                      <li>Tenchi nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Morote dori</h6>
+                  <div class="alert alert-warning mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Shomen uchi</h6>
+                  <div class="alert alert-warning mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                      <li>Irimi nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Yokomen uchi</h6>
+                  <div class="alert alert-warning mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                    </ul>
+                  </div>
+                  </div><!-- End details5thKyu collapse -->
+
+                  <!-- Terminology Section with Toggle -->
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h6 class="fw-bold mb-0">Aikido 5th Kyu Terminology</h6>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#terminology5thKyu"
+                        aria-expanded="false"
+                        aria-controls="terminology5thKyu"
+                      >
+                        <i class="bi bi-chevron-down"></i> Toggle
+                      </button>
+                    </div>
+
+                    <div class="collapse" id="terminology5thKyu">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                      <p class="mb-2"><strong>Katadori:</strong> Shoulder grip.</p>
+                      <p class="mb-2"><strong>Morotedori:</strong> Grip with two hands.</p>
+                      <p class="mb-2"><strong>Shiho nage:</strong> Four directions throw.</p>
+                      <p class="mb-0"><strong>Kotegaeshi:</strong> Reverse wrist throwing technique.</p>
+                        </div>
+                      </div>
+                    </div><!-- End terminology collapse -->
+                  </div><!-- End terminology section -->
+                </div>
+              </div>
+            </div>
+
+            <!-- 4th Kyu -->
+            <div class="card mb-3 shadow-sm" id="4th-kyu-syllabus">
+              <div class="card-header bg-white">
+                <h3 class="mb-0">
+                  <button
+                    class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-3 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse4thKyu"
+                    aria-expanded="false"
+                    aria-controls="collapse4thKyu"
+                  >
+                    <span class="fw-bold text-dark">
+                      4th Kyu <small class="text-muted">(the third grade in aikido)</small>
+                      <br>
+                      <small class="fw-normal">Junior belt colour: <span class="badge" style="background-color: #ff8c00; color: white;">orange</span></small>
+                    </span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </h3>
+              </div>
+
+              <div id="collapse4thKyu" class="collapse" data-bs-parent="#gradingAccordion">
+                <div class="card-body">
+                  <div class="alert alert-info mb-4" role="alert">
+                    <h4 class="h6 fw-bold mb-2">4th Kyu Overview</h4>
+                    <p class="mb-1"><strong>14 techniques</strong> - ikkyo, nikyo, sankyo, yonkyo, rokkyo, uchikaiten sankyo, shiho nage, uchikaiten nage, sotokaiten nage, irimi nage, udekime nage, tenchi nage, kotegaeshi, sumiotoshi</p>
+                    <p class="mb-0"><strong>8 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, ryote dori, morote dori, kata dori, shomen uchi, yokomen uchi, tsuki</p>
+                  </div>
+
+                  <div class="grade-description mb-4 p-3 border-start border-4 bg-light" style="border-color: #ff8c00 !important;">
+                    <p class="fw-bold mb-0">
+                      The 4th kyu grade includes more throws from different attacks and focuses on contact, connection and ukemi.
+                    </p>
+                  </div>
+
+                  <!-- Detailed Content Toggle -->
+                  <div class="mb-3">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details4thKyu"
+                      aria-expanded="false"
+                      aria-controls="details4thKyu"
+                    >
+                      <i class="bi bi-chevron-right me-1"></i> Show Detailed Techniques
+                    </button>
+                  </div>
+
+                  <div class="collapse" id="details4thKyu">
+
+                  <h5 class="fw-bold mb-3">Suwari waza <small class="text-muted">(Kneeling techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                      <li>Kotegaeshi - omote and ura</li>
+                      <li>Uchikaiten nage - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Shomen uchi</h6>
+                  <div class="alert mb-4" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Tachi waza <small class="text-muted">(Standing techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sotokaiten nage - omote and ura</li>
+                      <li>Sumiotoshi</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Gyaku hanmi katate dori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                      <li>Iriminage</li>
+                      <li>Kotegaeshi</li>
+                      <li>Sumiotoshi</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Morote dori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Shihonage - omote and ura</li>
+                      <li>Udekime nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Ryote dori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                      <li>Rokkyo - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                      <li>Tenchi nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Katadori</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                      <li>Kotegaeshi - omote and ura</li>
+                      <li>Shiho nage - omote and ura</li>
+                      <li>Uchikaiten nage - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Shomen uchi</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Kotegaeshi - omote and ura</li>
+                      <li>Uchikaiten Sankyo - omote and ura</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Yokomen uchi</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                      <li>Sankyo - omote and ura</li>
+                      <li>Udekime nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Tsuki</h6>
+                  <div class="alert mb-3" style="background-color: #ffe5cc; border-color: #ff8c00; color: #cc6600;">
+                    <ul class="mb-0">
+                      <li>Uchikaiten Sankyo - omote and ura</li>
+                      <li>Kotegaeshi - omote and ura</li>
+                      <li>Sumiotoshi</li>
+                    </ul>
+                  </div>
+                  </div><!-- End details4thKyu collapse -->
+
+                  <!-- Terminology Section with Toggle -->
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h6 class="fw-bold mb-0">Aikido 4th Kyu Terminology</h6>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#terminology4thKyu"
+                        aria-expanded="false"
+                        aria-controls="terminology4thKyu"
+                      >
+                        <i class="bi bi-chevron-down"></i> Toggle
+                      </button>
+                    </div>
+
+                    <div class="collapse" id="terminology4thKyu">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                      <p class="mb-0"><strong>Sumiotoshi:</strong> Corner drop.</p>
+                        </div>
+                      </div>
+                    </div><!-- End terminology collapse -->
+                  </div><!-- End terminology section -->
+                </div>
+              </div>
+            </div>
+
+            <!-- 3rd Kyu -->
+            <div class="card mb-3 shadow-sm" id="3rd-kyu-syllabus">
+              <div class="card-header bg-white">
+                <h3 class="mb-0">
+                  <button
+                    class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-3 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse3rdKyu"
+                    aria-expanded="false"
+                    aria-controls="collapse3rdKyu"
+                  >
+                    <span class="fw-bold text-dark">
+                      3rd Kyu <small class="text-muted">(the fourth grade in aikido)</small>
+                      <br>
+                      <small class="fw-normal">Junior belt colour: <span class="badge bg-success">green</span></small>
+                    </span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </h3>
+              </div>
+
+              <div id="collapse3rdKyu" class="collapse" data-bs-parent="#gradingAccordion">
+                <div class="card-body">
+                  <div class="alert alert-info mb-4" role="alert">
+                    <h4 class="h6 fw-bold mb-2">3rd Kyu Overview</h4>
+                    <p class="mb-1"><strong>17 techniques</strong> - ikkyo, nikyo, sankyo, yonkyo, gokyo, rokkyo, shiho nage, kaiten nage, sotokaiten nage, irimi nage, udekime nage, kotegaeshi, sumiotoshi, uchi irimi tenkan shihonage, uchi irimi tenkan kotegaeshi, uchi irimi tenkan udekime nage</p>
+                    <p class="mb-0"><strong>11 attacks</strong> - ai hanmi katate dori, gyaku hanmi katate dori, ryote dori, morote dori, kata dori, ushiro ryote dori, ushiro ryo kata dori, ushiro munedakishime, shomen uchi, yokomen uchi, tsuki</p>
+                  </div>
+
+                  <div class="grade-description mb-4 p-3 border-start border-4 border-success bg-light">
+                    <p class="fw-bold mb-0">
+                      The 3rd kyu grade introduces attacks with grabs from behind, and focuses on movement, contact, connection and ukemi.
+                    </p>
+                  </div>
+
+                  <!-- Detailed Content Toggle -->
+                  <div class="mb-3">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#details3rdKyu"
+                      aria-expanded="false"
+                      aria-controls="details3rdKyu"
+                    >
+                      <i class="bi bi-chevron-right me-1"></i> Show Detailed Techniques
+                    </button>
+                  </div>
+
+                  <div class="collapse" id="details3rdKyu">
+
+                  <h5 class="fw-bold mb-3">Suwari waza <small class="text-muted">(Kneeling techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Shomen uchi</h6>
+                  <div class="alert alert-success mb-4">
+                    <ul class="mb-0">
+                      <li>Gokyo</li>
+                      <li>Sotokaiten nage</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Hanmi handachi waza <small class="text-muted">(One kneeling one standing)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Gyaku hanmi katate dori</h6>
+                  <div class="alert alert-success mb-4">
+                    <ul class="mb-0">
+                      <li>Ikkyo</li>
+                      <li>Nikyo</li>
+                      <li>Sankyo</li>
+                      <li>Yonkyo</li>
+                      <li>Iriminage</li>
+                      <li>Kotegaeshi</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Tachi waza <small class="text-muted">(Standing techniques)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ai hanmi katate dori</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Uchi irimi tenkan - shihonage</li>
+                      <li>Uchi irimi tenkan - kotegaeshi</li>
+                      <li>Uchi irimi tenkan - udekime nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Morote dori</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo - omote and ura</li>
+                      <li>Nikyo - omote and ura</li>
+                      <li>Sankyo - omote and ura</li>
+                      <li>Yonkyo - omote and ura</li>
+                      <li>Irimi nage</li>
+                      <li>Kotegaeshi</li>
+                      <li>Udekime nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Ryote dori</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Irimi nage</li>
+                      <li>Kotegaeshi</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Shomen uchi</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Shihonage</li>
+                      <li>Sumiotoshi</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Yokomen uchi</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Gokyo</li>
+                      <li>Irimi nage - jodan, chudan, gedan</li>
+                      <li>Kotegaeshi - jodan, chudan, gedan</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Tsuki (jodan and chudan)</h6>
+                  <div class="alert alert-success mb-4">
+                    <ul class="mb-0">
+                      <li>Ikkyo</li>
+                      <li>Nikyo</li>
+                      <li>Sankyo</li>
+                      <li>Yonkyo</li>
+                      <li>Gokyo</li>
+                      <li>Rokkyo</li>
+                    </ul>
+                  </div>
+
+                  <h5 class="fw-bold mb-3">Ushiro waza <small class="text-muted">(Attacks from behind)</small></h5>
+
+                  <h6 class="fw-bold mb-2">Ryote dori</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo</li>
+                      <li>Nikyo</li>
+                      <li>Sankyo</li>
+                      <li>Rokkyo</li>
+                      <li>Shihonage</li>
+                      <li>Kotegaeshi</li>
+                      <li>Udekime nage</li>
+                      <li>Kaiten nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Ryokata dori</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Ikkyo</li>
+                      <li>Nikyo</li>
+                      <li>Sankyo</li>
+                      <li>Rokkyo</li>
+                      <li>Shihonage</li>
+                      <li>Kotegaeshi</li>
+                      <li>Udekime nage</li>
+                      <li>Kaiten nage</li>
+                    </ul>
+                  </div>
+
+                  <h6 class="fw-bold mb-2">Munedakishime</h6>
+                  <div class="alert alert-success mb-3">
+                    <ul class="mb-0">
+                      <li>Shihonage</li>
+                      <li>Kotegaeshi</li>
+                    </ul>
+                  </div>
+                  </div><!-- End details3rdKyu collapse -->
+
+                  <!-- Terminology Section with Toggle -->
+                  <div class="mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h6 class="fw-bold mb-0">Aikido 3rd Kyu Terminology</h6>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#terminology3rdKyu"
+                        aria-expanded="false"
+                        aria-controls="terminology3rdKyu"
+                      >
+                        <i class="bi bi-chevron-down"></i> Toggle
+                      </button>
+                    </div>
+
+                    <div class="collapse" id="terminology3rdKyu">
+                      <div class="card bg-light">
+                        <div class="card-body">
+                      <p class="mb-2"><strong>Jodan:</strong> High</p>
+                      <p class="mb-2"><strong>Chudan:</strong> Middle</p>
+                      <p class="mb-2"><strong>Gedan:</strong> Low</p>
+                      <p class="mb-2"><strong>Jodan, Chudan, Gedan:</strong> All these identify an attack level or a technique position.</p>
+                      <p class="mb-2"><strong>Ushiro waza:</strong> Attacks from behind. Usually standing techniques.</p>
+                      <p class="mb-2"><strong>Ryokata dori:</strong> Grabbing both shoulders</p>
+                      <p class="mb-0"><strong>Munedakishime:</strong> Bear hug (from behind)</p>
+                        </div>
+                      </div>
+                    </div><!-- End terminology collapse -->
+                  </div><!-- End terminology section -->
+                </div>
+              </div>
+            </div>
+
+          </div><!-- End accordion -->
         </div>
       </section>
     </main>
