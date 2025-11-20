@@ -14,10 +14,24 @@ const __dirname = dirname(__filename)
 const SITE_URL = 'https://leicesteraikikai.com'
 const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 
+// Define events with their dates and titles
+const events = [
+  { date: '2023-12-10', title: 'joint-course-with-melton-byakko-kan-aikido' },
+  { date: '2023-10-22', title: 'leicester-aikikai-dojo-course-october-2023' },
+  { date: '2023-09-15', title: 'aikido-beginners-course-2023' },
+  { date: '2023-06-11', title: 'dojo-10th-year-anniversary-course' }
+]
+
 // Define routes with priority and change frequency
 const routes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/events', priority: '0.9', changefreq: 'weekly' },
+  // Add individual event routes
+  ...events.map(event => ({
+    path: `/events/${event.date}/${event.title}`,
+    priority: '0.7',
+    changefreq: 'monthly'
+  })),
   { path: '/syllabus', priority: '0.8', changefreq: 'monthly' },
   { path: '/syllabus/6th-kyu', priority: '0.7', changefreq: 'monthly' },
   { path: '/syllabus/5th-kyu', priority: '0.7', changefreq: 'monthly' },

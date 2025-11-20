@@ -52,27 +52,27 @@
               <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
               <!-- Event Items -->
-              <div class="mb-5 position-relative ps-5">
-                <div class="position-absolute start-0 rounded-circle bg-primary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+              <div id="event-2023-12-10" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('10.12.2023') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('10.12.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
-                  <time class="fw-bold text-primary">10.12.2023</time>
+                  <time :class="isEventPast('10.12.2023') ? 'text-muted' : 'fw-bold text-primary'">10.12.2023</time>
                 </div>
                 <div class="row g-3">
                   <div class="col-lg-8">
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3">
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('10.12.2023') }">
                           <a href="/src/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg" target="_blank" class="text-decoration-none">
                             Joint course with Melton Byakko-Kan Aikido
                           </a>
                         </h3>
-                        <p class="text-muted mb-3">
+                        <p class="mb-3" :class="isEventPast('10.12.2023') ? 'text-muted' : ''">
                           A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
                         </p>
 
                         <div class="mb-3">
-                          <strong>Instructors:</strong>
-                          <ul class="mb-0 mt-2">
+                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Instructors:</strong>
+                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('10.12.2023') }">
                             <li>Naoko Suzuki sensei</li>
                             <li>Terry Mickowski sensei</li>
                             <li>Andy Thompson sensei</li>
@@ -81,17 +81,17 @@
                         </div>
 
                         <div class="mb-3">
-                          <strong>Location:</strong>
-                          <address class="mb-0 mt-1">Jubilee Sports Centre, Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND</address>
+                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Location:</strong>
+                          <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('10.12.2023') }">Jubilee Sports Centre, Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND</address>
                         </div>
 
                         <div class="mb-3">
-                          <strong>Time:</strong> <time>11am - 3pm</time>
+                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('10.12.2023') }">11am - 3pm</time>
                         </div>
 
                         <div>
-                          <strong>Prices:</strong>
-                          <div class="mt-1">
+                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Prices:</strong>
+                          <div class="mt-1" :class="{ 'text-muted': isEventPast('10.12.2023') }">
                             £20<br>
                             £10 - concessions
                           </div>
@@ -111,30 +111,30 @@
               </div>
 
               <!-- Past Event 1 -->
-              <div class="mb-5 position-relative ps-5 opacity-75">
-                <div class="position-absolute start-0 rounded-circle bg-secondary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+              <div id="event-2023-10-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.10.2023') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('22.10.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
-                  <time class="text-muted">22.10.2023</time>
+                  <time :class="isEventPast('22.10.2023') ? 'text-muted' : 'fw-bold text-primary'">22.10.2023</time>
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3 text-muted">Leicester Aikikai Dojo Course - October 2023</h3>
-                    <p class="text-muted mb-3">
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">Leicester Aikikai Dojo Course - October 2023</h3>
+                    <p class="mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">
                       Dojo course on October 22nd 2023 with guest instructor Iain Cooper sensei 4th dan Fukushidoin
                     </p>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Location:</strong>
-                      <address class="mb-0 text-muted">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
+                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': isEventPast('22.10.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
                     </div>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Time:</strong> <time class="text-muted">1pm - 5pm</time>
+                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.10.2023') }">1pm - 5pm</time>
                     </div>
 
                     <div>
-                      <strong class="text-muted">Prices:</strong>
-                      <div class="text-muted">
+                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Prices:</strong>
+                      <div :class="{ 'text-muted': isEventPast('22.10.2023') }">
                         Adults - £15<br>
                         Under 18's - £8<br>
                         Concession - £12<br>
@@ -146,30 +146,30 @@
               </div>
 
               <!-- Past Event 2 -->
-              <div class="mb-5 position-relative ps-5 opacity-75">
-                <div class="position-absolute start-0 rounded-circle bg-secondary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+              <div id="event-2023-09-15" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('15.09.2023') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('15.09.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
-                  <time class="text-muted">15.09.2023</time>
+                  <time :class="isEventPast('15.09.2023') ? 'text-muted' : 'fw-bold text-primary'">15.09.2023</time>
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3 text-muted">Aikido Beginner's Course 2023</h3>
-                    <p class="text-muted mb-2">Start aikido with a 3-month beginner's course.</p>
-                    <p class="text-muted mb-2">From September 15th 2023 to December 15th 2023 we ran our beginner's course.</p>
-                    <p class="text-muted mb-3">Join us to work on co-ordination, self-improvement and body conditioning. Learn how to fall, how to defend yourself and much more.</p>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">Aikido Beginner's Course 2023</h3>
+                    <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">Start aikido with a 3-month beginner's course.</p>
+                    <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">From September 15th 2023 to December 15th 2023 we ran our beginner's course.</p>
+                    <p class="mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">Join us to work on co-ordination, self-improvement and body conditioning. Learn how to fall, how to defend yourself and much more.</p>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Location:</strong>
-                      <address class="mb-0 text-muted">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
+                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': isEventPast('15.09.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
                     </div>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Time:</strong> <time class="text-muted">7pm - 9pm</time>
+                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('15.09.2023') }">7pm - 9pm</time>
                     </div>
 
                     <div>
-                      <strong class="text-muted">Prices:</strong>
-                      <div class="text-muted">
+                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Prices:</strong>
+                      <div :class="{ 'text-muted': isEventPast('15.09.2023') }">
                         Adults (waged) - £60<br>
                         Adults (concession) - £45
                       </div>
@@ -179,19 +179,19 @@
               </div>
 
               <!-- Past Event 3 -->
-              <div class="mb-5 position-relative ps-5 opacity-75">
-                <div class="position-absolute start-0 rounded-circle bg-secondary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+              <div id="event-2023-06-11" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('11.06.2023') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('11.06.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
-                  <time class="text-muted">11.06.2023</time>
+                  <time :class="isEventPast('11.06.2023') ? 'text-muted' : 'fw-bold text-primary'">11.06.2023</time>
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3 text-muted">Dojo 10th year anniversary course</h3>
-                    <p class="text-muted mb-3">Join us on June 11th 2023 for the 10th year anniversary course.</p>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">Dojo 10th year anniversary course</h3>
+                    <p class="mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">Join us on June 11th 2023 for the 10th year anniversary course.</p>
 
                     <div class="mb-3">
-                      <strong class="text-muted">Instructors:</strong>
-                      <ul class="mb-0 mt-2 text-muted">
+                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Instructors:</strong>
+                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('11.06.2023') }">
                         <li>Ian Grubb 6th dan Shidoin</li>
                         <li>Terry Mickowski 4th dan Fukushidoin</li>
                         <li>Iain Cooper 3rd dan Fukushidoin</li>
@@ -200,17 +200,17 @@
                     </div>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Location:</strong>
-                      <address class="mb-0 text-muted">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
+                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': isEventPast('11.06.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
                     </div>
 
                     <div class="mb-2">
-                      <strong class="text-muted">Time:</strong> <time class="text-muted">1pm - 5pm</time>
+                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('11.06.2023') }">1pm - 5pm</time>
                     </div>
 
                     <div>
-                      <strong class="text-muted">Prices:</strong>
-                      <div class="text-muted">
+                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Prices:</strong>
+                      <div :class="{ 'text-muted': isEventPast('11.06.2023') }">
                         Adults - £15<br>
                         Under 18's - £8<br>
                         Concession - £12<br>
@@ -234,7 +234,100 @@ import { setJsonLd, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Events',
+  data() {
+    return {
+      events: [
+        {
+          date: '10.12.2023',
+          title: 'Joint course with Melton Byakko-Kan Aikido',
+          type: 'course',
+          id: 'event-2023-12-10'
+        },
+        {
+          date: '22.10.2023',
+          title: 'Leicester Aikikai Dojo Course - October 2023',
+          type: 'course',
+          id: 'event-2023-10-22'
+        },
+        {
+          date: '15.09.2023',
+          title: 'Aikido Beginner\'s Course 2023',
+          type: 'course',
+          id: 'event-2023-09-15'
+        },
+        {
+          date: '11.06.2023',
+          title: 'Dojo 10th year anniversary course',
+          type: 'course',
+          id: 'event-2023-06-11'
+        }
+      ]
+    }
+  },
+  computed: {
+    eventsWithStatus() {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+
+      return this.events.map(event => {
+        const eventDate = this.parseDate(event.date)
+        return {
+          ...event,
+          isPast: eventDate < today
+        }
+      })
+    }
+  },
+  methods: {
+    parseDate(dateStr) {
+      // Parse DD.MM.YYYY format
+      const parts = dateStr.split('.')
+      return new Date(parts[2], parts[1] - 1, parts[0])
+    },
+    isEventPast(dateStr) {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      const eventDate = this.parseDate(dateStr)
+      return eventDate < today
+    },
+    createSlug(title) {
+      return title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim()
+    },
+    formatDateForUrl(dateStr) {
+      // Convert DD.MM.YYYY to YYYY-MM-DD
+      const parts = dateStr.split('.')
+      return `${parts[2]}-${parts[1]}-${parts[0]}`
+    },
+    getEventUrl(event) {
+      const date = this.formatDateForUrl(event.date)
+      const slug = this.createSlug(event.title)
+      return `/events/${date}/${slug}`
+    },
+    scrollToEvent() {
+      // Check if we have route params for a specific event
+      if (this.$route.params.date && this.$route.params.title) {
+        const date = this.$route.params.date
+        const formattedDate = date.split('-').reverse().join('.') // Convert YYYY-MM-DD to DD.MM.YYYY
+
+        this.$nextTick(() => {
+          const eventElement = document.getElementById(`event-${date}`)
+          if (eventElement) {
+            setTimeout(() => {
+              eventElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }, 100)
+          }
+        })
+      }
+    }
+  },
   mounted() {
+    // Scroll to specific event if accessed via direct URL
+    this.scrollToEvent()
+
     // Add structured data for upcoming/recent events
     setJsonLd([
       {

@@ -28,6 +28,17 @@ const routes = [
     }
   },
   {
+    path: '/events/:date/:title',
+    name: 'EventDetail',
+    component: Events,
+    meta: {
+      title: 'Aikido Event :: Leicester Aikikai Dojo',
+      description: 'Aikido event details at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
+      keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
+      image: `${SITE_URL}/src/assets/img/antonis-pavlakis-with-iain-cooper.webp`
+    }
+  },
+  {
     path: '/syllabus',
     name: 'Syllabus',
     component: Syllabus,
