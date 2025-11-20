@@ -367,21 +367,19 @@
                   </div>
                   </div><!-- End details6thKyu collapse -->
 
-                  <!-- Terminology Section with Toggle -->
+                  <!-- Terminology Section -->
                   <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h6 class="fw-bold mb-0">Aikido 6th Kyu Terminology</h6>
-                      <button
-                        class="btn btn-outline-secondary btn-sm"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#terminology6thKyu"
-                        aria-expanded="false"
-                        aria-controls="terminology6thKyu"
-                      >
-                        <i class="bi bi-chevron-down"></i> Toggle
-                      </button>
-                    </div>
+                    <button
+                      class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-0 mb-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#terminology6thKyu"
+                      aria-expanded="false"
+                      aria-controls="terminology6thKyu"
+                    >
+                      <h6 class="fw-bold mb-0 text-dark">Aikido 6th Kyu Terminology</h6>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
 
                     <div class="collapse" id="terminology6thKyu">
                       <div class="card bg-light">
@@ -542,21 +540,19 @@
                   </div>
                   </div><!-- End details5thKyu collapse -->
 
-                  <!-- Terminology Section with Toggle -->
+                  <!-- Terminology Section -->
                   <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h6 class="fw-bold mb-0">Aikido 5th Kyu Terminology</h6>
-                      <button
-                        class="btn btn-outline-secondary btn-sm"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#terminology5thKyu"
-                        aria-expanded="false"
-                        aria-controls="terminology5thKyu"
-                      >
-                        <i class="bi bi-chevron-down"></i> Toggle
-                      </button>
-                    </div>
+                    <button
+                      class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-0 mb-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#terminology5thKyu"
+                      aria-expanded="false"
+                      aria-controls="terminology5thKyu"
+                    >
+                      <h6 class="fw-bold mb-0 text-dark">Aikido 5th Kyu Terminology</h6>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
 
                     <div class="collapse" id="terminology5thKyu">
                       <div class="card bg-light">
@@ -729,21 +725,19 @@
                   </div>
                   </div><!-- End details4thKyu collapse -->
 
-                  <!-- Terminology Section with Toggle -->
+                  <!-- Terminology Section -->
                   <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h6 class="fw-bold mb-0">Aikido 4th Kyu Terminology</h6>
-                      <button
-                        class="btn btn-outline-secondary btn-sm"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#terminology4thKyu"
-                        aria-expanded="false"
-                        aria-controls="terminology4thKyu"
-                      >
-                        <i class="bi bi-chevron-down"></i> Toggle
-                      </button>
-                    </div>
+                    <button
+                      class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-0 mb-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#terminology4thKyu"
+                      aria-expanded="false"
+                      aria-controls="terminology4thKyu"
+                    >
+                      <h6 class="fw-bold mb-0 text-dark">Aikido 4th Kyu Terminology</h6>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
 
                     <div class="collapse" id="terminology4thKyu">
                       <div class="card bg-light">
@@ -938,21 +932,19 @@
                   </div>
                   </div><!-- End details3rdKyu collapse -->
 
-                  <!-- Terminology Section with Toggle -->
+                  <!-- Terminology Section -->
                   <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h6 class="fw-bold mb-0">Aikido 3rd Kyu Terminology</h6>
-                      <button
-                        class="btn btn-outline-secondary btn-sm"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#terminology3rdKyu"
-                        aria-expanded="false"
-                        aria-controls="terminology3rdKyu"
-                      >
-                        <i class="bi bi-chevron-down"></i> Toggle
-                      </button>
-                    </div>
+                    <button
+                      class="btn btn-link text-start w-100 d-flex justify-content-between align-items-center text-decoration-none p-0 mb-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#terminology3rdKyu"
+                      aria-expanded="false"
+                      aria-controls="terminology3rdKyu"
+                    >
+                      <h6 class="fw-bold mb-0 text-dark">Aikido 3rd Kyu Terminology</h6>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
 
                     <div class="collapse" id="terminology3rdKyu">
                       <div class="card bg-light">
