@@ -202,36 +202,36 @@
       </section>
 
       <!-- Costs Section -->
-      <section id="costs" class="py-5 bg-light">
+      <section id="costs" class="py-5 text-white" style="background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%); padding-bottom: 100px !important;">
         <div class="container">
-          <h2 class="section-title text-center">Costs</h2>
-          <div class="section-divider"></div>
+          <h2 class="display-5 fw-bold text-center mb-4">Costs</h2>
+          <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 3rem;"></div>
 
           <div class="text-center mb-4">
-            <p class="text-muted">
+            <p>
               The initial cost is for the annual membership with the
               <a href="https://ukaikikai.org.uk/online-membership/about/online-membership"
-                 target="_blank" rel="noopener noreferrer" title="UK Aikikai annual membership costs">
+                 target="_blank" rel="noopener noreferrer" title="UK Aikikai annual membership costs"
+                 class="text-white text-decoration-underline">
                 UK Aikikai (UKA)
               </a> association which also includes insurance.
             </p>
             <ul class="list-unstyled fw-bold">
               <li>Adult (waged) £32.00</li>
-              <li>Adult (concession/unemployed) £25.00</li>
               <li>Under 18s* £18.00</li>
             </ul>
-            <p class="mt-3 text-muted">For the monthly costs, see below:</p>
+            <p class="mt-3">For the monthly costs, see below:</p>
           </div>
 
           <div class="row justify-content-center g-4 mb-4">
             <div class="col-lg-3 col-md-6">
               <div class="card h-100 price-card">
                 <div class="card-header text-center bg-white border-bottom border-3">
-                  <h3 class="h4 fw-bold mb-0">Under 18s</h3>
+                  <h3 class="h4 fw-bold mb-0 text-dark">Under 18s</h3>
                 </div>
                 <div class="card-body text-center d-flex flex-column">
                   <div class="mt-auto">
-                    <p class="display-6 fw-bold text-muted mb-0">£15.00 <span class="fs-6">/ month</span></p>
+                    <p class="display-6 fw-bold text-dark mb-0">£15.00 <span class="fs-6">/ month</span></p>
                   </div>
                 </div>
                 <div class="card-footer bg-info bg-opacity-10 border-info">
@@ -243,12 +243,12 @@
             <div class="col-lg-3 col-md-6">
               <div class="card h-100 price-card featured">
                 <div class="card-header text-center bg-white">
-                  <h3 class="h4 fw-bold mb-0">Adults (waged)</h3>
+                  <h3 class="h4 fw-bold mb-0 text-dark">Adults (waged)</h3>
                   <div class="gradient-border"></div>
                 </div>
                 <div class="card-body text-center d-flex flex-column">
                   <div class="mt-auto">
-                    <p class="display-5 fw-bold mb-0">£25.00 <span class="fs-6">/ month</span></p>
+                    <p class="display-5 fw-bold text-dark mb-0">£25.00 <span class="fs-6">/ month</span></p>
                   </div>
                 </div>
               </div>
@@ -257,11 +257,11 @@
             <div class="col-lg-3 col-md-6">
               <div class="card h-100 price-card">
                 <div class="card-header text-center bg-white border-bottom border-3">
-                  <h3 class="h4 fw-bold mb-0">Adults (concession)</h3>
+                  <h3 class="h4 fw-bold mb-0 text-dark">Adults (concession)</h3>
                 </div>
                 <div class="card-body text-center d-flex flex-column">
                   <div class="mt-auto">
-                    <p class="display-6 fw-bold text-muted mb-0">£20.00 <span class="fs-6">/ month</span></p>
+                    <p class="display-6 fw-bold text-dark mb-0">£20.00 <span class="fs-6">/ month</span></p>
                   </div>
                 </div>
               </div>
@@ -270,11 +270,24 @@
 
           <div class="row justify-content-center">
             <div class="col-lg-6">
-              <div class="alert alert-warning-custom" role="alert">
-                <strong>Guest visits:</strong> Guests are welcome to visit and practice. The fee is £8 per session.
+              <div class="alert alert-light border-0 shadow" role="alert">
+                <strong class="text-dark">Guest visits:</strong> <span class="text-dark">Guests are welcome to visit and practice. The fee is £8 per session.</span>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Wave divider -->
+        <div class="wave-divider">
+          <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+                <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+                <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
+              </g>
+            </g>
+          </svg>
         </div>
       </section>
 
