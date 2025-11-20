@@ -96,6 +96,19 @@ const routes = [
       image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
       grade: '3rd-kyu'
     }
+  },
+  {
+    path: '/docs/welcome-to-aikido-uka-booklet.pdf',
+    name: 'WelcomeBooklet',
+    beforeEnter() {
+      window.location.href = '/src/assets/docs/welcome-to-aikido-uka-booklet.pdf'
+    },
+    meta: {
+      title: 'Welcome to Aikido - UKA Booklet :: Leicester Aikikai Dojo',
+      description: 'Download the official UK Aikikai Welcome to Aikido booklet. An introduction to traditional aikido practice, etiquette, and philosophy.',
+      keywords: 'aikido booklet, aikido guide, UK Aikikai, aikido introduction, aikido etiquette, aikido beginner guide',
+      image: `${SITE_URL}/src/assets/img/Leicester-Aikikai-Dojo-Logo.png`
+    }
   }
 ]
 

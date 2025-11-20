@@ -36,7 +36,8 @@ const routes = [
   { path: '/syllabus/6th-kyu', priority: '0.7', changefreq: 'monthly' },
   { path: '/syllabus/5th-kyu', priority: '0.7', changefreq: 'monthly' },
   { path: '/syllabus/4th-kyu', priority: '0.7', changefreq: 'monthly' },
-  { path: '/syllabus/3rd-kyu', priority: '0.7', changefreq: 'monthly' }
+  { path: '/syllabus/3rd-kyu', priority: '0.7', changefreq: 'monthly' },
+  { path: '/docs/welcome-to-aikido-uka-booklet.pdf', priority: '0.6', changefreq: 'yearly' }
 ]
 
 // Get current date in ISO format (YYYY-MM-DD)
