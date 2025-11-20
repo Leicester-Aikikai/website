@@ -63,7 +63,7 @@
                       <div class="card-body">
                         <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }">
                           <a href="/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg" target="_blank" class="text-decoration-none">
-                            Joint course with Melton Byakko-Kan Aikido
+                            Xmas 2025 course with Melton Byakko-Kan Aikido
                           </a>
                         </h3>
                         <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''">
@@ -297,7 +297,7 @@ export default {
       events: [
         {
           date: '14.12.2025',
-          title: 'Joint course with Melton Byakko-Kan Aikido',
+          title: 'Xmas 2025 course with Melton Byakko-Kan Aikido',
           type: 'course',
           id: 'event-2025-12-14'
         },
