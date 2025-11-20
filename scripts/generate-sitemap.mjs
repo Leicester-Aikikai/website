@@ -16,6 +16,7 @@ const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 
 // Define events with their dates and titles
 const events = [
+  { date: '2025-12-14', title: 'joint-course-with-melton-byakko-kan-aikido-december-2025' },
   { date: '2023-12-10', title: 'joint-course-with-melton-byakko-kan-aikido' },
   { date: '2023-10-22', title: 'leicester-aikikai-dojo-course-october-2023' },
   { date: '2023-09-15', title: 'aikido-beginners-course-2023' },

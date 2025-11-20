@@ -51,6 +51,64 @@
               <!-- Timeline line -->
               <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
+              <!-- Upcoming Event - December 2025 -->
+              <div id="event-2025-12-14" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('14.12.2025') }">
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('14.12.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="mb-2">
+                  <time :class="isEventPast('14.12.2025') ? 'text-muted' : 'fw-bold text-primary'">14.12.2025</time>
+                </div>
+                <div class="row g-3">
+                  <div class="col-lg-8">
+                    <div class="card h-100 shadow-sm">
+                      <div class="card-body">
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }">
+                          <a href="/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg" target="_blank" class="text-decoration-none">
+                            Joint course with Melton Byakko-Kan Aikido
+                          </a>
+                        </h3>
+                        <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''">
+                          A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
+                        </p>
+
+                        <div class="mb-3">
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Instructors:</strong>
+                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.12.2025') }">
+                            <li>Naoko Suzuki</li>
+                            <li>Sergio Cardoso</li>
+                            <li>Antonis Pavlakis</li>
+                            <li>Terry Mickowski</li>
+                          </ul>
+                        </div>
+
+                        <div class="mb-3">
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Location:</strong>
+                          <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('14.12.2025') }">Jubilee Sports Centre, Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND</address>
+                        </div>
+
+                        <div class="mb-3">
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('14.12.2025') }">10:30am - 2:30pm</time>
+                        </div>
+
+                        <div>
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Price:</strong>
+                          <div class="mt-1" :class="{ 'text-muted': isEventPast('14.12.2025') }">
+                            £10
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <img
+                      src="/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg"
+                      alt="Joint course with Melton Byakko-Kan Aikido poster December 2025"
+                      class="img-fluid rounded shadow"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <!-- Event Items -->
               <div id="event-2023-12-10" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('10.12.2023') }">
                 <div class="position-absolute start-0 rounded-circle" :class="isEventPast('10.12.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
@@ -237,6 +295,12 @@ export default {
   data() {
     return {
       events: [
+        {
+          date: '14.12.2025',
+          title: 'Joint course with Melton Byakko-Kan Aikido',
+          type: 'course',
+          id: 'event-2025-12-14'
+        },
         {
           date: '10.12.2023',
           title: 'Joint course with Melton Byakko-Kan Aikido',
