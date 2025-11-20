@@ -10,7 +10,7 @@ const SITE_IMAGE = `${SITE_URL}/src/assets/img/leicester-aikikai-dojo-hall.jpg`
 /**
  * Set dynamic meta tags for SEO
  */
-export function setMeta({ title, description, image, url, type = 'website', keywords }) {
+export function setMeta({ title, description, image, url, type = 'website', keywords, author, publishedTime, modifiedTime }) {
   // Title
   document.title = title || SITE_NAME
 
@@ -18,6 +18,9 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
   setMetaTag('description', description || SITE_DESCRIPTION)
   if (keywords) {
     setMetaTag('keywords', keywords)
+  }
+  if (author) {
+    setMetaTag('author', author)
   }
 
   // Canonical URL
@@ -27,17 +30,35 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
   setMetaTag('og:title', title || SITE_NAME, 'property')
   setMetaTag('og:description', description || SITE_DESCRIPTION, 'property')
   setMetaTag('og:image', image || SITE_IMAGE, 'property')
+  setMetaTag('og:image:width', '1200', 'property')
+  setMetaTag('og:image:height', '630', 'property')
+  setMetaTag('og:image:alt', title || SITE_NAME, 'property')
   setMetaTag('og:url', url || window.location.href, 'property')
   setMetaTag('og:type', type, 'property')
   setMetaTag('og:site_name', SITE_NAME, 'property')
   setMetaTag('og:locale', 'en_GB', 'property')
+
+  // Article specific tags
+  if (type === 'article') {
+    if (publishedTime) {
+      setMetaTag('article:published_time', publishedTime, 'property')
+    }
+    if (modifiedTime) {
+      setMetaTag('article:modified_time', modifiedTime, 'property')
+    }
+    if (author) {
+      setMetaTag('article:author', author, 'property')
+    }
+  }
 
   // Twitter Card
   setMetaTag('twitter:card', 'summary_large_image')
   setMetaTag('twitter:title', title || SITE_NAME)
   setMetaTag('twitter:description', description || SITE_DESCRIPTION)
   setMetaTag('twitter:image', image || SITE_IMAGE)
+  setMetaTag('twitter:image:alt', title || SITE_NAME)
   setMetaTag('twitter:site', '@leicesterdojo')
+  setMetaTag('twitter:creator', '@leicesterdojo')
 }
 
 /**

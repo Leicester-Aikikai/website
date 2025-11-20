@@ -14,9 +14,11 @@
           <div class="col-md-7 text-center">
             <img
               src="/src/assets/img/antonis-pavlakis-with-iain-cooper.webp"
-              alt="Antonis Pavlakis with Iain Cooper"
+              alt="Aikido instructors Antonis Pavlakis and Iain Cooper at Leicester Aikikai dojo event"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
+              width="1280"
+              height="960"
             />
           </div>
         </div>
@@ -30,9 +32,6 @@
               <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
               <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
               <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
-            </g>
-            <g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-              <path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
             </g>
           </g>
         </svg>
@@ -288,7 +287,7 @@
 </template>
 
 <script>
-import { setJsonLd, SITE_URL } from '../utils/seo.js'
+import { setMeta, setJsonLd, SITE_URL, getOrganizationSchema } from '../utils/seo.js'
 
 export default {
   name: 'Events',
@@ -298,32 +297,92 @@ export default {
         {
           date: '14.12.2025',
           title: 'Xmas 2025 course with Melton Byakko-Kan Aikido',
+          description: 'A joint aikido course at the Melton Byakko-Kan Aikido dojo featuring instructors Naoko Suzuki, Sergio Cardoso, Antonis Pavlakis, and Terry Mickowski.',
           type: 'course',
-          id: 'event-2025-12-14'
+          id: 'event-2025-12-14',
+          image: '/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg',
+          location: {
+            name: 'Jubilee Sports Centre',
+            address: 'Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND'
+          },
+          time: {
+            start: '10:30',
+            end: '14:30'
+          },
+          price: '£10',
+          instructors: ['Naoko Suzuki', 'Sergio Cardoso', 'Antonis Pavlakis', 'Terry Mickowski']
         },
         {
           date: '10.12.2023',
           title: 'Joint course with Melton Byakko-Kan Aikido',
+          description: 'A joint aikido course at the Melton Byakko-Kan Aikido dojo with guest instructors including Naoko Suzuki sensei, Terry Mickowski sensei, Andy Thompson sensei, and Antonis Pavlakis sensei.',
           type: 'course',
-          id: 'event-2023-12-10'
+          id: 'event-2023-12-10',
+          image: '/src/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
+          location: {
+            name: 'Jubilee Sports Centre',
+            address: 'Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND'
+          },
+          time: {
+            start: '11:00',
+            end: '15:00'
+          },
+          price: '£20',
+          instructors: ['Naoko Suzuki', 'Terry Mickowski', 'Andy Thompson', 'Antonis Pavlakis']
         },
         {
           date: '22.10.2023',
           title: 'Leicester Aikikai Dojo Course - October 2023',
+          description: 'Dojo course with guest instructor Iain Cooper sensei 4th dan Fukushidoin at Aylestone Leisure Centre.',
           type: 'course',
-          id: 'event-2023-10-22'
+          id: 'event-2023-10-22',
+          image: '/src/assets/img/leicester-aikikai-dojo-course-October-2023.jpeg',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '13:00',
+            end: '17:00'
+          },
+          price: '£15',
+          instructors: ['Iain Cooper', 'Antonis Pavlakis']
         },
         {
           date: '15.09.2023',
           title: 'Aikido Beginner\'s Course 2023',
+          description: 'Start aikido with a 3-month beginner\'s course. Learn co-ordination, self-improvement, body conditioning, ukemi (falling), self-defence and more.',
           type: 'course',
-          id: 'event-2023-09-15'
+          id: 'event-2023-09-15',
+          image: '/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '19:00',
+            end: '21:00'
+          },
+          price: '£60',
+          instructors: ['Antonis Pavlakis']
         },
         {
           date: '11.06.2023',
           title: 'Dojo 10th year anniversary course',
+          description: '10th year anniversary course with guest instructors Ian Grubb 6th dan, Terry Mickowski 4th dan, Iain Cooper 3rd dan, and Antonis Pavlakis 3rd dan.',
           type: 'course',
-          id: 'event-2023-06-11'
+          id: 'event-2023-06-11',
+          image: '/src/assets/img/leicester-aikikai-10-years-anniversary-course-june-11-2023.JPG',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '13:00',
+            end: '17:00'
+          },
+          price: '£15',
+          instructors: ['Ian Grubb', 'Terry Mickowski', 'Iain Cooper', 'Antonis Pavlakis']
         }
       ]
     }
@@ -347,6 +406,14 @@ export default {
       // Parse DD.MM.YYYY format
       const parts = dateStr.split('.')
       return new Date(parts[2], parts[1] - 1, parts[0])
+    },
+    formatDateISO(dateStr) {
+      // Convert DD.MM.YYYY to YYYY-MM-DD
+      const parts = dateStr.split('.')
+      const year = parts[2]
+      const month = parts[1].padStart(2, '0')
+      const day = parts[0].padStart(2, '0')
+      return `${year}-${month}-${day}`
     },
     isEventPast(dateStr) {
       const today = new Date()
@@ -389,29 +456,44 @@ export default {
     }
   },
   mounted() {
+    // Set meta tags for SEO and social media
+    setMeta({
+      title: 'Aikido Events & Courses - Leicester Aikikai Dojo',
+      description: 'View upcoming and past aikido events, courses, and seminars at Leicester Aikikai Dojo. Join us for traditional aikido training with experienced instructors in the East Midlands.',
+      keywords: 'aikido events Leicester, aikido courses, aikido seminars, aikido training Leicester, aikido workshops, Leicester martial arts events, aikido East Midlands, joint aikido course',
+      url: `${SITE_URL}/events`,
+      image: `${SITE_URL}/src/assets/img/antonis-pavlakis-with-iain-cooper.webp`,
+      type: 'website'
+    })
+
     // Scroll to specific event if accessed via direct URL
     this.scrollToEvent()
 
-    // Add structured data for upcoming/recent events
-    setJsonLd([
-      {
+    // Generate comprehensive structured data
+    const eventSchemas = this.events.map(event => {
+      const eventDate = this.parseDate(event.date)
+      const isPast = eventDate < new Date()
+      const isoDate = this.formatDateISO(event.date)
+
+      return {
         '@context': 'https://schema.org',
         '@type': 'Event',
-        'name': 'Joint course with Melton Byakko-Kan Aikido',
-        'description': 'A joint aikido course at the Melton Byakko-Kan Aikido dojo with multiple instructors including Naoko Suzuki sensei, Terry Mickowski sensei, Andy Thompson sensei, and Antonis Pavlakis sensei.',
-        'startDate': '2023-12-10T11:00',
-        'endDate': '2023-12-10T15:00',
-        'eventStatus': 'https://schema.org/EventScheduled',
+        'name': event.title,
+        'description': event.description,
+        'startDate': `${isoDate}T${event.time.start}:00`,
+        'endDate': `${isoDate}T${event.time.end}:00`,
+        'eventStatus': isPast ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventScheduled',
         'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+        'image': event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/src/assets/img/leicester-aikikai-dojo-hall.jpg`,
         'location': {
           '@type': 'Place',
-          'name': 'Jubilee Sports Centre',
+          'name': event.location.name,
           'address': {
             '@type': 'PostalAddress',
-            'streetAddress': 'Jubilee Street',
-            'addressLocality': 'Melton Mowbray',
+            'streetAddress': event.location.address.split(',')[0],
+            'addressLocality': event.location.address.includes('Leicester') ? 'Leicester' : 'Melton Mowbray',
             'addressRegion': 'Leicestershire',
-            'postalCode': 'LE13 1ND',
+            'postalCode': event.location.address.match(/[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}/)?.[0] || '',
             'addressCountry': 'GB'
           }
         },
@@ -420,40 +502,66 @@ export default {
           'name': 'Leicester Aikikai Dojo',
           'url': SITE_URL
         },
+        'performer': event.instructors.map(instructor => ({
+          '@type': 'Person',
+          'name': instructor
+        })),
         'offers': {
           '@type': 'Offer',
-          'price': '20',
+          'price': event.price.replace('£', ''),
           'priceCurrency': 'GBP',
-          'availability': 'https://schema.org/InStock',
-          'validFrom': '2023-11-01'
+          'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+          'url': `${SITE_URL}/events`
         }
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        'name': 'Leicester Aikikai Events',
-        'description': 'Past and upcoming aikido events and courses at Leicester Aikikai Dojo',
-        'itemListElement': [
-          {
-            '@type': 'Event',
-            'name': 'Leicester Aikikai Dojo 10th Year Anniversary Course',
-            'description': '10th year anniversary course with guest instructors Ian Grubb 6th dan, Terry Mickowski 4th dan, Iain Cooper 3rd dan, and Antonis Pavlakis 3rd dan.',
-            'startDate': '2023-06-11T13:00',
-            'endDate': '2023-06-11T17:00',
-            'location': {
-              '@type': 'Place',
-              'name': 'Aylestone Leisure Centre',
-              'address': {
-                '@type': 'PostalAddress',
-                'streetAddress': '2 Knighton Lane East',
-                'addressLocality': 'Leicester',
-                'postalCode': 'LE2 6LU',
-                'addressCountry': 'GB'
-              }
-            }
-          }
-        ]
       }
+    })
+
+    // Add ItemList for events
+    const eventsListSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      'name': 'Leicester Aikikai Aikido Events',
+      'description': 'List of aikido events, courses and seminars at Leicester Aikikai Dojo',
+      'numberOfItems': this.events.length,
+      'itemListElement': this.events.map((event, index) => ({
+        '@type': 'ListItem',
+        'position': index + 1,
+        'item': {
+          '@type': 'Event',
+          'name': event.title,
+          'description': event.description,
+          'startDate': `${this.formatDateISO(event.date)}T${event.time.start}:00`,
+          'url': `${SITE_URL}/events#${event.id}`
+        }
+      }))
+    }
+
+    // Add BreadcrumbList for navigation
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': SITE_URL
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': 'Events',
+          'item': `${SITE_URL}/events`
+        }
+      ]
+    }
+
+    // Set all structured data
+    setJsonLd([
+      getOrganizationSchema(),
+      ...eventSchemas,
+      eventsListSchema,
+      breadcrumbSchema
     ])
   }
 }
