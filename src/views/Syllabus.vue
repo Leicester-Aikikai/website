@@ -979,6 +979,7 @@ export default {
   mounted() {
     // Add structured data for aikido syllabus/course content
     setJsonLd([
+      // ...existing code...
       {
         '@context': 'https://schema.org',
         '@type': 'Course',
@@ -1068,6 +1069,49 @@ export default {
         ]
       }
     ])
+
+    // Auto-expand specific grade if navigating from grade-specific route
+    this.$nextTick(() => {
+      const grade = this.$route.meta.grade
+      if (grade) {
+        // Map grade slugs to collapse IDs and card IDs
+        const gradeMap = {
+          '6th-kyu': { collapse: 'collapse6thKyu', card: '6th-kyu-syllabus' },
+          '5th-kyu': { collapse: 'collapse5thKyu', card: '5th-kyu-syllabus' },
+          '4th-kyu': { collapse: 'collapse4thKyu', card: '4th-kyu-syllabus' },
+          '3rd-kyu': { collapse: 'collapse3rdKyu', card: '3rd-kyu-syllabus' }
+        }
+
+        const gradeInfo = gradeMap[grade]
+        if (gradeInfo) {
+          // Close all other collapses first
+          const allCollapses = ['collapse6thKyu', 'collapse5thKyu', 'collapse4thKyu', 'collapse3rdKyu']
+          allCollapses.forEach(id => {
+            const el = document.getElementById(id)
+            if (el && id !== gradeInfo.collapse) {
+              el.classList.remove('show')
+            }
+          })
+
+          // Open the target collapse
+          const targetCollapse = document.getElementById(gradeInfo.collapse)
+          if (targetCollapse) {
+            targetCollapse.classList.add('show')
+
+            // Scroll to the specific grade card
+            setTimeout(() => {
+              const gradeCard = document.getElementById(gradeInfo.card)
+              if (gradeCard) {
+                // Scroll with some offset to account for header
+                const yOffset = -20 // 20px offset from top
+                const y = gradeCard.getBoundingClientRect().top + window.pageYOffset + yOffset
+                window.scrollTo({ top: y, behavior: 'smooth' })
+              }
+            }, 150)
+          }
+        }
+      }
+    })
   }
 }
 </script>

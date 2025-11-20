@@ -37,6 +37,54 @@ const routes = [
       keywords: 'aikido syllabus, aikido grading, aikido kyu grades, aikido weapons, bokken, jo, aikido techniques',
       image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`
     }
+  },
+  {
+    path: '/syllabus/6th-kyu',
+    name: 'Syllabus6thKyu',
+    component: Syllabus,
+    meta: {
+      title: '6th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
+      description: 'Complete 6th kyu (red belt) aikido syllabus including solo exercises, partner movements, tachi waza, suwari waza techniques at Leicester Aikikai.',
+      keywords: 'aikido 6th kyu, aikido red belt, aikido grading, aikido techniques, ikkyo, iriminage, shihonage',
+      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      grade: '6th-kyu'
+    }
+  },
+  {
+    path: '/syllabus/5th-kyu',
+    name: 'Syllabus5thKyu',
+    component: Syllabus,
+    meta: {
+      title: '5th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
+      description: '5th kyu (yellow belt) aikido syllabus with techniques including nikyo, kotegaeshi, shiho nage from various attacks at Leicester Aikikai.',
+      keywords: 'aikido 5th kyu, aikido yellow belt, nikyo, kotegaeshi, shiho nage, aikido grading',
+      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      grade: '5th-kyu'
+    }
+  },
+  {
+    path: '/syllabus/4th-kyu',
+    name: 'Syllabus4thKyu',
+    component: Syllabus,
+    meta: {
+      title: '4th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
+      description: '4th kyu (orange belt) aikido syllabus featuring sankyo, yonkyo, rokkyo and advanced throwing techniques from multiple attacks.',
+      keywords: 'aikido 4th kyu, aikido orange belt, sankyo, yonkyo, rokkyo, aikido grading',
+      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      grade: '4th-kyu'
+    }
+  },
+  {
+    path: '/syllabus/3rd-kyu',
+    name: 'Syllabus3rdKyu',
+    component: Syllabus,
+    meta: {
+      title: '3rd Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
+      description: '3rd kyu (green belt) aikido syllabus including gokyo, hanmi handachi waza, and ushiro waza (attacks from behind) techniques.',
+      keywords: 'aikido 3rd kyu, aikido green belt, gokyo, hanmi handachi, ushiro waza, aikido grading',
+      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      grade: '3rd-kyu'
+    }
   }
 ]
 

@@ -18,7 +18,11 @@ const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 const routes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/events', priority: '0.9', changefreq: 'weekly' },
-  { path: '/syllabus', priority: '0.8', changefreq: 'monthly' }
+  { path: '/syllabus', priority: '0.8', changefreq: 'monthly' },
+  { path: '/syllabus/6th-kyu', priority: '0.7', changefreq: 'monthly' },
+  { path: '/syllabus/5th-kyu', priority: '0.7', changefreq: 'monthly' },
+  { path: '/syllabus/4th-kyu', priority: '0.7', changefreq: 'monthly' },
+  { path: '/syllabus/3rd-kyu', priority: '0.7', changefreq: 'monthly' }
 ]
 
 // Get current date in ISO format (YYYY-MM-DD)
