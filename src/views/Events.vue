@@ -61,7 +61,7 @@
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
                         <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }">
-                          <a href="/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg" target="_blank" class="text-decoration-none">
+                          <a :href="byakkoKan2025Image" target="_blank" class="text-decoration-none">
                             Xmas 2025 course with Melton Byakko-Kan Aikido
                           </a>
                         </h3>
@@ -152,7 +152,7 @@
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
                         <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('10.12.2023') }">
-                          <a href="/src/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg" target="_blank" class="text-decoration-none">
+                          <a :href="byakkoKan2023Image" target="_blank" class="text-decoration-none">
                             Joint course with Melton Byakko-Kan Aikido
                           </a>
                         </h3>
@@ -322,10 +322,19 @@
 <script>
 import { setMeta, setJsonLd, SITE_URL, getOrganizationSchema } from '../utils/seo.js'
 
+// Import event images
+import byakkoKan2025Image from '@/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg'
+import byakkoKan2023Image from '@/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg'
+import antonisPavlakisIainCooperImage from '@/assets/img/antonis-pavlakis-with-iain-cooper.webp'
+
 export default {
   name: 'Events',
   data() {
     return {
+      // Imported images
+      byakkoKan2025Image,
+      byakkoKan2023Image,
+      antonisPavlakisIainCooperImage,
       events: [
         {
           date: '14.12.2025',
