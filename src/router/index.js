@@ -13,7 +13,7 @@ const routes = [
       title: 'Leicester Aikikai Dojo :: Traditional Aikido in the East Midlands :: レスター 合気会',
       description: 'Leicester Aikikai is a UK Aikikai Aikido dojo based in Leicester teaching traditional aikido. Learn this non-competitive martial art. First class FREE.',
       keywords: 'Leicester Aikido, Aikikai, traditional aikido, martial arts Leicester, aikido classes, self-defence, UKA, East Midlands',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-aylestone-leisure-centre.jpeg`
+      image: `${SITE_URL}/img/leicester-aikikai-aylestone-leisure-centre.jpeg`
     }
   },
   {
@@ -24,7 +24,7 @@ const routes = [
       title: 'Aikido Events & Courses :: Leicester Aikikai Dojo',
       description: 'Upcoming and past aikido events, courses, and seminars at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
       keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
-      image: `${SITE_URL}/src/assets/img/antonis-pavlakis-with-iain-cooper.webp`
+      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
     }
   },
   {
@@ -35,7 +35,7 @@ const routes = [
       title: 'Aikido Event :: Leicester Aikikai Dojo',
       description: 'Aikido event details at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
       keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
-      image: `${SITE_URL}/src/assets/img/antonis-pavlakis-with-iain-cooper.webp`
+      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
     }
   },
   {
@@ -46,7 +46,7 @@ const routes = [
       title: 'Aikido Syllabus & Grading :: Leicester Aikikai Dojo',
       description: 'Complete aikido syllabus including taijutsu (body art), weapons training (bokken, jo), kyu grades, and examination requirements at Leicester Aikikai.',
       keywords: 'aikido syllabus, aikido grading, aikido kyu grades, aikido weapons, bokken, jo, aikido techniques',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`
+      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`
     }
   },
   {
@@ -57,7 +57,7 @@ const routes = [
       title: '6th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
       description: 'Complete 6th kyu (red belt) aikido syllabus including solo exercises, partner movements, tachi waza, suwari waza techniques at Leicester Aikikai.',
       keywords: 'aikido 6th kyu, aikido red belt, aikido grading, aikido techniques, ikkyo, iriminage, shihonage',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
       grade: '6th-kyu'
     }
   },
@@ -69,7 +69,7 @@ const routes = [
       title: '5th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
       description: '5th kyu (yellow belt) aikido syllabus with techniques including nikyo, kotegaeshi, shiho nage from various attacks at Leicester Aikikai.',
       keywords: 'aikido 5th kyu, aikido yellow belt, nikyo, kotegaeshi, shiho nage, aikido grading',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
       grade: '5th-kyu'
     }
   },
@@ -81,7 +81,7 @@ const routes = [
       title: '4th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
       description: '4th kyu (orange belt) aikido syllabus featuring sankyo, yonkyo, rokkyo and advanced throwing techniques from multiple attacks.',
       keywords: 'aikido 4th kyu, aikido orange belt, sankyo, yonkyo, rokkyo, aikido grading',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
       grade: '4th-kyu'
     }
   },
@@ -93,7 +93,7 @@ const routes = [
       title: '3rd Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
       description: '3rd kyu (green belt) aikido syllabus including gokyo, hanmi handachi waza, and ushiro waza (attacks from behind) techniques.',
       keywords: 'aikido 3rd kyu, aikido green belt, gokyo, hanmi handachi, ushiro waza, aikido grading',
-      image: `${SITE_URL}/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
+      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
       grade: '3rd-kyu'
     }
   },
@@ -107,7 +107,7 @@ const routes = [
       title: 'Welcome to Aikido - UKA Booklet :: Leicester Aikikai Dojo',
       description: 'Download the official UK Aikikai Welcome to Aikido booklet. An introduction to traditional aikido practice, etiquette, and philosophy.',
       keywords: 'aikido booklet, aikido guide, UK Aikikai, aikido introduction, aikido etiquette, aikido beginner guide',
-      image: `${SITE_URL}/src/assets/img/Leicester-Aikikai-Dojo-Logo.png`
+      image: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`
     }
   }
 ]

@@ -13,7 +13,7 @@
           </div>
           <div class="col-md-7 text-center">
             <img
-              src="/src/assets/img/antonis-pavlakis-with-iain-cooper.webp"
+              src="/img/antonis-pavlakis-with-iain-cooper.webp"
               alt="Aikido instructors Antonis Pavlakis and Iain Cooper at Leicester Aikikai dojo event"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
@@ -99,7 +99,7 @@
                   </div>
                   <div class="col-lg-4">
                     <img
-                      src="/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg"
+                      src="/img/Byakko-kan-joint-aikido-course-december-2025.jpg"
                       alt="Joint course with Melton Byakko-Kan Aikido poster December 2025"
                       class="img-fluid rounded shadow"
                       loading="lazy"
@@ -191,7 +191,7 @@
                   </div>
                   <div class="col-lg-4">
                     <img
-                      src="/src/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg"
+                      src="/img/Byakko-kan-joint-aikido-course-december-2023.jpg"
                       alt="Joint course with Melton Byakko-Kan Aikido poster"
                       class="img-fluid rounded shadow"
                       loading="lazy"
@@ -322,19 +322,14 @@
 <script>
 import { setMeta, setJsonLd, SITE_URL, getOrganizationSchema } from '../utils/seo.js'
 
-// Import event images
-import byakkoKan2025Image from '@/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg'
-import byakkoKan2023Image from '@/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg'
-import antonisPavlakisIainCooperImage from '@/assets/img/antonis-pavlakis-with-iain-cooper.webp'
-
 export default {
   name: 'Events',
   data() {
     return {
-      // Imported images
-      byakkoKan2025Image,
-      byakkoKan2023Image,
-      antonisPavlakisIainCooperImage,
+      // Image paths from public folder
+      byakkoKan2025Image: '/img/Byakko-kan-joint-aikido-course-december-2025.jpg',
+      byakkoKan2023Image: '/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
+      antonisPavlakisIainCooperImage: '/img/antonis-pavlakis-with-iain-cooper.webp',
       events: [
         {
           date: '14.12.2025',
@@ -342,7 +337,7 @@ export default {
           description: 'A joint aikido course at the Melton Byakko-Kan Aikido dojo featuring instructors Naoko Suzuki, Sergio Cardoso, Antonis Pavlakis, and Terry Mickowski.',
           type: 'course',
           id: 'event-2025-12-14',
-          image: '/src/assets/img/Byakko-kan-joint-aikido-course-december-2025.jpg',
+          image: '/img/Byakko-kan-joint-aikido-course-december-2025.jpg',
           location: {
             name: 'Jubilee Sports Centre',
             address: 'Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND'
@@ -360,7 +355,7 @@ export default {
           description: 'Aikido course at Fight Ministry in Hull with instructors Philip Smith sensei and Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-22',
-          image: '/src/assets/img/leicester-aikikai-dojo-hall.jpg',
+          image: '/img/leicester-aikikai-dojo-hall.jpg',
           location: {
             name: 'Fight Ministry',
             address: 'Salisbury Hall, 1 Park Rd, Hull, HU3 1TD'
@@ -377,7 +372,7 @@ export default {
           description: 'A joint aikido course at the Melton Byakko-Kan Aikido dojo with guest instructors including Naoko Suzuki sensei, Terry Mickowski sensei, Andy Thompson sensei, and Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2023-12-10',
-          image: '/src/assets/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
+          image: '/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
           location: {
             name: 'Jubilee Sports Centre',
             address: 'Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND'
@@ -395,7 +390,7 @@ export default {
           description: 'Dojo course with guest instructor Iain Cooper sensei 4th dan Fukushidoin at Aylestone Leisure Centre.',
           type: 'course',
           id: 'event-2023-10-22',
-          image: '/src/assets/img/leicester-aikikai-dojo-course-October-2023.jpeg',
+          image: '/img/leicester-aikikai-dojo-course-October-2023.jpeg',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
@@ -413,7 +408,7 @@ export default {
           description: 'Start aikido with a 3-month beginner\'s course. Learn co-ordination, self-improvement, body conditioning, ukemi (falling), self-defence and more.',
           type: 'course',
           id: 'event-2023-09-15',
-          image: '/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp',
+          image: '/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
@@ -431,7 +426,7 @@ export default {
           description: '10th year anniversary course with guest instructors Ian Grubb 6th dan, Terry Mickowski 4th dan, Iain Cooper 3rd dan, and Antonis Pavlakis 3rd dan.',
           type: 'course',
           id: 'event-2023-06-11',
-          image: '/src/assets/img/leicester-aikikai-10-years-anniversary-course-june-11-2023.JPG',
+          image: '/img/leicester-aikikai-10-years-anniversary-course-june-11-2023.JPG',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
@@ -521,7 +516,7 @@ export default {
       description: 'View upcoming and past aikido events, courses, and seminars at Leicester Aikikai Dojo. Join us for traditional aikido training with experienced instructors in the East Midlands.',
       keywords: 'aikido events Leicester, aikido courses, aikido seminars, aikido training Leicester, aikido workshops, Leicester martial arts events, aikido East Midlands, joint aikido course',
       url: `${SITE_URL}/events`,
-      image: `${SITE_URL}/src/assets/img/antonis-pavlakis-with-iain-cooper.webp`,
+      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
       type: 'website'
     })
 
@@ -543,7 +538,7 @@ export default {
         'endDate': `${isoDate}T${event.time.end}:00`,
         'eventStatus': isPast ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventScheduled',
         'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
-        'image': event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/src/assets/img/leicester-aikikai-dojo-hall.jpg`,
+        'image': event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/img/leicester-aikikai-dojo-hall.jpg`,
         'location': {
           '@type': 'Place',
           'name': event.location.name,

@@ -16,7 +16,7 @@
           </div>
           <div class="col-md-7 text-center">
             <img
-              src="/src/assets/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp"
+              src="/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp"
               alt="Leicester Aikikai bokken shiko dachi circle exercise"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
