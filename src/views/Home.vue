@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-7 text-center">
             <img
-              src="/src/assets/img/leicester-aikikai-aylestone-leisure-centre.jpeg"
+              src="/img/leicester-aikikai-aylestone-leisure-centre.jpeg"
               alt="Leicester Aikikai at Aylestone Leisure Centre"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
@@ -64,7 +64,7 @@
               <div class="row g-3 my-4">
                 <div class="col-12">
                   <img
-                    src="/src/assets/img/leicester-aikikai-joint-course-march-17th-2024.webp"
+                    src="/img/leicester-aikikai-joint-course-march-17th-2024.webp"
                     alt="Leicester Aikikai - March 2024"
                     class="img-fluid rounded shadow"
                     loading="lazy"
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-6">
                   <img
-                    src="/src/assets/img/leicester-aikikai-group-selfie-august-2019.jpg"
+                    src="/img/leicester-aikikai-group-selfie-august-2019.jpg"
                     alt="Leicester Aikikai group selfie - August 2019"
                     class="img-fluid rounded shadow"
                     loading="lazy"
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-md-6">
                   <img
-                    src="/src/assets/img/leicester-aikikai-july-2019-joe.jpg"
+                    src="/img/leicester-aikikai-july-2019-joe.jpg"
                     alt="Leicester Aikikai training - July 2019"
                     class="img-fluid rounded shadow"
                     loading="lazy"
@@ -124,7 +124,7 @@
             </div>
             <div class="col-md-6">
               <img
-                src="/src/assets/img/leicester-aikikai-antonios-pavlakis-2016.jpg"
+                src="/img/leicester-aikikai-antonios-pavlakis-2016.jpg"
                 alt="Antonios Pavlakis"
                 class="img-fluid rounded shadow"
                 loading="lazy"
@@ -156,7 +156,7 @@
           <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
               <img
-                src="/src/assets/img/aylestone-leisure-centre-mat-space.jpeg"
+                src="/img/aylestone-leisure-centre-mat-space.jpeg"
                 alt="Aylestone Leisure Centre mat space"
                 class="img-fluid rounded shadow"
                 loading="lazy"

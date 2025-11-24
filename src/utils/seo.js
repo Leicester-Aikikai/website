@@ -132,7 +132,7 @@ export function getOrganizationSchema() {
     'alternateName': 'レスター 合気会',
     'description': 'Traditional Aikido dojo in Leicester, UK, affiliated with United Kingdom Aikikai (UKA) and teaching Aikikai style aikido.',
     'url': SITE_URL,
-    'logo': `${SITE_URL}/src/assets/img/Leicester-Aikikai-Dojo-Logo.png`,
+    'logo': `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`,
     'image': SITE_IMAGE,
     'telephone': '',
     'email': '',
