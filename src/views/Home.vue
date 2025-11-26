@@ -107,28 +107,52 @@
       <!-- Instructor Section -->
       <section id="the-instructor" class="text-white py-5" style="background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%); padding-bottom: 100px !important;">
         <div class="container">
-          <h2 class="display-5 fw-bold text-center mb-4">The Instructor</h2>
+          <h2 class="display-5 fw-bold text-center mb-4">Chief Instructor</h2>
           <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 3rem;"></div>
 
           <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
-              <p class="mb-3">
-                Antonios Pavlakis holds a fourth degree black belt - 4th dan - (yondan so-Hombu Fukushidoin 副指導員) and is the chief instructor at the Leicester Aikikai dojo.
-              </p>
-              <p class="mb-3">
-                He started aikido in 1997 at the De Montfort University Aikido Club in Leicester under the instruction of Dave Lenton sensei (4th dan).
-              </p>
-              <p class="mb-3">
-                In 2009, when Adoni received his teaching qualifications he became an assistant instructor at the DMU Aikido club and in May 2013 he started Leicester Aikikai dojo - レスター 合気道 道場.
-              </p>
+              <h3 class="h3 fw-bold mb-3">Antonios Pavlakis</h3>
+              <p class="h5 mb-4 opacity-90">4th Dan • Yondan so-Hombu Fukushidoin (副指導員)</p>
+
+              <div class="instructor-bio">
+                <p class="mb-3">
+                  Antonios (aka Antonis) holds a fourth degree black belt (yondan so-Hombu Fukushidoin 副指導員) and serves
+                  as the chief instructor and founder of Leicester Aikikai dojo.
+                </p>
+
+                <p class="mb-3">
+                  <strong>Training Background:</strong> His aikido journey began in 1997 at De Montfort University Aikido Club
+                  under the guidance of Dave Lenton sensei (4th dan), where he developed a strong foundation in traditional Aikido principles.
+                </p>
+
+                <p class="mb-3">
+                  <strong>Teaching Career:</strong> After receiving his teaching qualifications (Coaching Level 1) in 2009,
+                  Antonis became an assistant instructor at DMU Aikido Club. In May 2013, he established Leicester Aikikai dojo
+                  (レスター 合気道 道場) with a vision to create an inclusive training environment welcoming practitioners of all levels.
+                  In 2018, he was awarded the Fukushidoin teaching title, allowing him to grade students up to 1st kyu.
+                  In 2023, he successfully passed his Yondan (4th dan) grading examination.
+                </p>
+
+                <p class="mb-0">
+                  <strong>Affiliations:</strong> Leicester Aikikai maintains full membership with United Kingdom Aikikai (UKA)
+                  and the Joint Aikikai Council (JAC), ensuring all grades meet national and international standards.
+                </p>
+              </div>
             </div>
+
             <div class="col-md-6">
-              <img
-                src="/img/leicester-aikikai-antonios-pavlakis-2016.jpg"
-                alt="Antonios Pavlakis"
-                class="img-fluid rounded shadow"
-                loading="lazy"
-              />
+              <div class="position-relative">
+                <img
+                  src="/img/leicester-aikikai-antonios-pavlakis-2016.jpg"
+                  alt="Antonios Pavlakis - Chief Instructor, Leicester Aikikai, 4th Dan"
+                  class="img-fluid rounded shadow-lg"
+                  loading="lazy"
+                />
+                <div class="instructor-badge position-absolute bottom-0 end-0 bg-white text-dark px-3 py-2 m-3 rounded shadow">
+                  <small class="fw-bold">Est. 2013</small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -358,9 +382,75 @@ import { setJsonLd, getPersonSchema, SITE_URL } from '../utils/seo.js'
 export default {
   name: 'Home',
   mounted() {
-    // Add structured data for FAQ and Person
+    // Add structured data for FAQ, Person, and Local Business
     setJsonLd([
       getPersonSchema(),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        'name': 'Antonios Pavlakis',
+        'jobTitle': 'Chief Instructor and Founder',
+        'description': 'Fourth degree black belt (4th dan yondan so-Hombu Fukushidoin) and chief instructor at Leicester Aikikai dojo since 2013.',
+        'memberOf': {
+          '@type': 'SportsOrganization',
+          'name': 'Leicester Aikikai Dojo',
+          'url': SITE_URL
+        },
+        'affiliation': [
+          {
+            '@type': 'Organization',
+            'name': 'United Kingdom Aikikai',
+            'alternateName': 'UKA'
+          },
+          {
+            '@type': 'Organization',
+            'name': 'Joint Aikikai Council',
+            'alternateName': 'JAC'
+          }
+        ],
+        'hasCredential': [
+          {
+            '@type': 'EducationalOccupationalCredential',
+            'credentialCategory': 'certificate',
+            'name': 'Coaching Level 1',
+            'competencyRequired': 'Aikido Instruction',
+            'educationalLevel': 'Assistant Instructor',
+            'dateCreated': '2009'
+          },
+          {
+            '@type': 'EducationalOccupationalCredential',
+            'credentialCategory': 'certificate',
+            'name': 'Fukushidoin (Teaching Qualification)',
+            'competencyRequired': 'Aikido Instruction',
+            'educationalLevel': 'Fukushidoin - Grade students up to 1st kyu',
+            'dateCreated': '2018'
+          },
+          {
+            '@type': 'EducationalOccupationalCredential',
+            'credentialCategory': 'degree',
+            'name': '4th Dan (Yondan)',
+            'competencyRequired': 'Aikido',
+            'recognizedBy': {
+              '@type': 'Organization',
+              'name': 'United Kingdom Aikikai'
+            },
+            'dateCreated': '2023'
+          }
+        ],
+        'knowsAbout': [
+          'Aikido',
+          'Martial Arts',
+          'Traditional Aikikai',
+          'Self Defense',
+          'Aikido Instruction'
+        ],
+        'alumniOf': {
+          '@type': 'Organization',
+          'name': 'De Montfort University Aikido Club'
+        },
+        'image': `${SITE_URL}/img/leicester-aikikai-antonios-pavlakis-2016.jpg`,
+        'url': SITE_URL
+      },
       {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
@@ -407,5 +497,26 @@ export default {
 
 <style scoped>
 /* Component specific styles */
+
+.instructor-bio {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.instructor-bio strong {
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.instructor-badge {
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 767px) {
+  .instructor-bio {
+    font-size: 1rem;
+  }
+}
 </style>
 
