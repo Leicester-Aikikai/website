@@ -70,47 +70,69 @@
               <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
               <!-- Upcoming Event - December 2025 -->
-              <div id="event-2025-12-14" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('14.12.2025') }">
+              <div
+                id="event-2025-12-14"
+                class="mb-5 position-relative ps-5"
+                :class="{ 'opacity-75': isEventPast('14.12.2025') }"
+                itemscope
+                itemtype="https://schema.org/Event"
+                :data-event-type="'joint-course'"
+                :data-event-status="isEventPast('14.12.2025') ? 'past' : 'upcoming'"
+                :data-event-date="'2025-12-14'"
+                :data-event-location="'Melton Mowbray'"
+              >
                 <div class="position-absolute start-0 rounded-circle" :class="isEventPast('14.12.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
-                  <time :class="isEventPast('14.12.2025') ? 'text-muted' : 'fw-bold text-primary'">14.12.2025</time>
+                  <time
+                    :class="isEventPast('14.12.2025') ? 'text-muted' : 'fw-bold text-primary'"
+                    itemprop="startDate"
+                    datetime="2025-12-14T10:30:00+00:00"
+                  >14.12.2025</time>
                 </div>
                 <div class="row g-3">
                   <div class="col-lg-8">
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }">
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="name">
                           <a :href="byakkoKan2025Image" target="_blank" class="text-decoration-none">
                             Xmas 2025 course with Melton Byakko-Kan Aikido
                           </a>
                         </h3>
-                        <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''">
+                        <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''" itemprop="description">
                           A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
                         </p>
 
                         <div class="mb-3">
                           <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Instructors:</strong>
                           <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.12.2025') }">
-                            <li>Naoko Suzuki</li>
-                            <li>Sergio Cardoso</li>
-                            <li>Antonis Pavlakis</li>
-                            <li>Terry Mickowski</li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Naoko Suzuki</span></li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sergio Cardoso</span></li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Antonis Pavlakis</span></li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Terry Mickowski</span></li>
                           </ul>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
                           <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Location:</strong>
-                          <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('14.12.2025') }">Jubilee Sports Centre, Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND</address>
+                          <address class="mb-0" :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <span itemprop="name">Jubilee Sports Centre</span>,
+                            <span itemprop="streetAddress">Jubilee Street</span>,
+                            <span itemprop="addressLocality">Melton Mowbray</span>,
+                            <span itemprop="addressRegion">Leicestershire</span>,
+                            <span itemprop="postalCode">LE13 1ND</span>
+                          </address>
                         </div>
 
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('14.12.2025') }">10:30am - 2:30pm</time>
+                        <div class="mb-2">
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Time:</strong>
+                          <time :class="{ 'text-muted': isEventPast('14.12.2025') }" datetime="10:30">10:30am</time> -
+                          <time :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="endDate" datetime="2025-12-14T14:30:00+00:00">2:30pm</time>
                         </div>
 
-                        <div>
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Price:</strong>
-                          <div class="mt-1" :class="{ 'text-muted': isEventPast('14.12.2025') }">
-                            £10
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Prices:</strong>
+                          <div :class="{ 'text-muted': isEventPast('14.12.2025') }">
+                            <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="10">10</span>
                           </div>
                         </div>
                       </div>
@@ -118,10 +140,11 @@
                   </div>
                   <div class="col-lg-4">
                     <img
-                      src="/img/Byakko-kan-joint-aikido-course-december-2025.jpg"
+                      :src="byakkoKan2025Image"
                       alt="Joint course with Melton Byakko-Kan Aikido poster December 2025"
                       class="img-fluid rounded shadow"
                       loading="lazy"
+                      itemprop="image"
                     />
                   </div>
                 </div>
@@ -605,72 +628,108 @@ export default {
     }
   },
   mounted() {
-    // Set meta tags for SEO and social media
+    // Set meta tags for SEO and social media - optimized for AI/LLMs
     setMeta({
       title: 'Aikido Events in Leicester | Courses & Training at Leicester Aikikai',
       description: 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands. Traditional aikido training, seminars, and workshops with expert instructors at Leicester Aikikai Dojo.',
       keywords: 'aikido events in Leicester, aikido courses in Leicester, aikido training Leicester, aikido seminars Leicester, aikido workshops Leicester, Leicester martial arts events, aikido East Midlands, aikido courses near me, Leicester Aikikai events',
       url: `${SITE_URL}/events`,
       image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
-      type: 'website'
+      type: 'website',
+      // Additional AI-friendly metadata
+      'article:section': 'Events',
+      'article:tag': 'aikido, martial arts, Leicester, training, courses, seminars',
+      'og:locale': 'en_GB',
+      'og:site_name': 'Leicester Aikikai Dojo'
     })
 
     // Scroll to specific event if accessed via direct URL
     this.scrollToEvent()
 
-    // Generate comprehensive structured data
+    // Generate comprehensive structured data optimized for AI/LLMs
     const eventSchemas = this.events.map(event => {
       const eventDate = this.parseDate(event.date)
       const isPast = eventDate < new Date()
       const isoDate = this.formatDateISO(event.date)
+      const isLeicesterEvent = event.location.address.includes('Leicester')
 
       return {
         '@context': 'https://schema.org',
         '@type': 'Event',
         'name': event.title,
         'description': event.description,
-        'startDate': `${isoDate}T${event.time.start}:00`,
-        'endDate': `${isoDate}T${event.time.end}:00`,
+        'startDate': `${isoDate}T${event.time.start}:00+00:00`,
+        'endDate': `${isoDate}T${event.time.end}:00+00:00`,
         'eventStatus': isPast ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventScheduled',
         'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
         'image': event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/img/leicester-aikikai-dojo-hall.jpg`,
+        'inLanguage': 'en-GB',
+        'keywords': [
+          'aikido',
+          'martial arts',
+          event.type === 'course' ? 'aikido course' : 'aikido event',
+          isLeicesterEvent ? 'Leicester' : event.location.address.split(',').pop().trim(),
+          'traditional aikido',
+          'aikido training',
+          'Aikikai'
+        ].join(', '),
+        'about': {
+          '@type': 'Thing',
+          'name': 'Aikido',
+          'description': 'Traditional Japanese martial art focusing on harmony and self-defence'
+        },
         'location': {
           '@type': 'Place',
           'name': event.location.name,
           'address': {
             '@type': 'PostalAddress',
             'streetAddress': event.location.address.split(',')[0],
-            'addressLocality': event.location.address.includes('Leicester') ? 'Leicester' : 'Melton Mowbray',
-            'addressRegion': 'Leicestershire',
+            'addressLocality': isLeicesterEvent ? 'Leicester' : event.location.address.split(',').find(part => part.includes('Melton') || part.includes('Hull'))?.trim() || 'Leicester',
+            'addressRegion': event.location.address.includes('Hull') ? 'East Yorkshire' : 'Leicestershire',
             'postalCode': event.location.address.match(/[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}/)?.[0] || '',
             'addressCountry': 'GB'
           }
         },
         'organizer': {
-          '@type': 'Organization',
+          '@type': 'SportsOrganization',
           'name': 'Leicester Aikikai Dojo',
-          'url': SITE_URL
+          'url': SITE_URL,
+          'sameAs': [
+            'https://www.facebook.com/LeicesterAikikai'
+          ],
+          'sport': 'Aikido'
         },
         'performer': event.instructors.map(instructor => ({
           '@type': 'Person',
-          'name': instructor
+          'name': instructor,
+          'jobTitle': 'Aikido Instructor',
+          'memberOf': {
+            '@type': 'Organization',
+            'name': 'Leicester Aikikai Dojo'
+          }
         })),
-        'offers': {
+        'offers': event.price ? {
           '@type': 'Offer',
-          'price': event.price.replace('£', ''),
+          'price': event.price.replace('£', '').split(' ')[0],
           'priceCurrency': 'GBP',
           'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
-          'url': `${SITE_URL}/events`
+          'validFrom': new Date().toISOString(),
+          'url': `${SITE_URL}/events#${event.id}`
+        } : undefined,
+        'isAccessibleForFree': false,
+        'audience': {
+          '@type': 'Audience',
+          'audienceType': 'All levels welcome - beginners to advanced practitioners'
         }
       }
     })
 
-    // Add ItemList for events
+    // Add ItemList for events with enhanced metadata
     const eventsListSchema = {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
       'name': 'Leicester Aikikai Aikido Events',
-      'description': 'List of aikido events, courses and seminars at Leicester Aikikai Dojo',
+      'description': 'Comprehensive list of aikido events, courses and seminars at Leicester Aikikai Dojo and partner venues',
       'numberOfItems': this.events.length,
       'itemListElement': this.events.map((event, index) => ({
         '@type': 'ListItem',
@@ -679,10 +738,45 @@ export default {
           '@type': 'Event',
           'name': event.title,
           'description': event.description,
-          'startDate': `${this.formatDateISO(event.date)}T${event.time.start}:00`,
-          'url': `${SITE_URL}/events#${event.id}`
+          'startDate': `${this.formatDateISO(event.date)}T${event.time.start}:00+00:00`,
+          'url': `${SITE_URL}/events#${event.id}`,
+          'location': {
+            '@type': 'Place',
+            'name': event.location.name
+          }
         }
       }))
+    }
+
+    // Add EventSeries schema for AI understanding of recurring event pattern
+    const eventSeriesSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'EventSeries',
+      'name': 'Leicester Aikikai Regular Events',
+      'description': 'Regular aikido training events, courses, and seminars hosted by Leicester Aikikai in Leicester and the East Midlands',
+      'organizer': {
+        '@type': 'SportsOrganization',
+        'name': 'Leicester Aikikai Dojo',
+        'url': SITE_URL,
+        'address': {
+          '@type': 'PostalAddress',
+          'addressLocality': 'Leicester',
+          'addressRegion': 'Leicestershire',
+          'addressCountry': 'GB'
+        }
+      },
+      'location': {
+        '@type': 'Place',
+        'name': 'Aylestone Leisure Centre',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '2 Knighton Lane East',
+          'addressLocality': 'Leicester',
+          'postalCode': 'LE2 6LU',
+          'addressCountry': 'GB'
+        }
+      },
+      'sport': 'Aikido'
     }
 
     // Add BreadcrumbList for navigation
@@ -753,11 +847,12 @@ export default {
       ]
     }
 
-    // Set all structured data
+    // Set all structured data optimized for AI/LLMs
     setJsonLd([
       getOrganizationSchema(),
       ...eventSchemas,
       eventsListSchema,
+      eventSeriesSchema,
       breadcrumbSchema,
       faqSchema
     ])
