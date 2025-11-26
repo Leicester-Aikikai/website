@@ -105,24 +105,24 @@
       </section>
 
       <!-- Instructor Section -->
-      <section id="the-instructor" class="text-white py-5" style="background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%); padding-bottom: 100px !important;">
+      <section id="the-instructor" class="text-white py-5" style="background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%); padding-bottom: 100px !important;" itemscope itemtype="https://schema.org/Person">
         <div class="container">
           <h2 class="display-5 fw-bold text-center mb-4">Chief Instructor</h2>
           <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 3rem;"></div>
 
           <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
-              <h3 class="h3 fw-bold mb-3">Antonios Pavlakis</h3>
-              <p class="h5 mb-4 opacity-90">4th Dan • Yondan so-Hombu Fukushidoin (副指導員)</p>
+              <h3 class="h3 fw-bold mb-3" itemprop="name">Antonios Pavlakis <meta itemprop="alternateName" content="Antonis Pavlakis"></h3>
+              <p class="h5 mb-4 opacity-90" itemprop="jobTitle">4th Dan • Yondan so-Hombu Fukushidoin (副指導員)</p>
 
-              <div class="instructor-bio">
+              <div class="instructor-bio" itemprop="description">
                 <p class="mb-3">
                   Antonios (aka Antonis) holds a fourth degree black belt (yondan so-Hombu Fukushidoin 副指導員) and serves
                   as the chief instructor and founder of Leicester Aikikai dojo.
                 </p>
 
                 <p class="mb-3">
-                  <strong>Training Background:</strong> His aikido journey began in 1997 at De Montfort University Aikido Club
+                  <strong>Training Background:</strong> His aikido journey began in 1997 at <span itemprop="alumniOf" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">De Montfort University Aikido Club</span></span>
                   under the guidance of Dave Lenton sensei (4th dan), where he developed a strong foundation in traditional Aikido principles.
                 </p>
 
@@ -135,9 +135,14 @@
                 </p>
 
                 <p class="mb-0">
-                  <strong>Affiliations:</strong> Leicester Aikikai maintains full membership with United Kingdom Aikikai (UKA)
-                  and the Joint Aikikai Council (JAC), ensuring all grades meet national and international standards.
+                  <strong>Affiliations:</strong> Leicester Aikikai maintains full membership with <span itemprop="affiliation" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">United Kingdom Aikikai (UKA)</span></span>
+                  and the <span itemprop="affiliation" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">Joint Aikikai Council (JAC)</span></span>, ensuring all grades meet national and international standards.
                 </p>
+
+                <meta itemprop="knowsAbout" content="Aikido">
+                <meta itemprop="knowsAbout" content="Martial Arts">
+                <meta itemprop="knowsAbout" content="Traditional Aikikai">
+                <meta itemprop="knowsAbout" content="Self Defense">
               </div>
             </div>
 
@@ -148,6 +153,7 @@
                   alt="Antonios Pavlakis - Chief Instructor, Leicester Aikikai, 4th Dan"
                   class="img-fluid rounded shadow-lg"
                   loading="lazy"
+                  itemprop="image"
                 />
                 <div class="instructor-badge position-absolute bottom-0 end-0 bg-white text-dark px-3 py-2 m-3 rounded shadow">
                   <small class="fw-bold">Est. 2013</small>
@@ -172,7 +178,7 @@
       </section>
 
       <!-- Location Section -->
-      <section id="location" class="py-5">
+      <section id="location" class="py-5" itemscope itemtype="https://schema.org/LocalBusiness">
         <div class="container">
           <h2 class="section-title text-center">Location and Times</h2>
           <div class="section-divider"></div>
@@ -184,32 +190,35 @@
                 alt="Aylestone Leisure Centre mat space"
                 class="img-fluid rounded shadow"
                 loading="lazy"
+                itemprop="image"
               />
             </div>
             <div class="col-md-6">
               <div class="card mb-3 border-0 shadow">
                 <div class="card-body border-start border-success border-4">
                   <h3 class="h4 fw-bold mb-3 text-dark">Class Times</h3>
-                  <p class="text-muted mb-0">Fridays at 7:00pm - 9:00pm</p>
+                  <p class="text-muted mb-0" itemprop="openingHours" content="Fr 19:00-21:00">Fridays at 7:00pm - 9:00pm</p>
                 </div>
               </div>
 
               <div class="card mb-3 border-0 shadow">
-                <div class="card-body border-start border-warning border-4">
+                <div class="card-body border-start border-warning border-4" itemprop="location" itemscope itemtype="https://schema.org/Place">
                   <h3 class="h4 fw-bold mb-3 text-dark">We practice at</h3>
                   <p class="mb-2">
                     <a href="https://www.leicester.gov.uk/leisure-and-culture/sport-and-leisure/sports-and-leisure-centres/aylestone-leisure-centre/"
-                       target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                       target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="name">
                       Aylestone Leisure Centre
                     </a>
                   </p>
-                  <address class="mb-1 text-muted">
-                    2 Knighton Lane East, Leicester, LE2 6LU
+                  <address class="mb-1 text-muted" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                    <span itemprop="streetAddress">2 Knighton Lane East</span>, <span itemprop="addressLocality">Leicester</span>, <span itemprop="postalCode">LE2 6LU</span>
                   </address>
                   <small class="text-muted">
                     (<a href="https://www.google.com/maps/place/Aylestone+Leisure+Centre,+2+Knighton+Ln+E,+Leicester+LE2+6LU/@52.6093325,-1.1334088,17z/"
                         target="_blank" rel="noopener noreferrer">open in Google Maps</a>)
                   </small>
+                  <meta itemprop="latitude" content="52.6093325">
+                  <meta itemprop="longitude" content="-1.1334088">
                 </div>
               </div>
 
@@ -222,6 +231,9 @@
               </div>
             </div>
           </div>
+
+          <meta itemprop="name" content="Leicester Aikikai Dojo">
+          <meta itemprop="priceRange" content="££">
         </div>
       </section>
 
@@ -399,6 +411,7 @@ export default {
         '@context': 'https://schema.org',
         '@type': 'Person',
         'name': 'Antonios Pavlakis',
+        'alternateName': 'Antonis Pavlakis',
         'jobTitle': 'Chief Instructor and Founder',
         'description': 'Fourth degree black belt (4th dan yondan so-Hombu Fukushidoin) and chief instructor at Leicester Aikikai dojo since 2013.',
         'memberOf': {
@@ -498,6 +511,8 @@ export default {
         'name': 'Leicester Aikikai Dojo',
         'image': `${SITE_URL}/img/leicester-aikikai-joint-course-march-17th-2024.webp`,
         'description': 'Traditional Aikikai Aikido dojo in Leicester. First class FREE. Welcoming all ages and abilities.',
+        'inLanguage': 'en-GB',
+        'keywords': 'aikido, martial arts, traditional aikido, aikikai, self defense, Leicester dojo',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': 'Aylestone Leisure Centre, 2 Knighton Lane East',
