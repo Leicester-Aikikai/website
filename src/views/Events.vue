@@ -150,6 +150,7 @@
                 </div>
               </div>
 
+
               <!-- Event - November 2025 -->
               <div id="event-2025-11-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.11.2025') }">
                 <div class="position-absolute start-0 rounded-circle" :class="isEventPast('22.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
@@ -178,6 +179,70 @@
 
                     <div class="mb-3">
                       <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.11.2025') }">2pm - 5pm</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Event - November 14, 2025 - Tim Sullivan sensei -->
+              <div
+                id="event-2025-11-14"
+                class="mb-5 position-relative ps-5"
+                :class="{ 'opacity-75': isEventPast('14.11.2025') }"
+                itemscope
+                itemtype="https://schema.org/Event"
+                :data-event-type="'course'"
+                :data-event-status="isEventPast('14.11.2025') ? 'past' : 'upcoming'"
+                :data-event-date="'2025-11-14'"
+                :data-event-location="'Leicester'"
+              >
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('14.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="mb-2">
+                  <time
+                    :class="isEventPast('14.11.2025') ? 'text-muted' : 'fw-bold text-primary'"
+                    itemprop="startDate"
+                    datetime="2025-11-14T19:00:00+00:00"
+                  >14.11.2025</time>
+                </div>
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="name">
+                      Guest instructor Tim Sullivan sensei from Warwick University
+                    </h3>
+                    <p class="mb-3" :class="isEventPast('14.11.2025') ? 'text-muted' : ''" itemprop="description">
+                      Join us for an aikido course with guest instructor <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="fw-bold">Tim Sullivan sensei</a> from Warwick University, alongside our instructor <a href="/" class="fw-bold">Antonis Pavlakis sensei</a>.
+                    </p>
+
+                    <div class="mb-3">
+                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Instructors:</strong>
+                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.11.2025') }">
+                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                          <a href="/" class="text-decoration-none" itemprop="url">
+                            <span itemprop="name">Antonis Pavlakis</span>
+                          </a>
+                        </li>
+                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                          <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
+                            <span itemprop="name">Tim Sullivan</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="name">Aylestone Leisure Centre</span>,
+                        <span itemprop="streetAddress">2 Knighton Lane East</span>,
+                        <span itemprop="addressLocality">Leicester</span>,
+                        <span itemprop="postalCode">LE2 6LU</span>
+                      </address>
+                    </div>
+
+                    <div class="mb-2">
+                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Time:</strong>
+                      <time :class="{ 'text-muted': isEventPast('14.11.2025') }" datetime="19:00">7pm</time> -
+                      <time :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="endDate" datetime="2025-11-14T21:00:00+00:00">9pm</time>
                     </div>
                   </div>
                 </div>
@@ -468,6 +533,26 @@ export default {
           instructors: ['Naoko Suzuki', 'Sergio Cardoso', 'Antonis Pavlakis', 'Terry Mickowski']
         },
         {
+          date: '14.11.2025',
+          title: 'Guest instructor Tim Sullivan sensei from Warwick University',
+          description: 'Join us for an aikido course with guest instructor Tim Sullivan sensei from Warwick University, alongside our instructor Antonis Pavlakis sensei.',
+          type: 'course',
+          id: 'event-2025-11-14',
+          image: '/img/leicester-aikikai-dojo-hall.jpg',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '19:00',
+            end: '21:00'
+          },
+          instructors: [
+            { name: 'Antonis Pavlakis', profile: '/' },
+            { name: 'Tim Sullivan', profile: 'https://warwickaikido.com/sullivan-sensei/' }
+          ]
+        },
+        {
           date: '22.11.2025',
           title: 'Aikido Course at Fight Ministry Hull',
           description: 'Aikido course at Fight Ministry in Hull with instructors Philip Smith sensei and Antonis Pavlakis sensei.',
@@ -699,15 +784,26 @@ export default {
           ],
           'sport': 'Aikido'
         },
-        'performer': event.instructors.map(instructor => ({
-          '@type': 'Person',
-          'name': instructor,
-          'jobTitle': 'Aikido Instructor',
-          'memberOf': {
-            '@type': 'Organization',
-            'name': 'Leicester Aikikai Dojo'
+        'performer': event.instructors.map(instructor => {
+          const instructorName = typeof instructor === 'string' ? instructor : instructor.name
+          const instructorProfile = typeof instructor === 'object' && instructor.profile ? instructor.profile : null
+
+          const performerSchema = {
+            '@type': 'Person',
+            'name': instructorName,
+            'jobTitle': 'Aikido Instructor',
+            'memberOf': {
+              '@type': 'Organization',
+              'name': 'Leicester Aikikai Dojo'
+            }
           }
-        })),
+
+          if (instructorProfile) {
+            performerSchema.url = instructorProfile.startsWith('http') ? instructorProfile : `${SITE_URL}${instructorProfile}`
+          }
+
+          return performerSchema
+        }),
         'offers': event.price ? {
           '@type': 'Offer',
           'price': event.price.replace('£', '').split(' ')[0],
