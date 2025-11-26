@@ -6,9 +6,9 @@
         <div class="row align-items-center">
           <div class="col-md-5 mb-4 mb-md-0">
             <p class="text-uppercase mb-3 opacity-75">Welcome - はじめまして</p>
-            <h1 class="display-3 fw-bold mb-4">Events</h1>
+            <h1 class="display-3 fw-bold mb-4">Aikido Events in Leicester</h1>
             <p class="lead mb-4">
-              See below for a list of dojo courses and events. In the list we also include events we have been invited to.
+              Discover upcoming aikido courses in Leicester and the East Midlands. Join us for traditional aikido training, seminars, and special events led by experienced instructors.
             </p>
           </div>
           <div class="col-md-7 text-center">
@@ -41,8 +41,27 @@
     <!-- Events List Section -->
     <main id="main-content" class="py-5 bg-light">
       <div class="container">
-        <h2 class="section-title text-center mb-4">Events</h2>
+        <h2 class="section-title text-center mb-4">Aikido Courses & Events in Leicester</h2>
         <div class="section-divider"></div>
+
+        <!-- SEO-optimized intro section -->
+        <div class="row mb-5">
+          <div class="col-lg-10 mx-auto">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4">
+                <p class="mb-3">
+                  <strong>Leicester Aikikai</strong> hosts regular <strong>aikido events in Leicester</strong> and the surrounding East Midlands region. Our <strong>aikido courses in Leicester</strong> cater to all levels, from beginners to advanced practitioners.
+                </p>
+                <p class="mb-3">
+                  Whether you're looking to start your aikido journey with our beginner's courses or advance your skills at our seminars, our events bring together experienced instructors and passionate students. We regularly host courses at <strong>Aylestone Leisure Centre</strong> and collaborate with other dojos across the UK.
+                </p>
+                <p class="mb-0">
+                  Browse aikido courses in Leicester and beyond. This list features events at our dojo as well as courses led by our instructors throughout the UK and internationally.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="row">
           <div class="col-12">
@@ -314,6 +333,82 @@
             </div>
           </div>
         </div>
+
+        <!-- FAQ Section for SEO -->
+        <div class="row mt-5">
+          <div class="col-lg-10 mx-auto">
+            <h2 class="h3 text-center mb-4">Frequently Asked Questions About Aikido Events in Leicester</h2>
+            <div class="accordion" id="eventsAccordion">
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    What aikido courses are available in Leicester?
+                  </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#eventsAccordion">
+                  <div class="accordion-body">
+                    Leicester Aikikai offers various aikido courses in Leicester including beginner's courses, regular training sessions, specialist seminars, and collaborative events with other dojos in the East Midlands. We host aikido events at Aylestone Leisure Centre and welcome students of all levels.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Where do aikido events take place in Leicester?
+                  </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#eventsAccordion">
+                  <div class="accordion-body">
+                    Most of our aikido events in Leicester are held at <strong>Aylestone Leisure Centre</strong>, located at 2 Knighton Lane East, Leicester, LE2 6LU. We also collaborate with nearby dojos including Melton Byakko-Kan Aikido and participate in regional events across the East Midlands.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    How can I join an aikido course in Leicester?
+                  </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#eventsAccordion">
+                  <div class="accordion-body">
+                    To join an aikido course in Leicester, check our events list above for upcoming courses and contact Leicester Aikikai through our website. We regularly run beginner's courses and welcome new students. Most events are open to practitioners from other dojos as well.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    What should I expect at aikido events in Leicester?
+                  </button>
+                </h3>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#eventsAccordion">
+                  <div class="accordion-body">
+                    Aikido events in Leicester typically feature traditional Aikikai aikido training with experienced instructors. Courses cover fundamental techniques, ukemi (falling), self-defence applications, and sometimes weapons training. Events range from 2-4 hours and are suitable for various skill levels.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Are aikido courses in Leicester suitable for beginners?
+                  </button>
+                </h3>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#eventsAccordion">
+                  <div class="accordion-body">
+                    Yes! Leicester Aikikai regularly offers beginner-friendly aikido courses in Leicester. We run specific beginner's courses throughout the year, and many of our events welcome practitioners of all levels. Check the events list for beginner's courses or contact us for more information.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
   </div>
@@ -512,9 +607,9 @@ export default {
   mounted() {
     // Set meta tags for SEO and social media
     setMeta({
-      title: 'Aikido Events & Courses - Leicester Aikikai Dojo',
-      description: 'View upcoming and past aikido events, courses, and seminars at Leicester Aikikai Dojo. Join us for traditional aikido training with experienced instructors in the East Midlands.',
-      keywords: 'aikido events Leicester, aikido courses, aikido seminars, aikido training Leicester, aikido workshops, Leicester martial arts events, aikido East Midlands, joint aikido course',
+      title: 'Aikido Events in Leicester | Courses & Training at Leicester Aikikai',
+      description: 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands. Traditional aikido training, seminars, and workshops with expert instructors at Leicester Aikikai Dojo.',
+      keywords: 'aikido events in Leicester, aikido courses in Leicester, aikido training Leicester, aikido seminars Leicester, aikido workshops Leicester, Leicester martial arts events, aikido East Midlands, aikido courses near me, Leicester Aikikai events',
       url: `${SITE_URL}/events`,
       image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
       type: 'website'
@@ -610,12 +705,61 @@ export default {
       ]
     }
 
+    // Add FAQPage schema for better SEO
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'What aikido courses are available in Leicester?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Leicester Aikikai offers various aikido courses in Leicester including beginner\'s courses, regular training sessions, specialist seminars, and collaborative events with other dojos in the East Midlands. We host aikido events at Aylestone Leisure Centre and welcome students of all levels.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Where do aikido events take place in Leicester?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Most of our aikido events in Leicester are held at Aylestone Leisure Centre, located at 2 Knighton Lane East, Leicester, LE2 6LU. We also collaborate with nearby dojos including Melton Byakko-Kan Aikido and participate in regional events across the East Midlands.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How can I join an aikido course in Leicester?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'To join an aikido course in Leicester, check our events list above for upcoming courses and contact Leicester Aikikai through our website. We regularly run beginner\'s courses and welcome new students. Most events are open to practitioners from other dojos as well.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What should I expect at aikido events in Leicester?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Aikido events in Leicester typically feature traditional Aikikai aikido training with experienced instructors. Courses cover fundamental techniques, ukemi (falling), self-defence applications, and sometimes weapons training. Events range from 2-4 hours and are suitable for various skill levels.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Are aikido courses in Leicester suitable for beginners?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes! Leicester Aikikai regularly offers beginner-friendly aikido courses in Leicester. We run specific beginner\'s courses throughout the year, and many of our events welcome practitioners of all levels.'
+          }
+        }
+      ]
+    }
+
     // Set all structured data
     setJsonLd([
       getOrganizationSchema(),
       ...eventSchemas,
       eventsListSchema,
-      breadcrumbSchema
+      breadcrumbSchema,
+      faqSchema
     ])
   }
 }
