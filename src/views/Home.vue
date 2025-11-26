@@ -377,11 +377,21 @@
 </template>
 
 <script>
-import { setJsonLd, getPersonSchema, SITE_URL } from '../utils/seo.js'
+import { setJsonLd, getPersonSchema, setMeta, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Home',
   mounted() {
+    // Set meta tags for SEO and social media
+    setMeta({
+      title: 'Leicester Aikikai Dojo | Learn Traditional Aikido in Leicester',
+      description: 'Learn traditional Aikido in Leicester. First class FREE. Friday evenings at Aylestone Leisure Centre. Welcoming all ages and abilities.',
+      keywords: 'aikido Leicester, martial arts Leicester, aikido classes Leicester, traditional aikido, aikikai aikido, aikido training Leicester, learn aikido Leicester',
+      url: SITE_URL,
+      image: `${SITE_URL}/img/leicester-aikikai-joint-course-march-17th-2024.webp`,
+      type: 'website'
+    })
+
     // Add structured data for FAQ, Person, and Local Business
     setJsonLd([
       getPersonSchema(),
@@ -486,9 +496,45 @@ export default {
         '@type': 'LocalBusiness',
         '@id': `${SITE_URL}/#localbusiness`,
         'name': 'Leicester Aikikai Dojo',
+        'image': `${SITE_URL}/img/leicester-aikikai-joint-course-march-17th-2024.webp`,
+        'description': 'Traditional Aikikai Aikido dojo in Leicester. First class FREE. Welcoming all ages and abilities.',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Aylestone Leisure Centre, 2 Knighton Lane East',
+          'addressLocality': 'Leicester',
+          'postalCode': 'LE2 6LU',
+          'addressCountry': 'GB'
+        },
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': '52.6093325',
+          'longitude': '-1.1334088'
+        },
+        'url': SITE_URL,
+        'telephone': '',
+        'openingHoursSpecification': {
+          '@type': 'OpeningHoursSpecification',
+          'dayOfWeek': 'Friday',
+          'opens': '19:00',
+          'closes': '21:00'
+        },
         'priceRange': '££',
         'paymentAccepted': 'Cash, Bank Transfer',
-        'currenciesAccepted': 'GBP'
+        'currenciesAccepted': 'GBP',
+        'hasMap': 'https://what3words.com/stuck.scoop.hopes',
+        'additionalProperty': {
+          '@type': 'PropertyValue',
+          'name': 'what3words',
+          'value': 'stuck.scoop.hopes'
+        },
+        'sameAs': [
+          'https://www.facebook.com/LeicesterAikikai'
+        ],
+        'aggregateRating': {
+          '@type': 'AggregateRating',
+          'ratingValue': '5',
+          'reviewCount': '1'
+        }
       }
     ])
   }
