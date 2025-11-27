@@ -6,15 +6,21 @@
         <div class="row align-items-center">
           <div class="col-md-5 mb-4 mb-md-0">
             <p class="text-uppercase mb-3 opacity-75">Welcome - はじめまして</p>
-            <h1 class="display-3 fw-bold mb-4">Aikido Events in Leicester</h1>
-            <p class="lead mb-4">
+            <h1 class="display-3 fw-bold mb-4">{{ singleEvent ? singleEvent.title : 'Aikido Events in Leicester' }}</h1>
+            <p class="lead mb-4" v-if="!singleEvent">
               Discover upcoming aikido courses in Leicester and the East Midlands. Join us for traditional aikido training, seminars, and special events led by experienced instructors.
             </p>
+            <p class="lead mb-4" v-else>
+              {{ singleEvent.description }}
+            </p>
+            <router-link v-if="singleEvent" to="/events" class="btn btn-light btn-lg rounded-pill px-4 shadow">
+              ← Back to All Events
+            </router-link>
           </div>
           <div class="col-md-7 text-center">
             <img
-              src="/img/antonis-pavlakis-with-iain-cooper.webp"
-              alt="Aikido instructors Antonis Pavlakis and Iain Cooper at Leicester Aikikai dojo event"
+              :src="singleEvent ? singleEvent.image : '/img/antonis-pavlakis-with-iain-cooper.webp'"
+              :alt="singleEvent ? `${singleEvent.title} event poster` : 'Aikido instructors Antonis Pavlakis and Iain Cooper at Leicester Aikikai dojo event'"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
               width="1280"
@@ -38,8 +44,81 @@
       </div>
     </section>
 
+    <!-- Single Event Detail Section -->
+    <main id="main-content" class="py-5 bg-light" v-if="singleEvent">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4" :class="{ 'opacity-75': isEventPast(singleEvent.date) }">
+                <h2 class="h3 fw-bold mb-4">Event Details</h2>
+
+                <div class="mb-4">
+                  <h3 class="h5 fw-bold mb-2">Description</h3>
+                  <p>{{ singleEvent.description }}</p>
+                </div>
+
+                <div class="mb-4" v-if="singleEvent.instructors">
+                  <h3 class="h5 fw-bold mb-2">Instructors</h3>
+                  <ul class="list-unstyled">
+                    <li v-for="(instructor, index) in singleEvent.instructors" :key="index" class="mb-2">
+                      <template v-if="typeof instructor === 'string'">
+                        {{ instructor }}
+                      </template>
+                      <template v-else>
+                        <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                     :to="instructor.profile"
+                                     class="text-decoration-none fw-bold">
+                          {{ instructor.name }}
+                        </router-link>
+                        <a v-else-if="instructor.profile"
+                           :href="instructor.profile"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-decoration-none fw-bold">
+                          {{ instructor.name }}
+                        </a>
+                        <span v-else class="fw-bold">{{ instructor.name }}</span>
+                      </template>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="mb-4">
+                  <h3 class="h5 fw-bold mb-2">Location</h3>
+                  <p class="mb-1"><strong>{{ singleEvent.location.name }}</strong></p>
+                  <p class="text-muted">{{ singleEvent.location.address }}</p>
+                </div>
+
+                <div class="mb-4">
+                  <h3 class="h5 fw-bold mb-2">Date & Time</h3>
+                  <p class="mb-1"><strong>Date:</strong> {{ formatDateForDisplay(singleEvent.date) }}</p>
+                  <p class="mb-0"><strong>Time:</strong> {{ formatTime(singleEvent.time.start) }} - {{ formatTime(singleEvent.time.end) }}</p>
+                </div>
+
+                <div class="mb-4" v-if="singleEvent.price">
+                  <h3 class="h5 fw-bold mb-2">Price</h3>
+                  <p class="mb-0">{{ singleEvent.price }}</p>
+                </div>
+
+                <div class="alert alert-info" v-if="isEventPast(singleEvent.date)">
+                  <strong>Note:</strong> This event has already taken place.
+                </div>
+
+                <div class="mt-4">
+                  <router-link to="/events" class="btn btn-primary btn-lg rounded-pill px-4">
+                    ← Back to All Events
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <!-- Events List Section -->
-    <main id="main-content" class="py-5 bg-light">
+    <main id="main-content" class="py-5 bg-light" v-else>
       <div class="container">
         <h2 class="section-title text-center mb-4">Aikido Courses & Events in Leicester</h2>
         <div class="section-divider"></div>
@@ -176,7 +255,7 @@
                       Guest instructor Iain Cooper sensei
                     </h3>
                     <p class="mb-3" :class="isEventPast('28.11.2025') ? 'text-muted' : ''" itemprop="description">
-                      Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
+                      Join us for an aikido class with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
                     </p>
 
                     <div class="mb-3">
@@ -728,6 +807,20 @@ export default {
     }
   },
   computed: {
+    singleEvent() {
+      // Check if we're viewing a single event based on route params
+      if (this.$route.params.date && this.$route.params.title) {
+        const eventDate = this.$route.params.date // YYYY-MM-DD format
+        const eventTitle = this.$route.params.title
+
+        // Find event matching the date
+        return this.events.find(event => {
+          const formattedDate = this.formatDateISO(event.date)
+          return formattedDate === eventDate
+        })
+      }
+      return null
+    },
     eventsWithStatus() {
       const today = new Date()
       today.setHours(0, 0, 0, 0)
@@ -760,6 +853,20 @@ export default {
       today.setHours(0, 0, 0, 0)
       const eventDate = this.parseDate(dateStr)
       return eventDate < today
+    },
+    formatDateForDisplay(dateStr) {
+      // Convert DD.MM.YYYY to readable format: "14 November 2025"
+      const date = this.parseDate(dateStr)
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return date.toLocaleDateString('en-GB', options)
+    },
+    formatTime(timeStr) {
+      // Convert 24h time to 12h format: "19:00" to "7:00pm"
+      const [hours, minutes] = timeStr.split(':')
+      const hour = parseInt(hours)
+      const ampm = hour >= 12 ? 'pm' : 'am'
+      const displayHour = hour % 12 || 12
+      return `${displayHour}:${minutes}${ampm}`
     },
     createSlug(title) {
       return title.toLowerCase()
@@ -796,26 +903,107 @@ export default {
     }
   },
   mounted() {
-    // Set meta tags for SEO and social media - optimized for AI/LLMs
-    setMeta({
-      title: 'Aikido Events in Leicester | Courses & Training at Leicester Aikikai',
-      description: 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands. Traditional aikido training, seminars, and workshops with expert instructors at Leicester Aikikai Dojo.',
-      keywords: 'aikido events in Leicester, aikido courses in Leicester, aikido training Leicester, aikido seminars Leicester, aikido workshops Leicester, Leicester martial arts events, aikido East Midlands, aikido courses near me, Leicester Aikikai events',
-      url: `${SITE_URL}/events`,
-      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
-      type: 'website',
-      // Additional AI-friendly metadata
-      'article:section': 'Events',
-      'article:tag': 'aikido, martial arts, Leicester, training, courses, seminars',
-      'og:locale': 'en_GB',
-      'og:site_name': 'Leicester Aikikai Dojo'
-    })
+    // Check if viewing single event or events list
+    if (this.singleEvent) {
+      // Single event SEO
+      setMeta({
+        title: `${this.singleEvent.title} | Leicester Aikikai Dojo`,
+        description: `${this.singleEvent.description} Join us at ${this.singleEvent.location.name} for this aikido course.`,
+        keywords: `${this.singleEvent.title}, aikido event, Leicester aikido, ${this.singleEvent.location.name}`,
+        url: `${SITE_URL}/events/${this.formatDateISO(this.singleEvent.date)}/${this.createSlug(this.singleEvent.title)}`,
+        image: `${SITE_URL}${this.singleEvent.image}`,
+        type: 'article',
+        'article:published_time': this.formatDateISO(this.singleEvent.date),
+        'article:section': 'Events',
+        'og:locale': 'en_GB',
+        'og:site_name': 'Leicester Aikikai Dojo'
+      })
 
-    // Scroll to specific event if accessed via direct URL
-    this.scrollToEvent()
+      // Single event structured data
+      const eventDate = this.parseDate(this.singleEvent.date)
+      const isPast = eventDate < new Date()
+      const isoDate = this.formatDateISO(this.singleEvent.date)
 
-    // Generate comprehensive structured data optimized for AI/LLMs
-    const eventSchemas = this.events.map(event => {
+      setJsonLd([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Event',
+          'name': this.singleEvent.title,
+          'description': this.singleEvent.description,
+          'startDate': `${isoDate}T${this.singleEvent.time.start}:00+00:00`,
+          'endDate': `${isoDate}T${this.singleEvent.time.end}:00+00:00`,
+          'eventStatus': 'https://schema.org/EventScheduled',
+          'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+          'image': `${SITE_URL}${this.singleEvent.image}`,
+          'location': {
+            '@type': 'Place',
+            'name': this.singleEvent.location.name,
+            'address': {
+              '@type': 'PostalAddress',
+              'streetAddress': this.singleEvent.location.address.split(',')[0],
+              'addressLocality': this.singleEvent.location.address.includes('Leicester') ? 'Leicester' : 'UK',
+              'addressCountry': 'GB'
+            }
+          },
+          'organizer': {
+            '@type': 'SportsOrganization',
+            'name': 'Leicester Aikikai Dojo',
+            'url': SITE_URL
+          },
+          'performer': (this.singleEvent.instructors || []).map(instructor => {
+            const instructorName = typeof instructor === 'string' ? instructor : instructor.name
+            return {
+              '@type': 'Person',
+              'name': instructorName
+            }
+          })
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Home',
+              'item': SITE_URL
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Events',
+              'item': `${SITE_URL}/events`
+            },
+            {
+              '@type': 'ListItem',
+              'position': 3,
+              'name': this.singleEvent.title,
+              'item': `${SITE_URL}/events/${this.formatDateISO(this.singleEvent.date)}/${this.createSlug(this.singleEvent.title)}`
+            }
+          ]
+        }
+      ])
+    } else {
+      // Events list SEO (original code)
+      setMeta({
+        title: 'Aikido Events in Leicester | Courses & Training at Leicester Aikikai',
+        description: 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands. Traditional aikido training, seminars, and workshops with expert instructors at Leicester Aikikai Dojo.',
+        keywords: 'aikido events in Leicester, aikido courses in Leicester, aikido training Leicester, aikido seminars Leicester, aikido workshops Leicester, Leicester martial arts events, aikido East Midlands, aikido courses near me, Leicester Aikikai events',
+        url: `${SITE_URL}/events`,
+        image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
+        type: 'website',
+        // Additional AI-friendly metadata
+        'article:section': 'Events',
+        'article:tag': 'aikido, martial arts, Leicester, training, courses, seminars',
+        'og:locale': 'en_GB',
+        'og:site_name': 'Leicester Aikikai Dojo'
+      })
+
+      // Scroll to specific event if accessed via direct URL
+      this.scrollToEvent()
+
+      // Generate comprehensive structured data optimized for AI/LLMs
+      const eventSchemas = this.events.map(event => {
       const eventDate = this.parseDate(event.date)
       const isPast = eventDate < new Date()
       const isoDate = this.formatDateISO(event.date)
@@ -1035,6 +1223,7 @@ export default {
       breadcrumbSchema,
       faqSchema
     ])
+    }
   }
 }
 </script>
