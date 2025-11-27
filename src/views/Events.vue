@@ -150,6 +150,68 @@
                 </div>
               </div>
 
+              <!-- Event - November 28, 2025 - Iain Cooper sensei -->
+              <div
+                id="event-2025-11-28"
+                class="mb-5 position-relative ps-5"
+                :class="{ 'opacity-75': isEventPast('28.11.2025') }"
+                itemscope
+                itemtype="https://schema.org/Event"
+                :data-event-type="'course'"
+                :data-event-status="isEventPast('28.11.2025') ? 'past' : 'upcoming'"
+                :data-event-date="'2025-11-28'"
+                :data-event-location="'Leicester'"
+              >
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('28.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="mb-2">
+                  <time
+                    :class="isEventPast('28.11.2025') ? 'text-muted' : 'fw-bold text-primary'"
+                    itemprop="startDate"
+                    datetime="2025-11-28T19:00:00+00:00"
+                  >28.11.2025</time>
+                </div>
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="name">
+                      Guest instructor Iain Cooper sensei
+                    </h3>
+                    <p class="mb-3" :class="isEventPast('28.11.2025') ? 'text-muted' : ''" itemprop="description">
+                      Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <a href="/" class="fw-bold">Antonis Pavlakis sensei</a>.
+                    </p>
+
+                    <div class="mb-3">
+                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Instructors:</strong>
+                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('28.11.2025') }">
+                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                          <span itemprop="name">Iain Cooper</span>
+                        </li>
+                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                          <a href="/" class="text-decoration-none" itemprop="url">
+                            <span itemprop="name">Antonis Pavlakis</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="name">Aylestone Leisure Centre</span>,
+                        <span itemprop="streetAddress">2 Knighton Lane East</span>,
+                        <span itemprop="addressLocality">Leicester</span>,
+                        <span itemprop="postalCode">LE2 6LU</span>
+                      </address>
+                    </div>
+
+                    <div class="mb-2">
+                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Time:</strong>
+                      <time :class="{ 'text-muted': isEventPast('28.11.2025') }" datetime="19:00">7pm</time> -
+                      <time :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="endDate" datetime="2025-11-28T21:00:00+00:00">9pm</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
               <!-- Event - November 2025 -->
               <div id="event-2025-11-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.11.2025') }">
@@ -248,7 +310,8 @@
                 </div>
               </div>
 
-              <!-- Event Items -->
+
+              <!-- Event - November 2025 -->
               <div id="event-2023-12-10" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('10.12.2023') }">
                 <div class="position-absolute start-0 rounded-circle" :class="isEventPast('10.12.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
@@ -531,6 +594,26 @@ export default {
           },
           price: '£10',
           instructors: ['Naoko Suzuki', 'Sergio Cardoso', 'Antonis Pavlakis', 'Terry Mickowski']
+        },
+        {
+          date: '28.11.2025',
+          title: 'Guest instructor Iain Cooper sensei',
+          description: 'Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor Antonis Pavlakis sensei.',
+          type: 'course',
+          id: 'event-2025-11-28',
+          image: '/img/leicester-aikikai-dojo-course-October-2023.jpeg',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '19:00',
+            end: '21:00'
+          },
+          instructors: [
+            { name: 'Iain Cooper', profile: null },
+            { name: 'Antonis Pavlakis', profile: '/' }
+          ]
         },
         {
           date: '14.11.2025',
