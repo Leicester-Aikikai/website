@@ -176,7 +176,7 @@
                       Guest instructor Iain Cooper sensei
                     </h3>
                     <p class="mb-3" :class="isEventPast('28.11.2025') ? 'text-muted' : ''" itemprop="description">
-                      Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <a href="/" class="fw-bold">Antonis Pavlakis sensei</a>.
+                      Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
                     </p>
 
                     <div class="mb-3">
@@ -186,9 +186,9 @@
                           <span itemprop="name">Iain Cooper</span>
                         </li>
                         <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <a href="/" class="text-decoration-none" itemprop="url">
+                          <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
                             <span itemprop="name">Antonis Pavlakis</span>
-                          </a>
+                          </router-link>
                         </li>
                       </ul>
                     </div>
@@ -272,16 +272,16 @@
                       Guest instructor Tim Sullivan sensei from Warwick University
                     </h3>
                     <p class="mb-3" :class="isEventPast('14.11.2025') ? 'text-muted' : ''" itemprop="description">
-                      Join us for an aikido course with guest instructor <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="fw-bold">Tim Sullivan sensei</a> from Warwick University, alongside our instructor <a href="/" class="fw-bold">Antonis Pavlakis sensei</a>.
+                      Join us for an aikido class with guest instructor <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="fw-bold">Tim Sullivan sensei</a> from Warwick University, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
                     </p>
 
                     <div class="mb-3">
                       <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Instructors:</strong>
                       <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.11.2025') }">
                         <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <a href="/" class="text-decoration-none" itemprop="url">
+                          <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
                             <span itemprop="name">Antonis Pavlakis</span>
-                          </a>
+                          </router-link>
                         </li>
                         <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
                           <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
@@ -598,7 +598,7 @@ export default {
         {
           date: '28.11.2025',
           title: 'Guest instructor Iain Cooper sensei',
-          description: 'Join us for an aikido course with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor Antonis Pavlakis sensei.',
+          description: 'Join us for an aikido class with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-28',
           image: '/img/leicester-aikikai-dojo-course-October-2023.jpeg',
@@ -612,13 +612,13 @@ export default {
           },
           instructors: [
             { name: 'Iain Cooper', profile: null },
-            { name: 'Antonis Pavlakis', profile: '/' }
+            { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' }
           ]
         },
         {
           date: '14.11.2025',
           title: 'Guest instructor Tim Sullivan sensei from Warwick University',
-          description: 'Join us for an aikido course with guest instructor Tim Sullivan sensei from Warwick University, alongside our instructor Antonis Pavlakis sensei.',
+          description: 'Join us for an aikido class with guest instructor Tim Sullivan sensei from Warwick University, alongside our instructor Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-14',
           image: '/img/leicester-aikikai-dojo-hall.jpg',
@@ -631,7 +631,7 @@ export default {
             end: '21:00'
           },
           instructors: [
-            { name: 'Antonis Pavlakis', profile: '/' },
+            { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' },
             { name: 'Tim Sullivan', profile: 'https://warwickaikido.com/sullivan-sensei/' }
           ]
         },

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Events from '../views/Events.vue'
 import Syllabus from '../views/Syllabus.vue'
+import Instructor from '../views/Instructor.vue'
 import { setMeta, SITE_URL } from '../utils/seo.js'
 
 const routes = [
@@ -36,6 +37,17 @@ const routes = [
       description: 'Aikido event details at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
       keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
       image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
+    }
+  },
+  {
+    path: '/instructors/:name',
+    name: 'Instructor',
+    component: Instructor,
+    meta: {
+      title: 'Instructor Profile :: Leicester Aikikai Dojo',
+      description: 'Meet our aikido instructors at Leicester Aikikai. Learn about their experience, qualifications, and teaching background.',
+      keywords: 'aikido instructor Leicester, aikido teacher, martial arts instructor, aikido sensei',
+      image: `${SITE_URL}/img/leicester-aikikai-antonios-pavlakis-2016.jpg`
     }
   },
   {
