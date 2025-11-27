@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-7 text-center">
             <img
-              :src="singleEvent ? singleEvent.image : '/img/antonis-pavlakis-with-iain-cooper.webp'"
+              :src="singleEvent ? getEventImage(singleEvent) : '/img/antonis-pavlakis-with-iain-cooper.webp'"
               :alt="singleEvent ? `${singleEvent.title} event poster` : 'Aikido instructors Antonis Pavlakis and Iain Cooper at Leicester Aikikai dojo event'"
               class="img-fluid rounded shadow-lg"
               fetchpriority="high"
@@ -173,9 +173,9 @@
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
                         <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="name">
-                          <a :href="byakkoKan2025Image" target="_blank" class="text-decoration-none">
+                          <router-link :to="getEventUrl('14.12.2025', 'Xmas 2025 course with Melton Byakko-Kan Aikido')" class="text-decoration-none">
                             Xmas 2025 course with Melton Byakko-Kan Aikido
-                          </a>
+                          </router-link>
                         </h3>
                         <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''" itemprop="description">
                           A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
@@ -252,7 +252,9 @@
                 <div class="card shadow-sm">
                   <div class="card-body">
                     <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="name">
-                      Guest instructor Iain Cooper sensei
+                      <router-link :to="getEventUrl('28.11.2025', 'Guest instructor Iain Cooper sensei')" class="text-decoration-none">
+                        Guest instructor Iain Cooper sensei
+                      </router-link>
                     </h3>
                     <p class="mb-3" :class="isEventPast('28.11.2025') ? 'text-muted' : ''" itemprop="description">
                       Join us for an aikido class with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
@@ -300,7 +302,11 @@
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.11.2025') }">Aikido Course at Fight Ministry Hull</h3>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.11.2025') }">
+                      <router-link :to="getEventUrl('22.11.2025', 'Aikido Course at Fight Ministry Hull')" class="text-decoration-none">
+                        Aikido Course at Fight Ministry Hull
+                      </router-link>
+                    </h3>
                     <p class="mb-3" :class="isEventPast('22.11.2025') ? 'text-muted' : ''">
                       Aikido course at Fight Ministry in Hull with instructors Philip Smith shihan.
                     </p>
@@ -348,7 +354,9 @@
                 <div class="card shadow-sm">
                   <div class="card-body">
                     <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="name">
-                      Guest instructor Tim Sullivan sensei from Warwick University
+                      <router-link :to="getEventUrl('14.11.2025', 'Guest instructor Tim Sullivan sensei from Warwick University')" class="text-decoration-none">
+                        Guest instructor Tim Sullivan sensei from Warwick University
+                      </router-link>
                     </h3>
                     <p class="mb-3" :class="isEventPast('14.11.2025') ? 'text-muted' : ''" itemprop="description">
                       Join us for an aikido class with guest instructor <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="fw-bold">Tim Sullivan sensei</a> from Warwick University, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
@@ -401,9 +409,9 @@
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
                         <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('10.12.2023') }">
-                          <a :href="byakkoKan2023Image" target="_blank" class="text-decoration-none">
+                          <router-link :to="getEventUrl('10.12.2023', 'Joint course with Melton Byakko-Kan Aikido')" class="text-decoration-none">
                             Joint course with Melton Byakko-Kan Aikido
-                          </a>
+                          </router-link>
                         </h3>
                         <p class="mb-3" :class="isEventPast('10.12.2023') ? 'text-muted' : ''">
                           A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
@@ -457,7 +465,11 @@
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">Leicester Aikikai Dojo Course - October 2023</h3>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">
+                      <router-link :to="getEventUrl('22.10.2023', 'Leicester Aikikai Dojo Course - October 2023')" class="text-decoration-none">
+                        Leicester Aikikai Dojo Course - October 2023
+                      </router-link>
+                    </h3>
                     <p class="mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">
                       Dojo course on October 22nd 2023 with guest instructor Iain Cooper sensei 4th dan Fukushidoin
                     </p>
@@ -492,7 +504,11 @@
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">Aikido Beginner's Course 2023</h3>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">
+                      <router-link :to="getEventUrl('15.09.2023', 'Aikido Beginner\'s Course 2023')" class="text-decoration-none">
+                        Aikido Beginner's Course 2023
+                      </router-link>
+                    </h3>
                     <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">Start aikido with a 3-month beginner's course.</p>
                     <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">From September 15th 2023 to December 15th 2023 we ran our beginner's course.</p>
                     <p class="mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">Join us to work on co-ordination, self-improvement and body conditioning. Learn how to fall, how to defend yourself and much more.</p>
@@ -525,7 +541,11 @@
                 </div>
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">Dojo 10th year anniversary course</h3>
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">
+                      <router-link :to="getEventUrl('11.06.2023', 'Dojo 10th year anniversary course')" class="text-decoration-none">
+                        Dojo 10th year anniversary course
+                      </router-link>
+                    </h3>
                     <p class="mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">Join us on June 11th 2023 for the 10th year anniversary course.</p>
 
                     <div class="mb-3">
@@ -680,7 +700,7 @@ export default {
           description: 'Join us for an aikido class with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-28',
-          image: '/img/leicester-aikikai-dojo-course-October-2023.jpeg',
+          image: '/img/end-of-class-leicester-aikikai-and-guests.jpeg',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
@@ -700,7 +720,7 @@ export default {
           description: 'Join us for an aikido class with guest instructor Tim Sullivan sensei from Warwick University, alongside our instructor Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-14',
-          image: '/img/leicester-aikikai-dojo-hall.jpg',
+          image: '/img/end-of-class-leicester-aikikai-and-guests.jpeg',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
@@ -717,10 +737,10 @@ export default {
         {
           date: '22.11.2025',
           title: 'Aikido Course at Fight Ministry Hull',
-          description: 'Aikido course at Fight Ministry in Hull with instructors Philip Smith sensei and Antonis Pavlakis sensei.',
+          description: 'Aikido course at Fight Ministry in Hull with instructors Philip Smith shihan and Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2025-11-22',
-          image: '/img/leicester-aikikai-dojo-hall.jpg',
+          image: '/img/UKA-Aikido-course-Fight-Ministry-Hull-November-22-2025.jpeg',
           location: {
             name: 'Fight Ministry',
             address: 'Salisbury Hall, 1 Park Rd, Hull, HU3 1TD'
@@ -880,10 +900,14 @@ export default {
       const parts = dateStr.split('.')
       return `${parts[2]}-${parts[1]}-${parts[0]}`
     },
-    getEventUrl(event) {
-      const date = this.formatDateForUrl(event.date)
-      const slug = this.createSlug(event.title)
-      return `/events/${date}/${slug}`
+    getEventUrl(date, title) {
+      const formattedDate = this.formatDateForUrl(date)
+      const slug = this.createSlug(title)
+      return `/events/${formattedDate}/${slug}`
+    },
+    getEventImage(event) {
+      // Return event image if it exists, otherwise use default fallback
+      return event.image || '/img/end-of-class-leicester-aikikai-and-guests.jpeg'
     },
     scrollToEvent() {
       // Check if we have route params for a specific event
@@ -1230,5 +1254,19 @@ export default {
 
 <style scoped>
 /* Component specific styles */
+
+/* Ensure back buttons are clickable in single event view */
+.btn-primary,
+.btn-light {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Ensure opacity on past events doesn't affect button clickability */
+.opacity-75 .btn {
+  opacity: 1;
+  pointer-events: auto;
+}
 </style>
 
