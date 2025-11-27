@@ -112,7 +112,12 @@
 
           <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
-              <h3 class="h3 fw-bold mb-3" itemprop="name">Antonios Pavlakis <meta itemprop="alternateName" content="Antonis Pavlakis"></h3>
+              <h3 class="h3 fw-bold mb-3" itemprop="name">
+                <router-link to="/instructors/antonis-pavlakis" class="text-white text-decoration-none">
+                  Antonios Pavlakis
+                </router-link>
+                <meta itemprop="alternateName" content="Antonis Pavlakis">
+              </h3>
               <p class="h5 mb-4 opacity-90" itemprop="jobTitle">4th Dan • Yondan so-Hombu Fukushidoin (副指導員)</p>
 
               <div class="instructor-bio" itemprop="description">

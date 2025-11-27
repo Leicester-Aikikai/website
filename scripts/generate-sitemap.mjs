@@ -17,10 +17,17 @@ const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 // Define events with their dates and titles
 const events = [
   { date: '2025-12-14', title: 'xmas-2025-course-with-melton-byakko-kan-aikido' },
+  { date: '2025-11-28', title: 'guest-instructor-iain-cooper-sensei' },
+  { date: '2025-11-14', title: 'guest-instructor-tim-sullivan-sensei-from-warwick-university' },
   { date: '2023-12-10', title: 'joint-course-with-melton-byakko-kan-aikido' },
   { date: '2023-10-22', title: 'leicester-aikikai-dojo-course-october-2023' },
   { date: '2023-09-15', title: 'aikido-beginners-course-2023' },
   { date: '2023-06-11', title: 'dojo-10th-year-anniversary-course' }
+]
+
+// Define instructors
+const instructors = [
+  'antonis-pavlakis'
 ]
 
 // Define routes with priority and change frequency
@@ -31,6 +38,12 @@ const routes = [
   ...events.map(event => ({
     path: `/events/${event.date}/${event.title}`,
     priority: '0.7',
+    changefreq: 'monthly'
+  })),
+  // Add instructor profile routes
+  ...instructors.map(instructor => ({
+    path: `/instructors/${instructor}`,
+    priority: '0.8',
     changefreq: 'monthly'
   })),
   { path: '/syllabus', priority: '0.8', changefreq: 'monthly' },
