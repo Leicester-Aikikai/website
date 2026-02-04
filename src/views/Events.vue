@@ -168,59 +168,76 @@
                     datetime="2026-03-29T12:30:00+00:00"
                   >29.03.2026</time>
                 </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="name">
-                      <router-link :to="getEventUrl('29.03.2026', 'Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo')" class="text-decoration-none">
-                        Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo
-                      </router-link>
-                    </h3>
-                    <p class="mb-3" :class="isEventPast('29.03.2026') ? 'text-muted' : ''" itemprop="description">
-                      Aikido course at Aylestone Leisure Centre featuring guest instructor <span class="fw-bold">Neil Mould 6th Dan shidoin</span> from Sotenjuku dojo, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis</router-link>.
-                    </p>
 
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('29.03.2026') }">
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
-                            <span itemprop="name">Antonis Pavlakis</span>
+                <!-- Changed: use a two-column layout so the listing shows the event poster -->
+                <div class="row g-3">
+                  <div class="col-lg-8">
+                    <div class="card h-100 shadow-sm">
+                      <div class="card-body">
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="name">
+                          <router-link :to="getEventUrl('29.03.2026', 'Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo')" class="text-decoration-none">
+                            Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo
                           </router-link>
-                        </li>
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <a href="https://www.sotenjuku.uk/instructors" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
-                            <span itemprop="name">Neil Mould</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                        </h3>
+                        <p class="mb-3" :class="isEventPast('29.03.2026') ? 'text-muted' : ''" itemprop="description">
+                          Aikido course at Aylestone Leisure Centre featuring guest instructor <span class="fw-bold">Neil Mould 6th Dan shidoin</span> from Sotenjuku dojo, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis</router-link>.
+                        </p>
 
-                    <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                      <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                        <span itemprop="name">Aylestone Leisure Centre</span>,
-                        <span itemprop="streetAddress">2 Knighton Lane East</span>,
-                        <span itemprop="addressLocality">Leicester</span>,
-                        <span itemprop="postalCode">LE2 6LU</span>
-                      </address>
-                    </div>
+                        <div class="mb-3">
+                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Instructors:</strong>
+                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('29.03.2026') }">
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                              <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
+                                <span itemprop="name">Antonis Pavlakis</span>
+                              </router-link>
+                            </li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                              <a href="https://www.sotenjuku.uk/instructors" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
+                                <span itemprop="name">Neil Mould</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
 
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Time:</strong>
-                      <time :class="{ 'text-muted': isEventPast('29.03.2026') }" datetime="12:30">12:30pm</time> -
-                      <time :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="endDate" datetime="2026-03-29T16:30:00+00:00">4:30pm</time>
-                    </div>
+                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Location:</strong>
+                          <address class="mb-0" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <span itemprop="name">Aylestone Leisure Centre</span>,
+                            <span itemprop="streetAddress">2 Knighton Lane East</span>,
+                            <span itemprop="addressLocality">Leicester</span>,
+                            <span itemprop="postalCode">LE2 6LU</span>
+                          </address>
+                        </div>
 
-                    <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                      <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Prices:</strong>
-                      <div :class="{ 'text-muted': isEventPast('29.03.2026') }">
-                        Adults - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="15">15</span><br>
-                        Concession - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="12">12</span><br>
-                        Under 18's - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="8">8</span>
+                        <div class="mb-2">
+                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Time:</strong>
+                          <time :class="{ 'text-muted': isEventPast('29.03.2026') }" datetime="12:30">12:30pm</time> -
+                          <time :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="endDate" datetime="2026-03-29T16:30:00+00:00">4:30pm</time>
+                        </div>
+
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Prices:</strong>
+                          <div :class="{ 'text-muted': isEventPast('29.03.2026') }">
+                            Adults - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="15">15</span><br>
+                            Concession - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="12">12</span><br>
+                            Under 18's - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="8">8</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-lg-4">
+                    <img
+                      src="/img/Aikido-course-March-2026-leicester-aikikai.png"
+                      alt="Course with Neil Mould poster March 2026"
+                      class="img-fluid rounded shadow"
+                      loading="lazy"
+                      itemprop="image"
+                    />
+                  </div>
                 </div>
+
               </div>
 
               <!-- Upcoming Event - December 2025 -->
@@ -573,7 +590,7 @@
 
               <!-- Past Event 2 -->
               <div id="event-2023-09-15" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('15.09.2023') }">
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('15.09.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="position-absolute top-0 start-0 rounded-circle" :class="isEventPast('15.09.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
                   <time :class="isEventPast('15.09.2023') ? 'text-muted' : 'fw-bold text-primary'">15.09.2023</time>
                 </div>
@@ -757,7 +774,7 @@ export default {
           description: 'Aikido course at Aylestone Leisure Centre featuring guest instructor Neil Mould 6th Dan shidoin from Sotenjuku dojo, alongside Antonis Pavlakis sensei.',
           type: 'course',
           id: 'event-2026-03-29',
-          image: '/img/end-of-class-leicester-aikikai-and-guests.jpeg',
+          image: '/img/Aikido-course-March-2026-leicester-aikikai.png',
           location: {
             name: 'Aylestone Leisure Centre',
             address: '2 Knighton Lane East, Leicester, LE2 6LU'
