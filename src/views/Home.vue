@@ -258,8 +258,9 @@
               </a> association which also includes insurance.
             </p>
             <ul class="list-unstyled fw-bold">
-              <li>Adult (waged) £32.00</li>
-              <li>Under 18s* £18.00</li>
+              <li>Adult (waged) £35.00</li>
+              <li>Adult (concession) £27.00</li>
+              <li>Under 18s* £20.00</li>
             </ul>
             <p class="mt-3">For the monthly costs, see below:</p>
           </div>
