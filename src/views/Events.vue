@@ -148,6 +148,99 @@
               <!-- Timeline line -->
               <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
+              <!-- Upcoming Event - July 2026 -->
+              <div
+                id="event-2026-07-19"
+                class="mb-5 position-relative ps-5"
+                :class="{ 'opacity-75': isEventPast('19.07.2026') }"
+                itemscope
+                itemtype="https://schema.org/Event"
+                :data-event-type="'course'"
+                :data-event-status="isEventPast('19.07.2026') ? 'past' : 'upcoming'"
+                :data-event-date="'2026-07-19'"
+                :data-event-location="'Leicester'"
+              >
+                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('19.07.2026') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="mb-2">
+                  <time
+                    :class="isEventPast('19.07.2026') ? 'text-muted' : 'fw-bold text-primary'"
+                    itemprop="startDate"
+                    datetime="2026-07-19T12:30:00+01:00"
+                  >19.07.2026</time>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-lg-8">
+                    <div class="card h-100 shadow-sm">
+                      <div class="card-body">
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="name">
+                          <router-link :to="getEventUrl('19.07.2026', 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo')" class="text-decoration-none">
+                            Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo
+                          </router-link>
+                        </h3>
+                        <p class="mb-3" :class="isEventPast('19.07.2026') ? 'text-muted' : ''" itemprop="description">
+                          On July 19th we'll be having an aikido course with guest instructor <a href="https://tudorgrangeaikido.com/home/" target="_blank" rel="noopener noreferrer" class="fw-bold">Stuart Lovering 6th dan shidoin</a>, the Chief Instructor of Tudor Grange dojo, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis</router-link>.
+                          This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.
+                        </p>
+
+                        <div class="mb-3">
+                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Instructors:</strong>
+                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('19.07.2026') }">
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                              <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
+                                <span itemprop="name">Antonis Pavlakis</span>
+                              </router-link>
+                              <span class="text-muted ms-1">4th dan fukushidoin</span>
+                            </li>
+                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                              <a href="https://tudorgrangeaikido.com/home/" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
+                                <span itemprop="name">Stuart Lovering</span>
+                              </a>
+                              <span class="text-muted ms-1">6th dan shidoin</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Location:</strong>
+                          <address class="mb-0" :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <span itemprop="name">Aylestone Leisure Centre</span>,
+                            <span itemprop="streetAddress">2 Knighton Lane East</span>,
+                            <span itemprop="addressLocality">Leicester</span>,
+                            <span itemprop="postalCode">LE2 6LU</span>
+                          </address>
+                        </div>
+
+                        <div class="mb-2">
+                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Time: </strong>
+                          <time :class="{ 'text-muted': isEventPast('19.07.2026') }" datetime="12:30">12:30pm</time> -
+                          <time :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="endDate" datetime="2026-07-19T16:30:00+01:00">4:30pm</time>
+                        </div>
+
+                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Prices:</strong>
+                          <div :class="{ 'text-muted': isEventPast('19.07.2026') }">
+                            Adults - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="20">20</span><br>
+                            Concession - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="15">15</span><br>
+                            Under 18's - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="12">12</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <img
+                      src="/img/leicester-aikikai-july-19th-2026.jpg"
+                      alt="Aikido course with Stuart Lovering poster July 2026"
+                      class="img-fluid rounded shadow"
+                      loading="lazy"
+                      itemprop="image"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <!-- Upcoming Event - March 2026 -->
               <div
                 id="event-2026-03-29"
@@ -768,6 +861,27 @@ export default {
       byakkoKan2023Image: '/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
       antonisPavlakisIainCooperImage: '/img/antonis-pavlakis-with-iain-cooper.webp',
       events: [
+        {
+          date: '19.07.2026',
+          title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
+          description: 'On July 19th we\'ll be having an aikido course with guest instructor Stuart Lovering 6th dan shidoin, the Chief Instructor of Tudor Grange dojo, alongside Antonis Pavlakis. This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.',
+          type: 'course',
+          id: 'event-2026-07-19',
+          image: '/img/leicester-aikikai-july-19th-2026.jpg',
+          location: {
+            name: 'Aylestone Leisure Centre',
+            address: '2 Knighton Lane East, Leicester, LE2 6LU'
+          },
+          time: {
+            start: '12:30',
+            end: '16:30'
+          },
+          price: 'Adults - £20, Concession - £15, Under 18\'s - £12',
+          instructors: [
+            { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' },
+            { name: 'Stuart Lovering', profile: 'https://tudorgrangeaikido.com/home/' }
+          ]
+        },
         {
           date: '29.03.2026',
           title: 'Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo',
