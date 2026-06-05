@@ -16,6 +16,8 @@ const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 
 // Define events with their dates and titles
 const events = [
+  { date: '2026-07-19', title: 'course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo' },
+  { date: '2026-03-29', title: 'course-with-neil-mould-6th-dan-shidoin-from-sotenjuku-dojo' },
   { date: '2025-12-14', title: 'xmas-2025-course-with-melton-byakko-kan-aikido' },
   { date: '2025-11-28', title: 'guest-instructor-iain-cooper-sensei' },
   { date: '2025-11-14', title: 'guest-instructor-tim-sullivan-sensei-from-warwick-university' },
@@ -90,4 +92,3 @@ try {
   console.error('❌ Error generating sitemap:', error)
   process.exit(1)
 }
-
