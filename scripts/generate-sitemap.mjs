@@ -7,6 +7,7 @@
 import { writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { events } from '../src/data/events.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -14,23 +15,26 @@ const __dirname = dirname(__filename)
 const SITE_URL = 'https://leicesteraikikai.com'
 const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
 
-// Define events with their dates and titles
-const events = [
-  { date: '2026-07-19', title: 'course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo' },
-  { date: '2026-03-29', title: 'course-with-neil-mould-6th-dan-shidoin-from-sotenjuku-dojo' },
-  { date: '2025-12-14', title: 'xmas-2025-course-with-melton-byakko-kan-aikido' },
-  { date: '2025-11-28', title: 'guest-instructor-iain-cooper-sensei' },
-  { date: '2025-11-14', title: 'guest-instructor-tim-sullivan-sensei-from-warwick-university' },
-  { date: '2023-12-10', title: 'joint-course-with-melton-byakko-kan-aikido' },
-  { date: '2023-10-22', title: 'leicester-aikikai-dojo-course-october-2023' },
-  { date: '2023-09-15', title: 'aikido-beginners-course-2023' },
-  { date: '2023-06-11', title: 'dojo-10th-year-anniversary-course' }
-]
-
 // Define instructors
 const instructors = [
   'antonis-pavlakis'
 ]
+
+// Function to create a URL-friendly slug from a title
+const createSlug = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // remove non-word characters
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-') // remove consecutive hyphens
+    .trim()
+}
+
+// Function to format date from DD.MM.YYYY to YYYY-MM-DD
+const formatDateForUrl = (dateStr) => {
+  const parts = dateStr.split('.')
+  return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`
+}
 
 // Define routes with priority and change frequency
 const routes = [
@@ -38,7 +42,7 @@ const routes = [
   { path: '/events', priority: '0.9', changefreq: 'weekly' },
   // Add individual event routes
   ...events.map(event => ({
-    path: `/events/${event.date}/${event.title}`,
+    path: `/events/${formatDateForUrl(event.date)}/${createSlug(event.title)}`,
     priority: '0.7',
     changefreq: 'monthly'
   })),

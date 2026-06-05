@@ -419,27 +419,40 @@
 
 <script>
 import { setJsonLd, getPersonSchema, setMeta, SITE_URL } from '../utils/seo.js'
+import { events } from '../data/events.js'
 
 export default {
   name: 'Home',
   data() {
-    return {
-      latestEvent: {
-        date: '19.07.2026',
-        title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
-        description: 'On July 19th we\'ll be having an aikido course with guest instructor Stuart Lovering 6th dan shidoin, the Chief Instructor of Tudor Grange dojo, alongside our instructor Antonis Pavlakis. This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.',
-        image: '/img/leicester-aikikai-july-19th-2026.jpg',
-        url: '/events/2026-07-19/course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo'
-      }
-    };
+    return {};
   },
   computed: {
-    showLatestEvent() {
+    latestEvent() {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      const parts = this.latestEvent.date.split('.');
-      const eventDate = new Date(parts[2], parts[1] - 1, parts[0]);
-      return eventDate >= today;
+
+      const upcomingEvents = events
+        .map(event => {
+          const parts = event.date.split('.');
+          const eventDate = new Date(parts[2], parts[1] - 1, parts[0]);
+          return { ...event, eventDate };
+        })
+        .filter(event => event.eventDate >= today)
+        .sort((a, b) => a.eventDate - b.eventDate);
+
+      if (upcomingEvents.length === 0) {
+        return null;
+      }
+
+      const nextEvent = upcomingEvents[0];
+
+      return {
+        ...nextEvent,
+        url: `/events/${this.formatDateForUrl(nextEvent.date)}/${this.createSlug(nextEvent.title)}`
+      };
+    },
+    showLatestEvent() {
+      return !!this.latestEvent;
     }
   },
   methods: {
@@ -448,6 +461,18 @@ export default {
       const date = new Date(parts[2], parts[1] - 1, parts[0]);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return date.toLocaleDateString('en-GB', options);
+    },
+    createSlug(title) {
+      return title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim()
+    },
+    formatDateForUrl(dateStr) {
+      // Convert DD.MM.YYYY to YYYY-MM-DD
+      const parts = dateStr.split('.')
+      return `${parts[2]}-${parts[1]}-${parts[0]}`
     }
   },
   mounted() {
