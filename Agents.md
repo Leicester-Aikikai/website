@@ -4,7 +4,7 @@ This document outlines the structure of events and the process for updating them
 
 ## Event Structure
 
-Events are defined as an array of objects within the `events` data property in `src/views/Events.vue`. Each event object has the following structure:
+Events are defined as an array of objects in `src/data/events.js`. Each event object has the following structure:
 
 ```javascript
 {
@@ -33,54 +33,29 @@ Events are defined as an array of objects within the `events` data property in `
 
 ## Event Update Process
 
-When a new event is added or an existing one is updated, the following files need to be modified to ensure the website is up-to-date:
+When a new event is added or an existing one is updated, the website will update automatically. The following files are involved in this process:
 
-### 1. Update Home Page
+### 1. Event Data
 
-The Home page displays the latest upcoming event. To update this, modify the `latestEvent` data property in `src/views/Home.vue`.
+The core event information is stored in a dedicated file, making it the single source of truth for all events.
+
+-   **File:** `src/data/events.js`
+-   **Action:** Add, update, or remove event objects from the `events` array.
+
+### 2. Home Page
+
+The Home page automatically displays the latest upcoming event. No manual editing is required.
 
 -   **File:** `src/views/Home.vue`
--   **Action:** Update the `latestEvent` object with the new event's details. The `showLatestEvent` computed property will automatically handle showing the event only if its date is in the future or the current day.
+-   **Action:** This file reads from `src/data/events.js` and uses a computed property to find the next event. The "Latest Event" section will only be displayed if there is an upcoming event.
 
-```javascript
-// src/views/Home.vue
+### 3. Sitemap
 
-// ...
-data() {
-  return {
-    latestEvent: {
-      date: '19.07.2026',
-      title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
-      description: '...',
-      image: '/img/leicester-aikikai-july-19th-2026.jpg',
-      url: '/events/2026-07-19/course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo'
-    }
-  };
-},
-// ...
-```
-
-### 2. Update Sitemap
-
-To ensure search engines are aware of the new event page, the `sitemap.xml` file must be updated.
+To ensure search engines are aware of new event pages, the `sitemap.xml` file must be regenerated.
 
 -   **File:** `scripts/generate-sitemap.mjs`
--   **Action:** Add a new entry for the event in the `events` array. The title should be slugified.
-
-```javascript
-// scripts/generate-sitemap.mjs
-
-// ...
-const events = [
-  { date: '2026-07-19', title: 'course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo' },
-  // ... other events
-];
-// ...
-```
-
--   **Run script:** After updating the `events` array, run the following command in your terminal to regenerate the `sitemap.xml` file:
+-   **Action:** This script now reads directly from `src/data/events.js`. After updating the events, run the following command in your terminal to regenerate the `sitemap.xml` file:
 
 ```bash
 node scripts/generate-sitemap.mjs
 ```
-
