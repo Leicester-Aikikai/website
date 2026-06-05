@@ -44,6 +44,29 @@
 
     <!-- Main Content -->
     <main id="main-content">
+      <!-- Latest Event Section -->
+      <section v-if="showLatestEvent" id="latest-event" class="py-5 bg-light">
+        <div class="container">
+          <h2 class="section-title text-center">Latest Event</h2>
+          <div class="section-divider"></div>
+          <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+              <router-link :to="latestEvent.url">
+                <img :src="latestEvent.image" :alt="latestEvent.title" class="img-fluid rounded shadow-lg">
+              </router-link>
+            </div>
+            <div class="col-md-6">
+              <h3>
+                <router-link :to="latestEvent.url" class="text-decoration-none">{{ latestEvent.title }}</router-link>
+              </h3>
+              <p class="text-muted">{{ formatDateForDisplay(latestEvent.date) }}</p>
+              <p>{{ latestEvent.description }}</p>
+              <router-link :to="latestEvent.url" class="btn btn-primary">View Event</router-link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Our Journey Section -->
       <section id="our-journey" class="py-5">
         <div class="container">
@@ -399,6 +422,34 @@ import { setJsonLd, getPersonSchema, setMeta, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      latestEvent: {
+        date: '19.07.2026',
+        title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
+        description: 'On July 19th we\'ll be having an aikido course with guest instructor Stuart Lovering 6th dan shidoin, the Chief Instructor of Tudor Grange dojo, alongside our instructor Antonis Pavlakis. This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.',
+        image: '/img/leicester-aikikai-july-19th-2026.jpg',
+        url: '/events/2026-07-19/course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo'
+      }
+    };
+  },
+  computed: {
+    showLatestEvent() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const parts = this.latestEvent.date.split('.');
+      const eventDate = new Date(parts[2], parts[1] - 1, parts[0]);
+      return eventDate >= today;
+    }
+  },
+  methods: {
+    formatDateForDisplay(dateStr) {
+      const parts = dateStr.split('.');
+      const date = new Date(parts[2], parts[1] - 1, parts[0]);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('en-GB', options);
+    }
+  },
   mounted() {
     // Set meta tags for SEO and social media
     setMeta({
