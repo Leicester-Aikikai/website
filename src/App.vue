@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Announcements />
     <Navbar />
     <router-view />
     <Footer />
@@ -9,12 +10,14 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import Announcements from './components/Announcements.vue'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    Footer
+    Footer,
+    Announcements
   }
 }
 </script>
@@ -22,4 +25,3 @@ export default {
 <style>
 /* Global styles are imported in main.js */
 </style>
-
