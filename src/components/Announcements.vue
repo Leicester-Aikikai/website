@@ -36,11 +36,21 @@ export default {
     };
   },
   computed: {
+    activeAnnouncements() {
+      const today = new Date();
+      // Normalise to midnight local time to compare dates only (not times)
+      today.setHours(0, 0, 0, 0);
+      return this.announcements.filter(a => {
+        if (!a.expiryDate) return true; // No expiry — always show
+        const expiry = new Date(a.expiryDate);
+        expiry.setHours(0, 0, 0, 0);
+        return today < expiry;
+      });
+    },
     latestAnnouncement() {
-      if (this.announcements.length === 0) {
-        return null;
-      }
-      return this.announcements[0];
+      return this.activeAnnouncements.length > 0
+        ? this.activeAnnouncements[0]
+        : null;
     }
   }
 };
