@@ -12,6 +12,7 @@ export const announcements = [
     id: 'announcement-2026-06-12',
     title: 'Class Cancellation',
     content: 'There will be no class this Friday 12th June 2026, due to Aylestone Leisure Centre hosting a big event.',
-    date: '2026-06-08'
+    date: '2026-06-08',
+    expiryDate: '2026-06-13' // Hide from this date onward (day after the event)
   },
 ];
