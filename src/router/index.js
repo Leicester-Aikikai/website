@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Events from '../views/Events.vue'
+import Blog from '../views/Blog.vue'
 import Syllabus from '../views/Syllabus.vue'
 import Instructor from '../views/Instructor.vue'
 import { setMeta, SITE_URL } from '../utils/seo.js'
@@ -37,6 +38,29 @@ const routes = [
       description: 'Aikido event details at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
       keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
       image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
+    }
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: Blog,
+    meta: {
+      title: 'Blog | Leicester Aikikai Dojo',
+      description: 'Aikido articles, beginner guidance, and dojo notes from Leicester Aikikai. Read practical posts about training, ukemi, consistency, and life on the mat.',
+      keywords: 'Leicester Aikikai blog, aikido blog, aikido training, ukemi, beginner aikido, traditional aikido, martial arts Leicester',
+      image: `${SITE_URL}/img/aylestone-leisure-centre-mat-space.jpeg`
+    }
+  },
+  {
+    path: '/blog/:date/:title',
+    name: 'BlogDetail',
+    component: Blog,
+    meta: {
+      title: 'Aikido Blog Article :: Leicester Aikikai Dojo',
+      description: 'Read aikido articles and dojo notes from Leicester Aikikai. Practical guidance for beginners, training insights, and traditional aikido reflections.',
+      keywords: 'Leicester Aikikai blog article, aikido training article, ukemi, beginner aikido, traditional aikido, martial arts Leicester',
+      image: `${SITE_URL}/img/aylestone-leisure-centre-mat-space.jpeg`,
+      type: 'article'
     }
   },
   {
@@ -152,7 +176,7 @@ router.beforeEach((to, from, next) => {
     keywords: meta.keywords,
     image: meta.image,
     url: url,
-    type: 'website'
+    type: meta.type || 'website'
   })
 
   next()

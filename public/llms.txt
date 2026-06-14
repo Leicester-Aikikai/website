@@ -36,6 +36,11 @@ Lists upcoming and past aikido events, courses, and seminars including:
 - Anniversary celebrations
 - Each event has a detail page at `/events/YYYY-MM-DD/event-slug` where `YYYY-MM-DD` is the event date and `event-slug` is a hyphenated version of the event title
 
+### Blog (/blog)
+The blog index at `/blog` is in place as a centralized content-driven section.
+- Current article: `/blog/2026-06-14/leicester-aikikai-aikido-guest-instructors-july-2026`
+- Blog content is maintained centrally so posts can be added without editing the page layout directly
+
 #### Upcoming Events (2025)
 
 **December 14, 2025 - Xmas 2025 course with Melton Byakko-Kan Aikido**
@@ -147,4 +152,4 @@ Classes are held at Aylestone Leisure Centre in Leicester. The dojo welcomes vis
 
 ## Last Updated
 
-December 2025
+June 2026

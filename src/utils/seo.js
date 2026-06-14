@@ -16,12 +16,8 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
 
   // Standard meta
   setMetaTag('description', description || SITE_DESCRIPTION)
-  if (keywords) {
-    setMetaTag('keywords', keywords)
-  }
-  if (author) {
-    setMetaTag('author', author)
-  }
+  setMetaTag('keywords', keywords)
+  setMetaTag('author', author)
 
   // Canonical URL
   setLinkTag('canonical', url || window.location.href)
@@ -40,15 +36,13 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
 
   // Article specific tags
   if (type === 'article') {
-    if (publishedTime) {
-      setMetaTag('article:published_time', publishedTime, 'property')
-    }
-    if (modifiedTime) {
-      setMetaTag('article:modified_time', modifiedTime, 'property')
-    }
-    if (author) {
-      setMetaTag('article:author', author, 'property')
-    }
+    setMetaTag('article:published_time', publishedTime, 'property')
+    setMetaTag('article:modified_time', modifiedTime, 'property')
+    setMetaTag('article:author', author, 'property')
+  } else {
+    removeMetaTag('article:published_time', 'property')
+    removeMetaTag('article:modified_time', 'property')
+    removeMetaTag('article:author', 'property')
   }
 
   // Twitter Card
@@ -65,7 +59,10 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
  * Helper to set or update meta tags
  */
 function setMetaTag(name, content, attribute = 'name') {
-  if (!content) return
+  if (!content) {
+    removeMetaTag(name, attribute)
+    return
+  }
 
   let element = document.querySelector(`meta[${attribute}="${name}"]`)
   if (!element) {
@@ -74,6 +71,13 @@ function setMetaTag(name, content, attribute = 'name') {
     document.head.appendChild(element)
   }
   element.setAttribute('content', content)
+}
+
+function removeMetaTag(name, attribute = 'name') {
+  const element = document.querySelector(`meta[${attribute}="${name}"]`)
+  if (element) {
+    element.remove()
+  }
 }
 
 /**
