@@ -8,6 +8,7 @@ import { writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { events } from '../src/data/events.js'
+import { blogPosts, getBlogPostUrl } from '../src/data/blog.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -40,10 +41,17 @@ const formatDateForUrl = (dateStr) => {
 const routes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/events', priority: '0.9', changefreq: 'weekly' },
+  { path: '/blog', priority: '0.9', changefreq: 'weekly' },
   // Add individual event routes
   ...events.map(event => ({
     path: `/events/${formatDateForUrl(event.date)}/${createSlug(event.title)}`,
     priority: '0.7',
+    changefreq: 'monthly'
+  })),
+  // Add individual blog routes
+  ...blogPosts.map(post => ({
+    path: getBlogPostUrl(post),
+    priority: '0.65',
     changefreq: 'monthly'
   })),
   // Add instructor profile routes

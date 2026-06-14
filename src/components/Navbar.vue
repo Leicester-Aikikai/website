@@ -37,6 +37,11 @@
               </router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/blog" class="nav-link" :class="{ 'fw-bold': isActive('/blog') }" aria-label="Blog page">
+                Blog
+              </router-link>
+            </li>
+            <li class="nav-item">
               <a href="/#location" class="nav-link" aria-label="Location and times">Location and Times</a>
             </li>
             <li class="nav-item">
@@ -72,7 +77,11 @@ export default {
       this.isScrolled = window.scrollY > 10
     },
     isActive(path) {
-      return this.$route.path === path
+      if (path === '/') {
+        return this.$route.path === '/'
+      }
+
+      return this.$route.path === path || this.$route.path.startsWith(`${path}/`)
     }
   },
   mounted() {
