@@ -12,7 +12,57 @@ export const blogAuthors = {
   }
 }
 
-export const blogPosts = []
+export const blogPosts = [
+  {
+    id: 'blog-2026-06-14-leicester-aikikai-aikido-guest-instructors-july-2026',
+    slug: 'leicester-aikikai-aikido-guest-instructors-july-2026',
+    title: 'Leicester Aikikai Aikido guest instructors July 2026',
+    excerpt: 'In July 2026, Leicester Aikikai will welcome guest instructors from British Aikikai, British Birankai, and United Kingdom Aikikai for Friday night training sessions in the build-up to the UKA Summer School.',
+    publishedDate: '14.06.2026',
+    lastUpdated: '14.06.2026',
+    authorId: 'antonis-pavlakis',
+    readingTime: '4 min read',
+    featuredImage: '/img/end-of-class-leicester-aikikai-and-guests.jpeg',
+    imageAlt: 'Leicester Aikikai guests and instructors at the end of a training session',
+    category: 'Guest instructors',
+    tags: ['guest instructors', 'Leicester', 'summer school', 'aikido training'],
+    introduction: 'In July 2026, in the build-up to the United Kingdom Aikikai Summer School, we will invite guest instructors to join us and teach alongside me. Following last year’s success, we are looking forward to sharing the mat with new and familiar faces once again.',
+    sections: [
+      {
+        heading: 'A shared summer training tradition',
+        slug: 'a-shared-summer-training-tradition',
+        paragraphs: [
+          'Guest instruction has become one of the best parts of our summer training calendar. It gives everyone a chance to experience different teaching styles, different approaches to movement, and a fresh atmosphere on the mat while staying grounded in traditional Aikikai practice.',
+          'Last year’s guest instructor sessions were a success, and they showed how much can be gained when local dojo and visiting teachers come together in one place.'
+        ]
+      },
+      {
+        heading: 'Confirmed instructors for July 2026',
+        slug: 'confirmed-instructors-for-july-2026',
+        paragraphs: [
+          'So far, we have confirmations from instructors from British Aikikai, British Birankai, and United Kingdom Aikikai. That mix of backgrounds should make for lively and valuable training sessions, with each guest bringing their own perspective to the mat.',
+          'As more details are confirmed, we will continue to share the plan with the dojo so everyone knows what to expect from the July sessions.'
+        ]
+      },
+      {
+        heading: 'Training Aikido in Leicester',
+        slug: 'training-aikido-in-leicester',
+        paragraphs: [
+          'If you are training aikido in Leicester, guest instructor evenings are a great way to stay motivated and expand your understanding of the art. They also offer a chance to meet other practitioners, exchange ideas, and keep your training fresh.',
+          'We hold our Friday night classes at 7pm, and if you want to join us you are always welcome to drop by and take part.'
+        ]
+      }
+    ],
+    conclusion: 'July 2026 should be another exciting month of training at Leicester Aikikai. We are grateful to the guest instructors who will join us, and we look forward to welcoming everyone onto the mat.',
+    callToAction: {
+      heading: 'Join us on a Friday night',
+      text: 'If you want to join us, drop by on a Friday night at 7pm and take part in the class.',
+      buttonLabel: 'View class details',
+      buttonLink: '/#location'
+    },
+    relatedSlugs: []
+  }
+]
 
 export function parseBlogDate(dateStr) {
   const [day, month, year] = dateStr.split('.')

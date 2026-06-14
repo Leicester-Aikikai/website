@@ -37,8 +37,8 @@ Lists upcoming and past aikido events, courses, and seminars including:
 - Each event has a detail page at `/events/YYYY-MM-DD/event-slug` where `YYYY-MM-DD` is the event date and `event-slug` is a hyphenated version of the event title
 
 ### Blog (/blog)
-The blog index at `/blog` is in place as a centralized content-driven section, but there are currently no published articles.
-- When articles are added later, each post will have a detail page at `/blog/YYYY-MM-DD/post-slug`
+The blog index at `/blog` is in place as a centralized content-driven section.
+- Current article: `/blog/2026-06-14/leicester-aikikai-aikido-guest-instructors-july-2026`
 - Blog content is maintained centrally so posts can be added without editing the page layout directly
 
 #### Upcoming Events (2025)
