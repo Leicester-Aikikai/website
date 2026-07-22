@@ -2,6 +2,24 @@
 
 export const events = [
   {
+    date: '21.11.2026',
+    title: 'Joint Aikido Course with UKAikikai and British Birankai in November 2026',
+    description: 'A joint aikido course bringing together instructors from UK Aikikai and British Birankai associations. Join us for a day of training with instructors Trevor Doxsey, Antonis Pavlakis, Michael Howson, and Paul Shepherd at Ren Shin Kan Dojo in Halesowen. All associations welcome.',
+    type: 'course',
+    id: 'event-2026-11-21',
+    image: '/img/ukaikikai-british-birankai-joint-aikido-course-november-2026.jpeg',
+    location: {
+      name: 'Ren Shin Kan Dojo',
+      address: '7 Peckingham Street, Halesowen, B63 3AW'
+    },
+    time: {
+      start: '12:00',
+      end: '17:00'
+    },
+    price: '£20 adults, £15 concessions',
+    instructors: ['Trevor Doxsey', 'Antonis Pavlakis', 'Michael Howson', 'Paul Shepherd']
+  },
+  {
     date: '19.07.2026',
     title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
     description: 'On July 19th we\'ll be having an aikido course with guest instructor Stuart Lovering 6th dan shidoin, the Chief Instructor of Tudor Grange dojo, alongside Antonis Pavlakis. This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.',
