@@ -148,81 +148,88 @@
               <!-- Timeline line -->
               <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
-              <!-- Upcoming Event - July 2026 -->
+              <!-- Dynamic Event Rendering -->
               <div
-                id="event-2026-07-19"
+                v-for="event in eventsWithStatus"
+                :key="event.id"
+                :id="event.id"
                 class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': isEventPast('19.07.2026') }"
+                :class="{ 'opacity-75': event.isPast }"
                 itemscope
                 itemtype="https://schema.org/Event"
-                :data-event-type="'course'"
-                :data-event-status="isEventPast('19.07.2026') ? 'past' : 'upcoming'"
-                :data-event-date="'2026-07-19'"
-                :data-event-location="'Leicester'"
+                :data-event-type="event.type"
+                :data-event-status="event.isPast ? 'past' : 'upcoming'"
+                :data-event-date="formatDateISO(event.date)"
+                :data-event-location="event.location.name"
               >
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('19.07.2026') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                <div class="position-absolute start-0 rounded-circle" :class="event.isPast ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
                 <div class="mb-2">
                   <time
-                    :class="isEventPast('19.07.2026') ? 'text-muted' : 'fw-bold text-primary'"
+                    :class="event.isPast ? 'text-muted' : 'fw-bold text-primary'"
                     itemprop="startDate"
-                    datetime="2026-07-19T12:30:00+01:00"
-                  >19.07.2026</time>
+                    :datetime="`${formatDateISO(event.date)}T${event.time.start}:00+00:00`"
+                  >{{ event.date }}</time>
                 </div>
 
-                <div class="row g-3">
+                <div class="row g-3" v-if="event.image">
                   <div class="col-lg-8">
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="name">
-                          <router-link :to="getEventUrl('19.07.2026', 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo')" class="text-decoration-none">
-                            Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo
+                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': event.isPast }" itemprop="name">
+                          <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                            {{ event.title }}
                           </router-link>
                         </h3>
-                        <p class="mb-3" :class="isEventPast('19.07.2026') ? 'text-muted' : ''" itemprop="description">
-                          On July 19th we'll be having an aikido course with guest instructor <a href="https://tudorgrangeaikido.com/home/" target="_blank" rel="noopener noreferrer" class="fw-bold">Stuart Lovering 6th dan shidoin</a>, the Chief Instructor of Tudor Grange dojo, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis</router-link>.
-                          This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.
+                        <p class="mb-3" :class="event.isPast ? 'text-muted' : ''" itemprop="description">
+                          {{ event.description }}
                         </p>
 
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Instructors:</strong>
-                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('19.07.2026') }">
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                              <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
-                                <span itemprop="name">Antonis Pavlakis</span>
-                              </router-link>
-                              <span class="text-muted ms-1">4th dan fukushidoin</span>
-                            </li>
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                              <a href="https://tudorgrangeaikido.com/home/" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
-                                <span itemprop="name">Stuart Lovering</span>
-                              </a>
-                              <span class="text-muted ms-1">6th dan shidoin</span>
+                        <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                          <strong :class="{ 'text-muted': event.isPast }">Instructors:</strong>
+                          <ul class="mb-0 mt-2" :class="{ 'text-muted': event.isPast }">
+                            <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                              <template v-if="typeof instructor === 'string'">
+                                <span itemprop="name">{{ instructor }}</span>
+                              </template>
+                              <template v-else>
+                                <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                             :to="instructor.profile"
+                                             class="text-decoration-none"
+                                             itemprop="url">
+                                  <span itemprop="name">{{ instructor.name }}</span>
+                                </router-link>
+                                <a v-else-if="instructor.profile"
+                                   :href="instructor.profile"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="text-decoration-none"
+                                   itemprop="url">
+                                  <span itemprop="name">{{ instructor.name }}</span>
+                                </a>
+                                <span v-else itemprop="name">{{ instructor.name }}</span>
+                              </template>
                             </li>
                           </ul>
                         </div>
 
                         <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Location:</strong>
-                          <address class="mb-0" :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                            <span itemprop="name">Aylestone Leisure Centre</span>,
-                            <span itemprop="streetAddress">2 Knighton Lane East</span>,
-                            <span itemprop="addressLocality">Leicester</span>,
-                            <span itemprop="postalCode">LE2 6LU</span>
+                          <strong :class="{ 'text-muted': event.isPast }">Location:</strong>
+                          <address class="mb-0" :class="{ 'text-muted': event.isPast }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <span itemprop="name">{{ event.location.name }}</span>,
+                            <span itemprop="streetAddress">{{ event.location.address }}</span>
                           </address>
                         </div>
 
                         <div class="mb-2">
-                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Time: </strong>
-                          <time :class="{ 'text-muted': isEventPast('19.07.2026') }" datetime="12:30">12:30pm</time> -
-                          <time :class="{ 'text-muted': isEventPast('19.07.2026') }" itemprop="endDate" datetime="2026-07-19T16:30:00+01:00">4:30pm</time>
+                          <strong :class="{ 'text-muted': event.isPast }">Time:</strong>
+                          <time :class="{ 'text-muted': event.isPast }" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                          <time :class="{ 'text-muted': event.isPast }" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
                         </div>
 
-                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                          <strong :class="{ 'text-muted': isEventPast('19.07.2026') }">Prices:</strong>
-                          <div :class="{ 'text-muted': isEventPast('19.07.2026') }">
-                            Adults - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="20">20</span><br>
-                            Concession - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="15">15</span><br>
-                            Under 18's - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="12">12</span>
+                        <div v-if="event.price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                          <strong :class="{ 'text-muted': event.isPast }">Prices:</strong>
+                          <div :class="{ 'text-muted': event.isPast }">
+                            {{ event.price }}
                           </div>
                         </div>
                       </div>
@@ -230,540 +237,82 @@
                   </div>
 
                   <div class="col-lg-4">
-                    <img
-                      src="/img/leicester-aikikai-july-19th-2026.jpg"
-                      alt="Aikido course with Stuart Lovering poster July 2026"
-                      class="img-fluid rounded shadow"
-                      loading="lazy"
-                      itemprop="image"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Upcoming Event - March 2026 -->
-              <div
-                id="event-2026-03-29"
-                class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': isEventPast('29.03.2026') }"
-                itemscope
-                itemtype="https://schema.org/Event"
-                :data-event-type="'course'"
-                :data-event-status="isEventPast('29.03.2026') ? 'past' : 'upcoming'"
-                :data-event-date="'2026-03-29'"
-                :data-event-location="'Leicester'"
-              >
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('29.03.2026') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time
-                    :class="isEventPast('29.03.2026') ? 'text-muted' : 'fw-bold text-primary'"
-                    itemprop="startDate"
-                    datetime="2026-03-29T12:30:00+00:00"
-                  >29.03.2026</time>
-                </div>
-
-                <!-- Changed: use a two-column layout so the listing shows the event poster -->
-                <div class="row g-3">
-                  <div class="col-lg-8">
-                    <div class="card h-100 shadow-sm">
-                      <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="name">
-                          <router-link :to="getEventUrl('29.03.2026', 'Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo')" class="text-decoration-none">
-                            Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo
-                          </router-link>
-                        </h3>
-                        <p class="mb-3" :class="isEventPast('29.03.2026') ? 'text-muted' : ''" itemprop="description">
-                          Aikido course at Aylestone Leisure Centre featuring guest instructor <span class="fw-bold">Neil Mould 6th Dan shidoin</span> from Sotenjuku dojo, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis</router-link>.
-                        </p>
-
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Instructors:</strong>
-                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('29.03.2026') }">
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                              <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
-                                <span itemprop="name">Antonis Pavlakis</span>
-                              </router-link>
-                            </li>
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                              <a href="https://www.sotenjuku.uk/instructors" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
-                                <span itemprop="name">Neil Mould</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Location:</strong>
-                          <address class="mb-0" :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                            <span itemprop="name">Aylestone Leisure Centre</span>,
-                            <span itemprop="streetAddress">2 Knighton Lane East</span>,
-                            <span itemprop="addressLocality">Leicester</span>,
-                            <span itemprop="postalCode">LE2 6LU</span>
-                          </address>
-                        </div>
-
-                        <div class="mb-2">
-                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Time:</strong>
-                          <time :class="{ 'text-muted': isEventPast('29.03.2026') }" datetime="12:30">12:30pm</time> -
-                          <time :class="{ 'text-muted': isEventPast('29.03.2026') }" itemprop="endDate" datetime="2026-03-29T16:30:00+00:00">4:30pm</time>
-                        </div>
-
-                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                          <strong :class="{ 'text-muted': isEventPast('29.03.2026') }">Prices:</strong>
-                          <div :class="{ 'text-muted': isEventPast('29.03.2026') }">
-                            Adults - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="15">15</span><br>
-                            Concession - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="12">12</span><br>
-                            Under 18's - <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="8">8</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-4">
-                    <img
-                      src="/img/Aikido-course-March-2026-leicester-aikikai.png"
-                      alt="Course with Neil Mould poster March 2026"
-                      class="img-fluid rounded shadow"
-                      loading="lazy"
-                      itemprop="image"
-                    />
+                    <router-link :to="getEventUrl(event.date, event.title)">
+                      <img
+                        :src="event.image"
+                        :alt="`${event.title} poster`"
+                        class="img-fluid rounded shadow"
+                        loading="lazy"
+                        itemprop="image"
+                      />
+                    </router-link>
                   </div>
                 </div>
 
-              </div>
-
-              <!-- Upcoming Event - December 2025 -->
-              <div
-                id="event-2025-12-14"
-                class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': isEventPast('14.12.2025') }"
-                itemscope
-                itemtype="https://schema.org/Event"
-                :data-event-type="'joint-course'"
-                :data-event-status="isEventPast('14.12.2025') ? 'past' : 'upcoming'"
-                :data-event-date="'2025-12-14'"
-                :data-event-location="'Melton Mowbray'"
-              >
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('14.12.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time
-                    :class="isEventPast('14.12.2025') ? 'text-muted' : 'fw-bold text-primary'"
-                    itemprop="startDate"
-                    datetime="2025-12-14T10:30:00+00:00"
-                  >14.12.2025</time>
-                </div>
-                <div class="row g-3">
-                  <div class="col-lg-8">
-                    <div class="card h-100 shadow-sm">
-                      <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="name">
-                          <router-link :to="getEventUrl('14.12.2025', 'Xmas 2025 course with Melton Byakko-Kan Aikido')" class="text-decoration-none">
-                            Xmas 2025 course with Melton Byakko-Kan Aikido
-                          </router-link>
-                        </h3>
-                        <p class="mb-3" :class="isEventPast('14.12.2025') ? 'text-muted' : ''" itemprop="description">
-                          A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
-                        </p>
-
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Instructors:</strong>
-                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.12.2025') }">
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Naoko Suzuki</span></li>
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sergio Cardoso</span></li>
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Antonis Pavlakis</span></li>
-                            <li itemprop="performer" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Terry Mickowski</span></li>
-                          </ul>
-                        </div>
-
-                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Location:</strong>
-                          <address class="mb-0" :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                            <span itemprop="name">Jubilee Sports Centre</span>,
-                            <span itemprop="streetAddress">Jubilee Street</span>,
-                            <span itemprop="addressLocality">Melton Mowbray</span>,
-                            <span itemprop="addressRegion">Leicestershire</span>,
-                            <span itemprop="postalCode">LE13 1ND</span>
-                          </address>
-                        </div>
-
-                        <div class="mb-2">
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Time:</strong>
-                          <time :class="{ 'text-muted': isEventPast('14.12.2025') }" datetime="10:30">10:30am</time> -
-                          <time :class="{ 'text-muted': isEventPast('14.12.2025') }" itemprop="endDate" datetime="2025-12-14T14:30:00+00:00">2:30pm</time>
-                        </div>
-
-                        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                          <strong :class="{ 'text-muted': isEventPast('14.12.2025') }">Prices:</strong>
-                          <div :class="{ 'text-muted': isEventPast('14.12.2025') }">
-                            <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="10">10</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <img
-                      :src="byakkoKan2025Image"
-                      alt="Joint course with Melton Byakko-Kan Aikido poster December 2025"
-                      class="img-fluid rounded shadow"
-                      loading="lazy"
-                      itemprop="image"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Event - November 28, 2025 - Iain Cooper sensei -->
-              <div
-                id="event-2025-11-28"
-                class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': isEventPast('28.11.2025') }"
-                itemscope
-                itemtype="https://schema.org/Event"
-                :data-event-type="'course'"
-                :data-event-status="isEventPast('28.11.2025') ? 'past' : 'upcoming'"
-                :data-event-date="'2025-11-28'"
-                :data-event-location="'Leicester'"
-              >
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('28.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time
-                    :class="isEventPast('28.11.2025') ? 'text-muted' : 'fw-bold text-primary'"
-                    itemprop="startDate"
-                    datetime="2025-11-28T19:00:00+00:00"
-                  >28.11.2025</time>
-                </div>
-                <div class="card shadow-sm">
+                <!-- Events without images (compact layout) -->
+                <div class="card shadow-sm" v-else>
                   <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="name">
-                      <router-link :to="getEventUrl('28.11.2025', 'Guest instructor Iain Cooper sensei')" class="text-decoration-none">
-                        Guest instructor Iain Cooper sensei
+                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': event.isPast }" itemprop="name">
+                      <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                        {{ event.title }}
                       </router-link>
                     </h3>
-                    <p class="mb-3" :class="isEventPast('28.11.2025') ? 'text-muted' : ''" itemprop="description">
-                      Join us for an aikido class with guest instructor Iain Cooper sensei 4th dan Fukushidoin, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
+                    <p class="mb-3" :class="event.isPast ? 'text-muted' : ''" itemprop="description">
+                      {{ event.description }}
                     </p>
 
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('28.11.2025') }">
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <span itemprop="name">Iain Cooper</span>
-                        </li>
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
-                            <span itemprop="name">Antonis Pavlakis</span>
-                          </router-link>
+                    <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                      <strong :class="{ 'text-muted': event.isPast }">Instructors:</strong>
+                      <ul class="mb-0 mt-2" :class="{ 'text-muted': event.isPast }">
+                        <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                          <template v-if="typeof instructor === 'string'">
+                            <span itemprop="name">{{ instructor }}</span>
+                          </template>
+                          <template v-else>
+                            <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                         :to="instructor.profile"
+                                         class="text-decoration-none"
+                                         itemprop="url">
+                              <span itemprop="name">{{ instructor.name }}</span>
+                            </router-link>
+                            <a v-else-if="instructor.profile"
+                               :href="instructor.profile"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="text-decoration-none"
+                               itemprop="url">
+                              <span itemprop="name">{{ instructor.name }}</span>
+                            </a>
+                            <span v-else itemprop="name">{{ instructor.name }}</span>
+                          </template>
                         </li>
                       </ul>
                     </div>
 
                     <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                        <span itemprop="name">Aylestone Leisure Centre</span>,
-                        <span itemprop="streetAddress">2 Knighton Lane East</span>,
-                        <span itemprop="addressLocality">Leicester</span>,
-                        <span itemprop="postalCode">LE2 6LU</span>
+                      <strong :class="{ 'text-muted': event.isPast }">Location:</strong>
+                      <address class="mb-0" :class="{ 'text-muted': event.isPast }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="name">{{ event.location.name }}</span>, {{ event.location.address }}
                       </address>
                     </div>
 
                     <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('28.11.2025') }">Time:</strong>
-                      <time :class="{ 'text-muted': isEventPast('28.11.2025') }" datetime="19:00">7pm</time> -
-                      <time :class="{ 'text-muted': isEventPast('28.11.2025') }" itemprop="endDate" datetime="2025-11-28T21:00:00+00:00">9pm</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Event - November 2025 -->
-              <div id="event-2025-11-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.11.2025') }">
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('22.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time :class="isEventPast('22.11.2025') ? 'text-muted' : 'fw-bold text-primary'">22.11.2025</time>
-                </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.11.2025') }">
-                      <router-link :to="getEventUrl('22.11.2025', 'Aikido Course at Fight Ministry Hull')" class="text-decoration-none">
-                        Aikido Course at Fight Ministry Hull
-                      </router-link>
-                    </h3>
-                    <p class="mb-3" :class="isEventPast('22.11.2025') ? 'text-muted' : ''">
-                      Aikido course at Fight Ministry in Hull with instructors Philip Smith shihan.
-                    </p>
-
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('22.11.2025') }">
-                        <li>Philip Smith</li>
-                        <li>Antonis Pavlakis</li>
-                      </ul>
+                      <strong :class="{ 'text-muted': event.isPast }">Time:</strong>
+                      <time :class="{ 'text-muted': event.isPast }" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                      <time :class="{ 'text-muted': event.isPast }" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
                     </div>
 
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Location:</strong>
-                      <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('22.11.2025') }">Fight Ministry, Salisbury Hall, 1 Park Rd, Hull, HU3 1TD</address>
-                    </div>
-
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('22.11.2025') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.11.2025') }">2pm - 5pm</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Event - November 14, 2025 - Tim Sullivan sensei -->
-              <div
-                id="event-2025-11-14"
-                class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': isEventPast('14.11.2025') }"
-                itemscope
-                itemtype="https://schema.org/Event"
-                :data-event-type="'course'"
-                :data-event-status="isEventPast('14.11.2025') ? 'past' : 'upcoming'"
-                :data-event-date="'2025-11-14'"
-                :data-event-location="'Leicester'"
-              >
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('14.11.2025') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time
-                    :class="isEventPast('14.11.2025') ? 'text-muted' : 'fw-bold text-primary'"
-                    itemprop="startDate"
-                    datetime="2025-11-14T19:00:00+00:00"
-                  >14.11.2025</time>
-                </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="name">
-                      <router-link :to="getEventUrl('14.11.2025', 'Guest instructor Tim Sullivan sensei from Warwick University')" class="text-decoration-none">
-                        Guest instructor Tim Sullivan sensei from Warwick University
-                      </router-link>
-                    </h3>
-                    <p class="mb-3" :class="isEventPast('14.11.2025') ? 'text-muted' : ''" itemprop="description">
-                      Join us for an aikido class with guest instructor <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="fw-bold">Tim Sullivan sensei</a> from Warwick University, alongside our instructor <router-link to="/instructors/antonis-pavlakis" class="fw-bold">Antonis Pavlakis sensei</router-link>.
-                    </p>
-
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('14.11.2025') }">
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <router-link to="/instructors/antonis-pavlakis" class="text-decoration-none" itemprop="url">
-                            <span itemprop="name">Antonis Pavlakis</span>
-                          </router-link>
-                        </li>
-                        <li itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <a href="https://warwickaikido.com/sullivan-sensei/" target="_blank" rel="noopener noreferrer" class="text-decoration-none" itemprop="url">
-                            <span itemprop="name">Tim Sullivan</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                        <span itemprop="name">Aylestone Leisure Centre</span>,
-                        <span itemprop="streetAddress">2 Knighton Lane East</span>,
-                        <span itemprop="addressLocality">Leicester</span>,
-                        <span itemprop="postalCode">LE2 6LU</span>
-                      </address>
-                    </div>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('14.11.2025') }">Time:</strong>
-                      <time :class="{ 'text-muted': isEventPast('14.11.2025') }" datetime="19:00">7pm</time> -
-                      <time :class="{ 'text-muted': isEventPast('14.11.2025') }" itemprop="endDate" datetime="2025-11-14T21:00:00+00:00">9pm</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Event - November 2025 -->
-              <div id="event-2023-12-10" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('10.12.2023') }">
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('10.12.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time :class="isEventPast('10.12.2023') ? 'text-muted' : 'fw-bold text-primary'">10.12.2023</time>
-                </div>
-                <div class="row g-3">
-                  <div class="col-lg-8">
-                    <div class="card h-100 shadow-sm">
-                      <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('10.12.2023') }">
-                          <router-link :to="getEventUrl('10.12.2023', 'Joint course with Melton Byakko-Kan Aikido')" class="text-decoration-none">
-                            Joint course with Melton Byakko-Kan Aikido
-                          </router-link>
-                        </h3>
-                        <p class="mb-3" :class="isEventPast('10.12.2023') ? 'text-muted' : ''">
-                          A joint course at the <a href="http://www.warrior-arts.co.uk/melton-aikido.html" target="_blank" rel="noopener noreferrer" class="fw-bold">Melton Byakko-Kan Aikido</a> dojo.
-                        </p>
-
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Instructors:</strong>
-                          <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('10.12.2023') }">
-                            <li>Naoko Suzuki sensei</li>
-                            <li>Terry Mickowski sensei</li>
-                            <li>Andy Thompson sensei</li>
-                            <li>Antonis Pavlakis sensei</li>
-                          </ul>
-                        </div>
-
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Location:</strong>
-                          <address class="mb-0 mt-1" :class="{ 'text-muted': isEventPast('10.12.2023') }">Jubilee Sports Centre, Jubilee Street, Melton Mowbray, Leicestershire, LE13 1ND</address>
-                        </div>
-
-                        <div class="mb-3">
-                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('10.12.2023') }">11am - 3pm</time>
-                        </div>
-
-                        <div>
-                          <strong :class="{ 'text-muted': isEventPast('10.12.2023') }">Prices:</strong>
-                          <div class="mt-1" :class="{ 'text-muted': isEventPast('10.12.2023') }">
-                            £20<br>
-                            £10 - concessions
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <img
-                      src="/img/Byakko-kan-joint-aikido-course-december-2023.jpg"
-                      alt="Joint course with Melton Byakko-Kan Aikido poster"
-                      class="img-fluid rounded shadow"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Past Event 1 -->
-              <div id="event-2023-10-22" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('22.10.2023') }">
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('22.10.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time :class="isEventPast('22.10.2023') ? 'text-muted' : 'fw-bold text-primary'">22.10.2023</time>
-                </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">
-                      <router-link :to="getEventUrl('22.10.2023', 'Leicester Aikikai Dojo Course - October 2023')" class="text-decoration-none">
-                        Leicester Aikikai Dojo Course - October 2023
-                      </router-link>
-                    </h3>
-                    <p class="mb-3" :class="{ 'text-muted': isEventPast('22.10.2023') }">
-                      Dojo course on October 22nd 2023 with guest instructor Iain Cooper sensei 4th dan Fukushidoin
-                    </p>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('22.10.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
-                    </div>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('22.10.2023') }">1pm - 5pm</time>
-                    </div>
-
-                    <div>
-                      <strong :class="{ 'text-muted': isEventPast('22.10.2023') }">Prices:</strong>
-                      <div :class="{ 'text-muted': isEventPast('22.10.2023') }">
-                        Adults - £15<br>
-                        Under 18's - £8<br>
-                        Concession - £12<br>
-                        Kids 12 and under go FREE (Only available to dojo members)
+                    <div v-if="event.price">
+                      <strong :class="{ 'text-muted': event.isPast }">Prices:</strong>
+                      <div :class="{ 'text-muted': event.isPast }">
+                        {{ event.price }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Past Event 2 -->
-              <div id="event-2023-09-15" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('15.09.2023') }">
-                <div class="position-absolute top-0 start-0 rounded-circle" :class="isEventPast('15.09.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time :class="isEventPast('15.09.2023') ? 'text-muted' : 'fw-bold text-primary'">15.09.2023</time>
-                </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">
-                      <router-link :to="getEventUrl('15.09.2023', 'Aikido Beginner\'s Course 2023')" class="text-decoration-none">
-                        Aikido Beginner's Course 2023
-                      </router-link>
-                    </h3>
-                    <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">Start aikido with a 3-month beginner's course.</p>
-                    <p class="mb-2" :class="{ 'text-muted': isEventPast('15.09.2023') }">From September 15th 2023 to December 15th 2023 we ran our beginner's course.</p>
-                    <p class="mb-3" :class="{ 'text-muted': isEventPast('15.09.2023') }">Join us to work on co-ordination, self-improvement and body conditioning. Learn how to fall, how to defend yourself and much more.</p>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('15.09.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
-                    </div>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('15.09.2023') }">7pm - 9pm</time>
-                    </div>
-
-                    <div>
-                      <strong :class="{ 'text-muted': isEventPast('15.09.2023') }">Prices:</strong>
-                      <div :class="{ 'text-muted': isEventPast('15.09.2023') }">
-                        Adults (waged) - £60<br>
-                        Adults (concession) - £45
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Past Event 3 -->
-              <div id="event-2023-06-11" class="mb-5 position-relative ps-5" :class="{ 'opacity-75': isEventPast('11.06.2023') }">
-                <div class="position-absolute start-0 rounded-circle" :class="isEventPast('11.06.2023') ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time :class="isEventPast('11.06.2023') ? 'text-muted' : 'fw-bold text-primary'">11.06.2023</time>
-                </div>
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">
-                      <router-link :to="getEventUrl('11.06.2023', 'Dojo 10th year anniversary course')" class="text-decoration-none">
-                        Dojo 10th year anniversary course
-                      </router-link>
-                    </h3>
-                    <p class="mb-3" :class="{ 'text-muted': isEventPast('11.06.2023') }">Join us on June 11th 2023 for the 10th year anniversary course.</p>
-
-                    <div class="mb-3">
-                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': isEventPast('11.06.2023') }">
-                        <li>Ian Grubb 6th dan Shidoin</li>
-                        <li>Terry Mickowski 4th dan Fukushidoin</li>
-                        <li>Iain Cooper 3rd dan Fukushidoin</li>
-                        <li>Antonis Pavlakis 3rd dan Fukushidoin</li>
-                      </ul>
-                    </div>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': isEventPast('11.06.2023') }">Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU</address>
-                    </div>
-
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Time:</strong> <time :class="{ 'text-muted': isEventPast('11.06.2023') }">1pm - 5pm</time>
-                    </div>
-
-                    <div>
-                      <strong :class="{ 'text-muted': isEventPast('11.06.2023') }">Prices:</strong>
-                      <div :class="{ 'text-muted': isEventPast('11.06.2023') }">
-                        Adults - £15<br>
-                        Under 18's - £8<br>
-                        Concession - £12<br>
-                        Kids 12 and under go FREE (Only available to dojo members)
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- Upcoming Event - July 2026 (OLD - REMOVED) -->
 
             </div>
           </div>
