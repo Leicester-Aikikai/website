@@ -142,179 +142,373 @@
           </div>
         </div>
 
+        <!-- Jump Links Navigation -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <nav class="d-flex gap-3 justify-content-center flex-wrap" aria-label="Event sections quick navigation">
+              <a v-if="upcomingEvents.length > 0" href="#upcoming-events" class="btn btn-primary">
+                <i class="bi bi-calendar-event me-2"></i>Upcoming Events ({{ upcomingEvents.length }})
+              </a>
+              <a v-if="pastEvents.length > 0" href="#past-events" class="btn btn-outline-secondary">
+                <i class="bi bi-archive me-2"></i>Past Events ({{ pastEvents.length }})
+              </a>
+            </nav>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-12">
-            <div class="position-relative">
-              <!-- Timeline line -->
-              <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
-              <!-- Dynamic Event Rendering -->
-              <div
-                v-for="event in eventsWithStatus"
-                :key="event.id"
-                :id="event.id"
-                class="mb-5 position-relative ps-5"
-                :class="{ 'opacity-75': event.isPast }"
-                itemscope
-                itemtype="https://schema.org/Event"
-                :data-event-type="event.type"
-                :data-event-status="event.isPast ? 'past' : 'upcoming'"
-                :data-event-date="formatDateISO(event.date)"
-                :data-event-location="event.location.name"
-              >
-                <div class="position-absolute start-0 rounded-circle" :class="event.isPast ? 'bg-secondary' : 'bg-primary'" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
-                <div class="mb-2">
-                  <time
-                    :class="event.isPast ? 'text-muted' : 'fw-bold text-primary'"
-                    itemprop="startDate"
-                    :datetime="`${formatDateISO(event.date)}T${event.time.start}:00+00:00`"
-                  >{{ event.date }}</time>
-                </div>
+            <!-- Upcoming Events Section -->
+            <div v-if="upcomingEvents.length > 0" class="mb-5" id="upcoming-events">
+              <h2 class="h3 fw-bold mb-4 text-primary">
+                <i class="bi bi-calendar-event me-2"></i>Upcoming Events ({{ upcomingEvents.length }})
+              </h2>
+              <p class="lead mb-4">Join us at these upcoming aikido courses and events. All levels welcome!</p>
 
-                <div class="row g-3" v-if="event.image">
-                  <div class="col-lg-8">
-                    <div class="card h-100 shadow-sm">
-                      <div class="card-body">
-                        <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': event.isPast }" itemprop="name">
-                          <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
-                            {{ event.title }}
-                          </router-link>
-                        </h3>
-                        <p class="mb-3" :class="event.isPast ? 'text-muted' : ''" itemprop="description">
-                          {{ event.description }}
-                        </p>
+              <div class="position-relative">
+                <!-- Timeline line for upcoming events -->
+                <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: var(--primary-color); margin-left: 12px;"></div>
 
-                        <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
-                          <strong :class="{ 'text-muted': event.isPast }">Instructors:</strong>
-                          <ul class="mb-0 mt-2" :class="{ 'text-muted': event.isPast }">
-                            <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                              <template v-if="typeof instructor === 'string'">
-                                <span itemprop="name">{{ instructor }}</span>
-                              </template>
-                              <template v-else>
-                                <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
-                                             :to="instructor.profile"
-                                             class="text-decoration-none"
-                                             itemprop="url">
-                                  <span itemprop="name">{{ instructor.name }}</span>
-                                </router-link>
-                                <a v-else-if="instructor.profile"
-                                   :href="instructor.profile"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="text-decoration-none"
-                                   itemprop="url">
-                                  <span itemprop="name">{{ instructor.name }}</span>
-                                </a>
-                                <span v-else itemprop="name">{{ instructor.name }}</span>
-                              </template>
-                            </li>
-                          </ul>
-                        </div>
+                <!-- Dynamic Upcoming Event Rendering -->
+                <div
+                  v-for="event in upcomingEvents"
+                  :key="event.id"
+                  :id="event.id"
+                  class="mb-5 position-relative ps-5"
+                  itemscope
+                  itemtype="https://schema.org/Event"
+                  :data-event-type="event.type"
+                  data-event-status="upcoming"
+                  :data-event-date="formatDateISO(event.date)"
+                  :data-event-location="event.location.name"
+                >
+                  <div class="position-absolute start-0 rounded-circle bg-primary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                  <div class="mb-2">
+                    <time
+                      class="fw-bold text-primary"
+                      itemprop="startDate"
+                      :datetime="`${formatDateISO(event.date)}T${event.time.start}:00+00:00`"
+                    >{{ event.date }}</time>
+                  </div>
 
-                        <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                          <strong :class="{ 'text-muted': event.isPast }">Location:</strong>
-                          <address class="mb-0" :class="{ 'text-muted': event.isPast }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                            <span itemprop="name">{{ event.location.name }}</span>,
-                            <span itemprop="streetAddress">{{ event.location.address }}</span>
-                          </address>
-                        </div>
+                  <div class="row g-3" v-if="event.image">
+                    <div class="col-lg-8">
+                      <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                          <h3 class="h5 fw-bold mb-3" itemprop="name">
+                            <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                              {{ event.title }}
+                            </router-link>
+                          </h3>
+                          <p class="mb-3" itemprop="description">
+                            {{ event.description }}
+                          </p>
 
-                        <div class="mb-2">
-                          <strong :class="{ 'text-muted': event.isPast }">Time:</strong>
-                          <time :class="{ 'text-muted': event.isPast }" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
-                          <time :class="{ 'text-muted': event.isPast }" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
-                        </div>
+                          <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                            <strong>Instructors:</strong>
+                            <ul class="mb-0 mt-2">
+                              <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                                <template v-if="typeof instructor === 'string'">
+                                  <span itemprop="name">{{ instructor }}</span>
+                                </template>
+                                <template v-else>
+                                  <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                               :to="instructor.profile"
+                                               class="text-decoration-none"
+                                               itemprop="url">
+                                    <span itemprop="name">{{ instructor.name }}</span>
+                                  </router-link>
+                                  <a v-else-if="instructor.profile"
+                                     :href="instructor.profile"
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     class="text-decoration-none"
+                                     itemprop="url">
+                                    <span itemprop="name">{{ instructor.name }}</span>
+                                  </a>
+                                  <span v-else itemprop="name">{{ instructor.name }}</span>
+                                </template>
+                              </li>
+                            </ul>
+                          </div>
 
-                        <div v-if="event.price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                          <strong :class="{ 'text-muted': event.isPast }">Prices:</strong>
-                          <div :class="{ 'text-muted': event.isPast }">
-                            {{ event.price }}
+                          <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                            <strong>Location:</strong>
+                            <address class="mb-0" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                              <span itemprop="name">{{ event.location.name }}</span>,
+                              <span itemprop="streetAddress">{{ event.location.address }}</span>
+                            </address>
+                          </div>
+
+                          <div class="mb-2">
+                            <strong>Time:</strong>
+                            <time :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                            <time itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
+                          </div>
+
+                          <div v-if="event.price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <strong>Prices:</strong>
+                            <div>{{ event.price }}</div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-4">
-                    <router-link :to="getEventUrl(event.date, event.title)">
-                      <img
-                        :src="event.image"
-                        :alt="`${event.title} poster`"
-                        class="img-fluid rounded shadow"
-                        loading="lazy"
-                        itemprop="image"
-                      />
-                    </router-link>
-                  </div>
-                </div>
-
-                <!-- Events without images (compact layout) -->
-                <div class="card shadow-sm" v-else>
-                  <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3" :class="{ 'text-muted': event.isPast }" itemprop="name">
-                      <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
-                        {{ event.title }}
+                    <div class="col-lg-4">
+                      <router-link :to="getEventUrl(event.date, event.title)">
+                        <img
+                          :src="event.image"
+                          :alt="`${event.title} poster`"
+                          class="img-fluid rounded shadow"
+                          loading="lazy"
+                          itemprop="image"
+                        />
                       </router-link>
-                    </h3>
-                    <p class="mb-3" :class="event.isPast ? 'text-muted' : ''" itemprop="description">
-                      {{ event.description }}
-                    </p>
-
-                    <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
-                      <strong :class="{ 'text-muted': event.isPast }">Instructors:</strong>
-                      <ul class="mb-0 mt-2" :class="{ 'text-muted': event.isPast }">
-                        <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                          <template v-if="typeof instructor === 'string'">
-                            <span itemprop="name">{{ instructor }}</span>
-                          </template>
-                          <template v-else>
-                            <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
-                                         :to="instructor.profile"
-                                         class="text-decoration-none"
-                                         itemprop="url">
-                              <span itemprop="name">{{ instructor.name }}</span>
-                            </router-link>
-                            <a v-else-if="instructor.profile"
-                               :href="instructor.profile"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="text-decoration-none"
-                               itemprop="url">
-                              <span itemprop="name">{{ instructor.name }}</span>
-                            </a>
-                            <span v-else itemprop="name">{{ instructor.name }}</span>
-                          </template>
-                        </li>
-                      </ul>
                     </div>
+                  </div>
 
-                    <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
-                      <strong :class="{ 'text-muted': event.isPast }">Location:</strong>
-                      <address class="mb-0" :class="{ 'text-muted': event.isPast }" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                        <span itemprop="name">{{ event.location.name }}</span>, {{ event.location.address }}
-                      </address>
-                    </div>
+                  <!-- Events without images (compact layout) -->
+                  <div class="card shadow-sm" v-else>
+                    <div class="card-body">
+                      <h3 class="h5 fw-bold mb-3" itemprop="name">
+                        <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                          {{ event.title }}
+                        </router-link>
+                      </h3>
+                      <p class="mb-3" itemprop="description">
+                        {{ event.description }}
+                      </p>
 
-                    <div class="mb-2">
-                      <strong :class="{ 'text-muted': event.isPast }">Time:</strong>
-                      <time :class="{ 'text-muted': event.isPast }" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
-                      <time :class="{ 'text-muted': event.isPast }" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
-                    </div>
+                      <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                        <strong>Instructors:</strong>
+                        <ul class="mb-0 mt-2">
+                          <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                            <template v-if="typeof instructor === 'string'">
+                              <span itemprop="name">{{ instructor }}</span>
+                            </template>
+                            <template v-else>
+                              <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                           :to="instructor.profile"
+                                           class="text-decoration-none"
+                                           itemprop="url">
+                                <span itemprop="name">{{ instructor.name }}</span>
+                              </router-link>
+                              <a v-else-if="instructor.profile"
+                                 :href="instructor.profile"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 class="text-decoration-none"
+                                 itemprop="url">
+                                <span itemprop="name">{{ instructor.name }}</span>
+                              </a>
+                              <span v-else itemprop="name">{{ instructor.name }}</span>
+                            </template>
+                          </li>
+                        </ul>
+                      </div>
 
-                    <div v-if="event.price">
-                      <strong :class="{ 'text-muted': event.isPast }">Prices:</strong>
-                      <div :class="{ 'text-muted': event.isPast }">
-                        {{ event.price }}
+                      <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                        <strong>Location:</strong>
+                        <address class="mb-0" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                          <span itemprop="name">{{ event.location.name }}</span>, {{ event.location.address }}
+                        </address>
+                      </div>
+
+                      <div class="mb-2">
+                        <strong>Time:</strong>
+                        <time :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                        <time itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
+                      </div>
+
+                      <div v-if="event.price">
+                        <strong>Prices:</strong>
+                        <div>{{ event.price }}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <!-- Upcoming Event - July 2026 (OLD - REMOVED) -->
-
             </div>
+
+            <!-- No Upcoming Events Message -->
+            <div v-else class="alert alert-info mb-5">
+              <h3 class="h5 mb-2">No Upcoming Events Currently Scheduled</h3>
+              <p class="mb-0">Check back soon for new aikido courses and events, or view our past events below to see what we've been up to.</p>
+            </div>
+
+            <!-- Past Events Section -->
+            <div v-if="pastEvents.length > 0" id="past-events">
+              <h2 class="h3 fw-bold mb-4 text-secondary">
+                <i class="bi bi-archive me-2"></i>Past Events ({{ pastEvents.length }})
+              </h2>
+              <p class="text-muted mb-4">View our previous aikido courses and events.</p>
+
+              <div class="position-relative">
+                <!-- Timeline line for past events -->
+                <div class="position-absolute top-0 bottom-0 start-0" style="width: 2px; background: #6c757d; margin-left: 12px;"></div>
+
+                <!-- Dynamic Past Event Rendering -->
+                <div
+                  v-for="event in pastEvents"
+                  :key="event.id"
+                  :id="event.id"
+                  class="mb-5 position-relative ps-5 opacity-75"
+                  itemscope
+                  itemtype="https://schema.org/Event"
+                  :data-event-type="event.type"
+                  data-event-status="past"
+                  :data-event-date="formatDateISO(event.date)"
+                  :data-event-location="event.location.name"
+                >
+                  <div class="position-absolute start-0 rounded-circle bg-secondary" style="width: 12px; height: 12px; top: 8px; margin-left: 7px;"></div>
+                  <div class="mb-2">
+                    <time
+                      class="text-muted"
+                      itemprop="startDate"
+                      :datetime="`${formatDateISO(event.date)}T${event.time.start}:00+00:00`"
+                    >{{ event.date }}</time>
+                  </div>
+
+                  <div class="row g-3" v-if="event.image">
+                    <div class="col-lg-8">
+                      <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                          <h3 class="h5 fw-bold mb-3 text-muted" itemprop="name">
+                            <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                              {{ event.title }}
+                            </router-link>
+                          </h3>
+                          <p class="mb-3 text-muted" itemprop="description">
+                            {{ event.description }}
+                          </p>
+
+                          <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                            <strong class="text-muted">Instructors:</strong>
+                            <ul class="mb-0 mt-2 text-muted">
+                              <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                                <template v-if="typeof instructor === 'string'">
+                                  <span itemprop="name">{{ instructor }}</span>
+                                </template>
+                                <template v-else>
+                                  <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                               :to="instructor.profile"
+                                               class="text-decoration-none"
+                                               itemprop="url">
+                                    <span itemprop="name">{{ instructor.name }}</span>
+                                  </router-link>
+                                  <a v-else-if="instructor.profile"
+                                     :href="instructor.profile"
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     class="text-decoration-none"
+                                     itemprop="url">
+                                    <span itemprop="name">{{ instructor.name }}</span>
+                                  </a>
+                                  <span v-else itemprop="name">{{ instructor.name }}</span>
+                                </template>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                            <strong class="text-muted">Location:</strong>
+                            <address class="mb-0 text-muted" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                              <span itemprop="name">{{ event.location.name }}</span>,
+                              <span itemprop="streetAddress">{{ event.location.address }}</span>
+                            </address>
+                          </div>
+
+                          <div class="mb-2">
+                            <strong class="text-muted">Time:</strong>
+                            <time class="text-muted" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                            <time class="text-muted" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
+                          </div>
+
+                          <div v-if="event.price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                            <strong class="text-muted">Prices:</strong>
+                            <div class="text-muted">{{ event.price }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <router-link :to="getEventUrl(event.date, event.title)">
+                        <img
+                          :src="event.image"
+                          :alt="`${event.title} poster`"
+                          class="img-fluid rounded shadow"
+                          loading="lazy"
+                          itemprop="image"
+                        />
+                      </router-link>
+                    </div>
+                  </div>
+
+                  <!-- Events without images (compact layout) -->
+                  <div class="card shadow-sm" v-else>
+                    <div class="card-body">
+                      <h3 class="h5 fw-bold mb-3 text-muted" itemprop="name">
+                        <router-link :to="getEventUrl(event.date, event.title)" class="text-decoration-none">
+                          {{ event.title }}
+                        </router-link>
+                      </h3>
+                      <p class="mb-3 text-muted" itemprop="description">
+                        {{ event.description }}
+                      </p>
+
+                      <div class="mb-3" v-if="event.instructors && event.instructors.length > 0">
+                        <strong class="text-muted">Instructors:</strong>
+                        <ul class="mb-0 mt-2 text-muted">
+                          <li v-for="(instructor, idx) in event.instructors" :key="idx" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                            <template v-if="typeof instructor === 'string'">
+                              <span itemprop="name">{{ instructor }}</span>
+                            </template>
+                            <template v-else>
+                              <router-link v-if="instructor.profile && !instructor.profile.startsWith('http')"
+                                           :to="instructor.profile"
+                                           class="text-decoration-none"
+                                           itemprop="url">
+                                <span itemprop="name">{{ instructor.name }}</span>
+                              </router-link>
+                              <a v-else-if="instructor.profile"
+                                 :href="instructor.profile"
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 class="text-decoration-none"
+                                 itemprop="url">
+                                <span itemprop="name">{{ instructor.name }}</span>
+                              </a>
+                              <span v-else itemprop="name">{{ instructor.name }}</span>
+                            </template>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="mb-2" itemprop="location" itemscope itemtype="https://schema.org/Place">
+                        <strong class="text-muted">Location:</strong>
+                        <address class="mb-0 text-muted" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                          <span itemprop="name">{{ event.location.name }}</span>, {{ event.location.address }}
+                        </address>
+                      </div>
+
+                      <div class="mb-2">
+                        <strong class="text-muted">Time:</strong>
+                        <time class="text-muted" :datetime="event.time.start">{{ formatTime(event.time.start) }}</time> -
+                        <time class="text-muted" itemprop="endDate" :datetime="`${formatDateISO(event.date)}T${event.time.end}:00+00:00`">{{ formatTime(event.time.end) }}</time>
+                      </div>
+
+                      <div v-if="event.price">
+                        <strong class="text-muted">Prices:</strong>
+                        <div class="text-muted">{{ event.price }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -439,6 +633,34 @@ export default {
           isPast: eventDate < today
         }
       })
+    },
+    upcomingEvents() {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+
+      return this.events
+        .filter(event => {
+          const eventDate = this.parseDate(event.date)
+          return eventDate >= today
+        })
+        .map(event => ({
+          ...event,
+          isPast: false
+        }))
+    },
+    pastEvents() {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+
+      return this.events
+        .filter(event => {
+          const eventDate = this.parseDate(event.date)
+          return eventDate < today
+        })
+        .map(event => ({
+          ...event,
+          isPast: true
+        }))
     }
   },
   methods: {
@@ -659,9 +881,23 @@ export default {
       ])
     } else {
       // Events list SEO (original code)
+      const upcomingCount = this.upcomingEvents.length
+      const nextEvent = this.upcomingEvents[0]
+
+      const pageTitle = upcomingCount > 0
+        ? `${upcomingCount} Upcoming Aikido ${upcomingCount === 1 ? 'Event' : 'Events'} in Leicester | Leicester Aikikai`
+        : 'Aikido Events in Leicester | Leicester Aikikai Dojo'
+
+      let pageDescription = 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands.'
+      if (upcomingCount > 0 && nextEvent) {
+        pageDescription = `Join ${upcomingCount} upcoming aikido ${upcomingCount === 1 ? 'course' : 'courses'} in Leicester. Next event: ${nextEvent.title} on ${this.formatDateForDisplay(nextEvent.date)}. Traditional Aikikai training for all levels.`
+      } else {
+        pageDescription = 'View aikido courses and events in Leicester. Traditional Aikikai training at Leicester Aikikai Dojo. Browse our past events and check back for new courses.'
+      }
+
       setMeta({
-        title: 'Aikido Events in Leicester | Courses & Training at Leicester Aikikai',
-        description: 'Join aikido events in Leicester. Upcoming aikido courses in Leicester and the East Midlands. Traditional aikido training, seminars, and workshops with expert instructors at Leicester Aikikai Dojo.',
+        title: pageTitle,
+        description: pageDescription,
         keywords: 'aikido events in Leicester, aikido courses in Leicester, aikido training Leicester, aikido seminars Leicester, aikido workshops Leicester, Leicester martial arts events, aikido East Midlands, aikido courses near me, Leicester Aikikai events',
         url: `${SITE_URL}/events`,
         image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`,
