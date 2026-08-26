@@ -20,6 +20,27 @@ export const events = [
     instructors: ['Trevor Doxsey', 'Antonis Pavlakis', 'Michael Howson', 'Paul Shepherd']
   },
   {
+    date: '13.09.2026',
+    title: 'Joint Course with Tokon Aikido from Grantham - September 2026',
+    description: 'Join us for a joint aikido course at Aylestone Leisure Centre with instructors Antonis Pavlakis and Sergio Cardoso. A great opportunity to train together and develop your aikido skills.',
+    type: 'course',
+    id: 'event-2026-09-13',
+    image: '/img/leicester-aikikai-aikido-tokon-joint-course-september-2026.jpeg',
+    location: {
+      name: 'Aylestone Leisure Centre',
+      address: '2 Knighton Lane East, Leicester, LE2 6LU'
+    },
+    time: {
+      start: '12:30',
+      end: '15:30'
+    },
+    price: '£15',
+    instructors: [
+      { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' },
+      { name: 'Sergio Cardoso', profile: 'https://aikidotokon.com/aikido-t%C5%8Dkon-instructor' }
+    ]
+  },
+  {
     date: '19.07.2026',
     title: 'Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo',
     description: 'On July 19th we\'ll be having an aikido course with guest instructor Stuart Lovering 6th dan shidoin, the Chief Instructor of Tudor Grange dojo, alongside Antonis Pavlakis. This course will consist of three classes and a session for yudansha mock gradings. Everyone is encouraged to take part at the mock gradings and take ukemi for all candidates.',
