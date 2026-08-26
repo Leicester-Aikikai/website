@@ -22,7 +22,7 @@ export const events = [
   {
     date: '13.09.2026',
     title: 'Joint Course with Tokon Aikido from Grantham - September 2026',
-    description: 'Join us for a a joint aikido course at Aylestone Leisure Centre with instructors Antonis Pavlakis and Sergio Cardoso.',
+    description: 'Join us for a joint aikido course at Aylestone Leisure Centre with instructors Antonis Pavlakis and Sergio Cardoso. A great opportunity to train together and develop your aikido skills.',
     type: 'course',
     id: 'event-2026-09-13',
     image: '/img/leicester-aikikai-aikido-tokon-joint-course-september-2026.jpeg',
