@@ -286,9 +286,6 @@
                             <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-primary btn-sm">
                               <i class="bi bi-info-circle me-1"></i>View Full Details
                             </router-link>
-                            <a href="#contact" class="btn btn-outline-primary btn-sm">
-                              <i class="bi bi-envelope me-1"></i>Register Interest
-                            </a>
                             <a :href="generateICalLink(event)"
                                :download="`${createSlug(event.title)}.ics`"
                                class="btn btn-outline-success btn-sm">
@@ -401,9 +398,6 @@
                         <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-primary btn-sm">
                           <i class="bi bi-info-circle me-1"></i>View Full Details
                         </router-link>
-                        <a href="#contact" class="btn btn-outline-primary btn-sm">
-                          <i class="bi bi-envelope me-1"></i>Register Interest
-                        </a>
                         <a :href="generateICalLink(event)"
                            :download="`${createSlug(event.title)}.ics`"
                            class="btn btn-outline-success btn-sm">
