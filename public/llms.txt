@@ -70,6 +70,22 @@ The blog index at `/blog` is in place as a centralized content-driven section.
 
 #### Upcoming Events (2026)
 
+**September 13, 2026 - Joint Course with Tokon Aikido from Grantham**
+- Location: Aylestone Leisure Centre, Leicester
+- Time: 12:30pm - 3:30pm
+- Price: £15
+- Instructors: Antonis Pavlakis, Sergio Cardoso
+- Description: Joint aikido course bringing together Leicester Aikikai and Tokon Aikido from Grantham for traditional Aikikai training
+- URL: `/events/2026-09-13/joint-course-with-tokon-aikido-from-grantham-september-2026`
+
+**July 19, 2026 - Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo**
+- Location: Aylestone Leisure Centre, Leicester
+- Time: 12:30pm - 4:30pm
+- Price: Adults - £20, Concession - £15, Under 18's - £12
+- Instructors: Antonis Pavlakis, Stuart Lovering (6th Dan shidoin from Tudor Grange dojo)
+- Description: Three-class aikido course with guest instructor and mock grading session for yudansha
+- URL: `/events/2026-07-19/course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo`
+
 **March 29, 2026 - Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo**
 - Location: Aylestone Leisure Centre, Leicester
 - Time: 12:30pm - 4:30pm
@@ -152,4 +168,4 @@ Classes are held at Aylestone Leisure Centre in Leicester. The dojo welcomes vis
 
 ## Last Updated
 
-June 2026
+August 2026
