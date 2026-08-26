@@ -142,6 +142,35 @@
           </div>
         </div>
 
+        <!-- Next Event Highlight Box -->
+        <div v-if="upcomingEvents.length > 0" class="row mb-5">
+          <div class="col-lg-10 mx-auto">
+            <div class="alert alert-primary border-0 shadow-lg" role="region" aria-labelledby="next-event-heading">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-star-fill fs-4 me-3 text-warning"></i>
+                <h2 id="next-event-heading" class="h4 mb-0 fw-bold">Next Upcoming Event</h2>
+              </div>
+              <h3 class="h5 fw-bold mb-2">{{ upcomingEvents[0].title }}</h3>
+              <p class="mb-3">
+                <i class="bi bi-calendar3 me-2"></i><strong>{{ formatDateForDisplay(upcomingEvents[0].date) }}</strong>
+                <span class="mx-2">•</span>
+                <i class="bi bi-clock me-2"></i>{{ formatTime(upcomingEvents[0].time.start) }} - {{ formatTime(upcomingEvents[0].time.end) }}
+                <span class="mx-2">•</span>
+                <i class="bi bi-geo-alt me-2"></i>{{ upcomingEvents[0].location.name }}
+              </p>
+              <p class="mb-3">{{ upcomingEvents[0].description.substring(0, 150) }}...</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <router-link :to="getEventUrl(upcomingEvents[0].date, upcomingEvents[0].title)" class="btn btn-light fw-bold">
+                  View Full Details <i class="bi bi-arrow-right ms-2"></i>
+                </router-link>
+                <a href="#upcoming-events" class="btn btn-outline-light">
+                  See All Upcoming Events
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Jump Links Navigation -->
         <div class="row mb-4">
           <div class="col-12">
@@ -251,6 +280,47 @@
                             <strong>Prices:</strong>
                             <div>{{ event.price }}</div>
                           </div>
+
+                          <!-- CTA Buttons -->
+                          <div class="mt-4 pt-3 border-top d-flex gap-2 flex-wrap">
+                            <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-primary btn-sm">
+                              <i class="bi bi-info-circle me-1"></i>View Full Details
+                            </router-link>
+                            <a href="#contact" class="btn btn-outline-primary btn-sm">
+                              <i class="bi bi-envelope me-1"></i>Register Interest
+                            </a>
+                            <a :href="generateICalLink(event)"
+                               :download="`${createSlug(event.title)}.ics`"
+                               class="btn btn-outline-success btn-sm">
+                              <i class="bi bi-calendar-plus me-1"></i>Add to Calendar
+                            </a>
+                          </div>
+
+                          <!-- Social Sharing -->
+                          <div class="mt-3 pt-3 border-top">
+                            <small class="text-muted me-3">Share this event:</small>
+                            <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-primary me-2"
+                               aria-label="Share on Facebook">
+                              <i class="bi bi-facebook"></i>
+                            </a>
+                            <a :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}&text=${encodeURIComponent(event.title)}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-info me-2"
+                               aria-label="Share on Twitter">
+                              <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-primary"
+                               aria-label="Share on LinkedIn">
+                              <i class="bi bi-linkedin"></i>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -325,6 +395,47 @@
                         <strong>Prices:</strong>
                         <div>{{ event.price }}</div>
                       </div>
+
+                      <!-- CTA Buttons -->
+                      <div class="mt-4 pt-3 border-top d-flex gap-2 flex-wrap">
+                        <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-primary btn-sm">
+                          <i class="bi bi-info-circle me-1"></i>View Full Details
+                        </router-link>
+                        <a href="#contact" class="btn btn-outline-primary btn-sm">
+                          <i class="bi bi-envelope me-1"></i>Register Interest
+                        </a>
+                        <a :href="generateICalLink(event)"
+                           :download="`${createSlug(event.title)}.ics`"
+                           class="btn btn-outline-success btn-sm">
+                          <i class="bi bi-calendar-plus me-1"></i>Add to Calendar
+                        </a>
+                      </div>
+
+                      <!-- Social Sharing -->
+                      <div class="mt-3 pt-3 border-top">
+                        <small class="text-muted me-3">Share this event:</small>
+                        <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-primary me-2"
+                           aria-label="Share on Facebook">
+                          <i class="bi bi-facebook"></i>
+                        </a>
+                        <a :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}&text=${encodeURIComponent(event.title)}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-info me-2"
+                           aria-label="Share on Twitter">
+                          <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-primary"
+                           aria-label="Share on LinkedIn">
+                          <i class="bi bi-linkedin"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -350,7 +461,7 @@
 
                 <!-- Dynamic Past Event Rendering -->
                 <div
-                  v-for="event in pastEvents"
+                  v-for="event in visiblePastEventsList"
                   :key="event.id"
                   :id="event.id"
                   class="mb-5 position-relative ps-5 opacity-75"
@@ -429,6 +540,39 @@
                             <strong class="text-muted">Prices:</strong>
                             <div class="text-muted">{{ event.price }}</div>
                           </div>
+
+                          <!-- CTA Buttons for Past Events -->
+                          <div class="mt-4 pt-3 border-top d-flex gap-2 flex-wrap">
+                            <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-outline-secondary btn-sm">
+                              <i class="bi bi-info-circle me-1"></i>View Event Details
+                            </router-link>
+                          </div>
+
+                          <!-- Social Sharing for Past Events -->
+                          <div class="mt-3 pt-3 border-top">
+                            <small class="text-muted me-3">Share this event:</small>
+                            <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-secondary me-2"
+                               aria-label="Share on Facebook">
+                              <i class="bi bi-facebook"></i>
+                            </a>
+                            <a :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}&text=${encodeURIComponent(event.title)}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-secondary me-2"
+                               aria-label="Share on Twitter">
+                              <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-sm btn-outline-secondary"
+                               aria-label="Share on LinkedIn">
+                              <i class="bi bi-linkedin"></i>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -503,13 +647,54 @@
                         <strong class="text-muted">Prices:</strong>
                         <div class="text-muted">{{ event.price }}</div>
                       </div>
+
+                      <!-- CTA Buttons for Past Events -->
+                      <div class="mt-4 pt-3 border-top d-flex gap-2 flex-wrap">
+                        <router-link :to="getEventUrl(event.date, event.title)" class="btn btn-outline-secondary btn-sm">
+                          <i class="bi bi-info-circle me-1"></i>View Event Details
+                        </router-link>
+                      </div>
+
+                      <!-- Social Sharing for Past Events -->
+                      <div class="mt-3 pt-3 border-top">
+                        <small class="text-muted me-3">Share this event:</small>
+                        <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-secondary me-2"
+                           aria-label="Share on Facebook">
+                          <i class="bi bi-facebook"></i>
+                        </a>
+                        <a :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}&text=${encodeURIComponent(event.title)}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-secondary me-2"
+                           aria-label="Share on Twitter">
+                          <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL + getEventUrl(event.date, event.title))}`"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-sm btn-outline-secondary"
+                           aria-label="Share on LinkedIn">
+                          <i class="bi bi-linkedin"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+            <!-- Load More Button for Past Events -->
+            <div v-if="hasMorePastEvents" class="text-center mt-5">
+              <button @click="loadMorePastEvents" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-arrow-down-circle me-2"></i>
+                Load More Past Events ({{ pastEvents.length - visiblePastEvents }} remaining)
+              </button>
+            </div>
           </div>
+
         </div>
 
         <!-- FAQ Section for SEO -->
@@ -604,7 +789,8 @@ export default {
       byakkoKan2025Image: '/img/Byakko-kan-joint-aikido-course-december-2025.jpg',
       byakkoKan2023Image: '/img/Byakko-kan-joint-aikido-course-december-2023.jpg',
       antonisPavlakisIainCooperImage: '/img/antonis-pavlakis-with-iain-cooper.webp',
-      events: events
+      events: events,
+      visiblePastEvents: 5 // Show 5 past events initially
     }
   },
   computed: {
@@ -661,6 +847,12 @@ export default {
           ...event,
           isPast: true
         }))
+    },
+    visiblePastEventsList() {
+      return this.pastEvents.slice(0, this.visiblePastEvents)
+    },
+    hasMorePastEvents() {
+      return this.pastEvents.length > this.visiblePastEvents
     }
   },
   methods: {
@@ -790,6 +982,36 @@ export default {
           }
         })
       }
+    },
+    loadMorePastEvents() {
+      this.visiblePastEvents += 5
+    },
+    generateICalLink(event) {
+      // Generate iCal format for calendar export
+      const eventDate = this.parseDate(event.date)
+      const startDateTime = `${this.formatDateISO(event.date).replace(/-/g, '')}T${event.time.start.replace(':', '')}00`
+      const endDateTime = `${this.formatDateISO(event.date).replace(/-/g, '')}T${event.time.end.replace(':', '')}00`
+
+      const icalContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Leicester Aikikai//Events//EN',
+        'BEGIN:VEVENT',
+        `UID:${event.id}@leicesteraikikai.com`,
+        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+        `DTSTART:${startDateTime}`,
+        `DTEND:${endDateTime}`,
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
+        `LOCATION:${event.location.name}, ${event.location.address}`,
+        `URL:${SITE_URL}${this.getEventUrl(event.date, event.title)}`,
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n')
+
+      const blob = new Blob([icalContent], { type: 'text/calendar;charset=utf-8' })
+      return URL.createObjectURL(blob)
     }
   },
   mounted() {
