@@ -496,6 +496,63 @@ export default {
       // Return event image if it exists, otherwise use default fallback
       return event.image || '/img/end-of-class-leicester-aikikai-and-guests.jpeg'
     },
+    /**
+     * Parse complex pricing strings into structured offer data
+     * Examples:
+     * "£15" -> Single offer
+     * "£20 adults, £15 concessions" -> Multiple offers
+     * "Adults - £20, Concession - £15, Under 18's - £12" -> Multiple offers
+     */
+    parseEventPricing(priceString, eventUrl, isPast) {
+      if (!priceString) return undefined
+
+      // Simple price (single number)
+      const simpleMatch = priceString.match(/^£?(\d+)$/)
+      if (simpleMatch) {
+        return {
+          '@type': 'Offer',
+          'url': eventUrl,
+          'price': simpleMatch[1],
+          'priceCurrency': 'GBP',
+          'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+          'validFrom': new Date().toISOString()
+        }
+      }
+
+      // Complex pricing with multiple tiers
+      // Match patterns like "£20 adults", "Adults - £15", "Under 18's - £12"
+      const pricePattern = /([^,]+?)[-:\s]*£(\d+)/g
+      const matches = [...priceString.matchAll(pricePattern)]
+
+      if (matches.length > 1) {
+        // Multiple price tiers found - return array of offers
+        return matches.map(match => {
+          const category = match[1].trim().replace(/^(.*?)\s*-\s*$/, '$1').trim()
+          const price = match[2]
+
+          return {
+            '@type': 'Offer',
+            'name': category.charAt(0).toUpperCase() + category.slice(1),
+            'url': eventUrl,
+            'price': price,
+            'priceCurrency': 'GBP',
+            'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+            'validFrom': new Date().toISOString()
+          }
+        })
+      }
+
+      // Fallback: extract first price found
+      const firstPrice = priceString.replace('£', '').split(/[,\s]/)[0]
+      return {
+        '@type': 'Offer',
+        'url': eventUrl,
+        'price': firstPrice,
+        'priceCurrency': 'GBP',
+        'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+        'validFrom': new Date().toISOString()
+      }
+    },
     scrollToEvent() {
       // Check if we have route params for a specific event
       if (this.$route.params.date && this.$route.params.title) {
@@ -535,17 +592,21 @@ export default {
       const isPast = eventDate < new Date()
       const isoDate = this.formatDateISO(this.singleEvent.date)
 
+      const eventUrl = `${SITE_URL}/events/${this.formatDateISO(this.singleEvent.date)}/${this.createSlug(this.singleEvent.title)}`
+      const eventImageUrl = this.singleEvent.image ? `${SITE_URL}${this.singleEvent.image}` : `${SITE_URL}/img/leicester-aikikai-dojo-hall.jpg`
+
       setJsonLd([
         {
           '@context': 'https://schema.org',
           '@type': 'Event',
           'name': this.singleEvent.title,
           'description': this.singleEvent.description,
+          'url': eventUrl,
           'startDate': `${isoDate}T${this.singleEvent.time.start}:00+00:00`,
           'endDate': `${isoDate}T${this.singleEvent.time.end}:00+00:00`,
           'eventStatus': 'https://schema.org/EventScheduled',
           'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
-          'image': `${SITE_URL}${this.singleEvent.image}`,
+          'image': [eventImageUrl],
           'location': {
             '@type': 'Place',
             'name': this.singleEvent.location.name,
@@ -553,6 +614,7 @@ export default {
               '@type': 'PostalAddress',
               'streetAddress': this.singleEvent.location.address.split(',')[0],
               'addressLocality': this.singleEvent.location.address.includes('Leicester') ? 'Leicester' : 'UK',
+              'postalCode': this.singleEvent.location.address.match(/[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}/)?.[0] || '',
               'addressCountry': 'GB'
             }
           },
@@ -567,7 +629,8 @@ export default {
               '@type': 'Person',
               'name': instructorName
             }
-          })
+          }),
+          'offers': this.parseEventPricing(this.singleEvent.price, eventUrl, isPast)
         },
         {
           '@context': 'https://schema.org',
@@ -619,17 +682,20 @@ export default {
       const isPast = eventDate < new Date()
       const isoDate = this.formatDateISO(event.date)
       const isLeicesterEvent = event.location.address.includes('Leicester')
+      const eventUrl = `${SITE_URL}/events/${isoDate}/${this.createSlug(event.title)}`
+      const eventImageUrl = event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/img/leicester-aikikai-dojo-hall.jpg`
 
       return {
         '@context': 'https://schema.org',
         '@type': 'Event',
         'name': event.title,
         'description': event.description,
+        'url': eventUrl,
         'startDate': `${isoDate}T${event.time.start}:00+00:00`,
         'endDate': `${isoDate}T${event.time.end}:00+00:00`,
-        'eventStatus': isPast ? 'https://schema.org/EventScheduled' : 'https://schema.org/EventScheduled',
+        'eventStatus': 'https://schema.org/EventScheduled',
         'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
-        'image': event.image ? `${SITE_URL}${event.image}` : `${SITE_URL}/img/leicester-aikikai-dojo-hall.jpg`,
+        'image': [eventImageUrl],
         'inLanguage': 'en-GB',
         'keywords': [
           'aikido',
@@ -686,14 +752,7 @@ export default {
 
           return performerSchema
         }),
-        'offers': event.price ? {
-          '@type': 'Offer',
-          'price': event.price.replace('£', '').split(' ')[0],
-          'priceCurrency': 'GBP',
-          'availability': isPast ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
-          'validFrom': new Date().toISOString(),
-          'url': `${SITE_URL}/events#${event.id}`
-        } : undefined,
+        'offers': this.parseEventPricing(event.price, eventUrl, isPast),
         'isAccessibleForFree': false,
         'audience': {
           '@type': 'Audience',
@@ -709,21 +768,25 @@ export default {
       'name': 'Leicester Aikikai Aikido Events',
       'description': 'Comprehensive list of aikido events, courses and seminars at Leicester Aikikai Dojo and partner venues',
       'numberOfItems': this.events.length,
-      'itemListElement': this.events.map((event, index) => ({
-        '@type': 'ListItem',
-        'position': index + 1,
-        'item': {
-          '@type': 'Event',
-          'name': event.title,
-          'description': event.description,
-          'startDate': `${this.formatDateISO(event.date)}T${event.time.start}:00+00:00`,
-          'url': `${SITE_URL}/events#${event.id}`,
-          'location': {
-            '@type': 'Place',
-            'name': event.location.name
+      'itemListElement': this.events.map((event, index) => {
+        const isoDate = this.formatDateISO(event.date)
+        const eventUrl = `${SITE_URL}/events/${isoDate}/${this.createSlug(event.title)}`
+        return {
+          '@type': 'ListItem',
+          'position': index + 1,
+          'item': {
+            '@type': 'Event',
+            'name': event.title,
+            'description': event.description,
+            'url': eventUrl,
+            'startDate': `${isoDate}T${event.time.start}:00+00:00`,
+            'location': {
+              '@type': 'Place',
+              'name': event.location.name
+            }
           }
         }
-      }))
+      })
     }
 
     // Add EventSeries schema for AI understanding of recurring event pattern
