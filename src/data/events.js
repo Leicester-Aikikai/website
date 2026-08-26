@@ -2,24 +2,6 @@
 
 export const events = [
   {
-    date: '21.11.2026',
-    title: 'Joint Aikido Course with UKAikikai and British Birankai in November 2026',
-    description: 'A joint aikido course bringing together instructors from UK Aikikai and British Birankai associations. Join us for a day of training with instructors Trevor Doxsey, Antonis Pavlakis, Michael Howson, and Paul Shepherd at Ren Shin Kan Dojo in Halesowen. All associations welcome.',
-    type: 'course',
-    id: 'event-2026-11-21',
-    image: '/img/ukaikikai-british-birankai-joint-aikido-course-november-2026.jpeg',
-    location: {
-      name: 'Ren Shin Kan Dojo',
-      address: '7 Peckingham Street, Halesowen, B63 3AW'
-    },
-    time: {
-      start: '12:00',
-      end: '17:00'
-    },
-    price: '£20 adults, £15 concessions',
-    instructors: ['Trevor Doxsey', 'Antonis Pavlakis', 'Michael Howson', 'Paul Shepherd']
-  },
-  {
     date: '13.09.2026',
     title: 'Joint Course with Tokon Aikido from Grantham - September 2026',
     description: 'Join us for a joint aikido course at Aylestone Leisure Centre with instructors Antonis Pavlakis and Sergio Cardoso. A great opportunity to train together and develop your aikido skills.',
@@ -39,6 +21,24 @@ export const events = [
       { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' },
       { name: 'Sergio Cardoso', profile: 'https://aikidotokon.com/aikido-t%C5%8Dkon-instructor' }
     ]
+  },
+  {
+    date: '21.11.2026',
+    title: 'Joint Aikido Course with UKAikikai and British Birankai in November 2026',
+    description: 'A joint aikido course bringing together instructors from UK Aikikai and British Birankai associations. Join us for a day of training with instructors Trevor Doxsey, Antonis Pavlakis, Michael Howson, and Paul Shepherd at Ren Shin Kan Dojo in Halesowen. All associations welcome.',
+    type: 'course',
+    id: 'event-2026-11-21',
+    image: '/img/ukaikikai-british-birankai-joint-aikido-course-november-2026.jpeg',
+    location: {
+      name: 'Ren Shin Kan Dojo',
+      address: '7 Peckingham Street, Halesowen, B63 3AW'
+    },
+    time: {
+      start: '12:00',
+      end: '17:00'
+    },
+    price: '£20 adults, £15 concessions',
+    instructors: ['Trevor Doxsey', 'Antonis Pavlakis', 'Michael Howson', 'Paul Shepherd']
   },
   {
     date: '19.07.2026',
