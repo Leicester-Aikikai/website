@@ -1,106 +1,14 @@
-#!/usr/bin/env node
+import { writeFileSync } from 'node:fs'
+import { getPages } from '../src/utils/pages.js'
+import { getSocialImage } from '../src/utils/images.js'
+import { SITE_URL } from '../src/utils/seo.js'
 
-/**
- * Generate sitemap.xml for Leicester Aikikai website
- */
-
-import { writeFileSync } from 'fs'
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { events } from '../src/data/events.js'
-import { blogPosts, getBlogPostUrl } from '../src/data/blog.js'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const SITE_URL = 'https://leicesteraikikai.com'
-const OUTPUT_PATH = resolve(__dirname, '../public/sitemap.xml')
-
-// Define instructors
-const instructors = [
-  'antonis-pavlakis'
-]
-
-// Function to create a URL-friendly slug from a title
-const createSlug = (title) => {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '') // remove non-word characters
-    .replace(/\s+/g, '-') // replace spaces with hyphens
-    .replace(/-+/g, '-') // remove consecutive hyphens
-    .trim()
-}
-
-// Function to format date from DD.MM.YYYY to YYYY-MM-DD
-const formatDateForUrl = (dateStr) => {
-  const parts = dateStr.split('.')
-  return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`
-}
-
-// Define routes with priority and change frequency
-const routes = [
-  { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/events', priority: '0.9', changefreq: 'weekly' },
-  { path: '/blog', priority: '0.9', changefreq: 'weekly' },
-  // Add individual event routes
-  ...events.map(event => ({
-    path: `/events/${formatDateForUrl(event.date)}/${createSlug(event.title)}`,
-    priority: '0.7',
-    changefreq: 'monthly'
-  })),
-  // Add individual blog routes
-  ...blogPosts.map(post => ({
-    path: getBlogPostUrl(post),
-    priority: '0.65',
-    changefreq: 'monthly'
-  })),
-  // Add instructor profile routes
-  ...instructors.map(instructor => ({
-    path: `/instructors/${instructor}`,
-    priority: '0.8',
-    changefreq: 'monthly'
-  })),
-  { path: '/syllabus', priority: '0.8', changefreq: 'monthly' },
-  { path: '/syllabus/6th-kyu', priority: '0.7', changefreq: 'monthly' },
-  { path: '/syllabus/5th-kyu', priority: '0.7', changefreq: 'monthly' },
-  { path: '/syllabus/4th-kyu', priority: '0.7', changefreq: 'monthly' },
-  { path: '/syllabus/3rd-kyu', priority: '0.7', changefreq: 'monthly' },
-  { path: '/docs/welcome-to-aikido-uka-booklet.pdf', priority: '0.6', changefreq: 'yearly' }
-]
-
-// Get current date in ISO format (YYYY-MM-DD)
-const getCurrentDate = () => {
-  return new Date().toISOString().split('T')[0]
-}
-
-// Generate sitemap XML
-const generateSitemap = () => {
-  const lastmod = getCurrentDate()
-
-  let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
-  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-
-  routes.forEach(route => {
-    sitemap += '  <url>\n'
-    sitemap += `    <loc>${SITE_URL}${route.path}</loc>\n`
-    sitemap += `    <lastmod>${lastmod}</lastmod>\n`
-    sitemap += `    <changefreq>${route.changefreq}</changefreq>\n`
-    sitemap += `    <priority>${route.priority}</priority>\n`
-    sitemap += '  </url>\n'
-  })
-
-  sitemap += '</urlset>\n'
-
-  return sitemap
-}
-
-// Write sitemap to file
-try {
-  const sitemapXml = generateSitemap()
-  writeFileSync(OUTPUT_PATH, sitemapXml, 'utf8')
-  console.log('✅ Sitemap generated successfully:', OUTPUT_PATH)
-  console.log(`📍 ${routes.length} URLs included in sitemap`)
-} catch (error) {
-  console.error('❌ Error generating sitemap:', error)
-  process.exit(1)
-}
+const escapeXml = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
+// Only dates recorded with the content qualify as lastmod; builds are not edits.
+const pages = [...new Map(getPages().map(page => [page.path, page])).values()]
+const urls = pages.map(page => {
+  const image = getSocialImage(page.meta.image).src
+  return `  <url>\n    <loc>${escapeXml(SITE_URL + page.path)}</loc>${page.lastmod ? `\n    <lastmod>${escapeXml(page.lastmod)}</lastmod>` : ''}${image && !page.path.endsWith('.pdf') ? `\n    <image:image><image:loc>${escapeXml(image.startsWith('/') ? SITE_URL + image : image)}</image:loc></image:image>` : ''}\n  </url>`
+})
+writeFileSync(new URL('../public/sitemap.xml', import.meta.url), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join('\n')}\n</urlset>\n`)
+console.log(`Sitemap generated with ${pages.length} canonical URLs.`)

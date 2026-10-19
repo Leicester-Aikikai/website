@@ -1,10 +1,8 @@
 <template>
   <div class="instructor-profile" v-if="instructor">
-    <!-- Skip link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Hero Section -->
-    <section class="hero-section" role="banner">
+    <section class="hero-section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-5 mb-4 mb-md-0">
@@ -18,11 +16,12 @@
             </router-link>
           </div>
           <div class="col-md-7 text-center">
-            <img
+            <ResponsiveImage
               :src="instructor.image"
               :alt="`${instructor.name} - ${instructor.title}`"
               class="img-fluid rounded shadow-lg"
-              fetchpriority="high"
+              sizes="(min-width: 1200px) 720px, (min-width: 768px) 60vw, 100vw"
+              priority
             />
           </div>
         </div>
@@ -43,7 +42,7 @@
     </section>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <!-- Instructor Details Section -->
       <section class="py-5" itemscope itemtype="https://schema.org/Person">
         <div class="container">
@@ -59,10 +58,10 @@
               </div>
 
               <div v-if="instructor.credentials && instructor.credentials.length > 0" class="mt-5">
-                <h3 class="h4 fw-bold mb-3">Credentials & Qualifications</h3>
+                <h3 class="h4 fw-bold mb-3">Current Qualifications & Certifications</h3>
                 <ul class="list-unstyled">
                   <li v-for="(credential, index) in instructor.credentials" :key="index" class="mb-2">
-                    <strong>{{ credential.year }}:</strong> {{ credential.title }}
+                    <strong>{{ credential.title }}</strong> <span class="text-muted">({{ credential.year }})</span>
                   </li>
                 </ul>
               </div>
@@ -92,9 +91,7 @@
           <h2 class="display-5 fw-bold mb-4">Train with us</h2>
           <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 2rem;"></div>
           <h3 class="h4 mb-4">Come down on a Friday night to give it a go. First class is FREE.</h3>
-          <router-link to="/" class="btn btn-light btn-lg rounded-pill px-4 shadow">
-            Learn More
-          </router-link>
+          <FirstClassCta />
         </div>
       </section>
     </main>
@@ -102,10 +99,15 @@
 </template>
 
 <script>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
+import { getPage } from '../utils/pages.js'
+import { club } from '../data/club.js'
+import FirstClassCta from '../components/FirstClassCta.vue'
 import { setMeta, setJsonLd, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Instructor',
+  components: { ResponsiveImage, FirstClassCta },
   data() {
     return {
       instructors: {
@@ -126,7 +128,7 @@ export default {
             </p>
 
             <p class="mb-3">
-              <strong>Teaching Career:</strong> After receiving his teaching qualifications (Coaching Level 1) in 2009,
+              <strong>Teaching Career:</strong> After qualifying as a coach in 2009,
               Antonis became an assistant instructor at DMU Aikido Club. In May 2013, he established Leicester Aikikai dojo
               (レスター 合気道 道場) with a vision to create an inclusive training environment welcoming practitioners of all levels.
               In 2018, he was awarded the Fukushidoin teaching title, allowing him to grade students up to 1st kyu.
@@ -138,11 +140,7 @@ export default {
               and the Joint Aikikai Council (JAC), ensuring all grades meet national and international standards.
             </p>
           `,
-          credentials: [
-            { year: '2023', title: '4th Dan (Yondan)' },
-            { year: '2018', title: 'Fukushidoin (Teaching Qualification)' },
-            { year: '2009', title: 'Coaching Level 1' }
-          ],
+          credentials: club.instructor.credentials,
           affiliations: [
             { name: 'United Kingdom Aikikai (UKA)', url: 'https://ukaikikai.org.uk/' },
             { name: 'Joint Aikikai Council (JAC)', url: 'http://jointaikikaicouncil.co.uk/' }
@@ -169,67 +167,9 @@ export default {
       return
     }
 
-    // Set meta tags for SEO
-    setMeta({
-      title: `${this.instructor.name} - Instructor Profile | Leicester Aikikai Dojo`,
-      description: `${this.instructor.name}, ${this.instructor.title} at Leicester Aikikai Dojo. Learn about their aikido journey, qualifications, and teaching experience.`,
-      keywords: `${this.instructor.name}, aikido instructor Leicester, aikido teacher, ${this.instructor.title}, Leicester Aikikai instructor`,
-      url: this.instructorUrl,
-      image: `${SITE_URL}${this.instructor.image}`,
-      type: 'profile'
-    })
-
-    // Set structured data for Person
-    setJsonLd([
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        'name': this.instructor.name,
-        'alternateName': this.instructor.alternateName,
-        'jobTitle': this.instructor.title,
-        'description': this.instructor.bio.replace(/<[^>]*>/g, '').substring(0, 200),
-        'image': `${SITE_URL}${this.instructor.image}`,
-        'url': this.instructorUrl,
-        'memberOf': {
-          '@type': 'SportsOrganization',
-          'name': 'Leicester Aikikai Dojo',
-          'url': SITE_URL
-        },
-        'affiliation': this.instructor.affiliations.map(aff => ({
-          '@type': 'Organization',
-          'name': aff.name
-        })),
-        'knowsAbout': this.instructor.knowsAbout,
-        'alumniOf': {
-          '@type': 'Organization',
-          'name': this.instructor.alumniOf
-        }
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        'itemListElement': [
-          {
-            '@type': 'ListItem',
-            'position': 1,
-            'name': 'Home',
-            'item': SITE_URL
-          },
-          {
-            '@type': 'ListItem',
-            'position': 2,
-            'name': 'Instructors',
-            'item': `${SITE_URL}/instructors`
-          },
-          {
-            '@type': 'ListItem',
-            'position': 3,
-            'name': this.instructor.name,
-            'item': this.instructorUrl
-          }
-        ]
-      }
-    ])
+    const page = getPage(this.$route.path)
+    setMeta(page.meta)
+    setJsonLd(page.schemas)
   }
 }
 </script>
@@ -250,4 +190,3 @@ export default {
   }
 }
 </style>
-

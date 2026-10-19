@@ -88,9 +88,29 @@ Fully optimized for search engines and AI/LLM crawlers:
 - Quick Summary: `SEO-SUMMARY.md`
 - Validation Checklist: `SEO-CHECKLIST.md`
 
+## Website modernisation
+
+See [implementation notes](docs/website-modernisation.md) for the 2026 redesign,
+content sources, owner-confirmation items and verification limits.
+
+Shared practical information is maintained in `src/data/club.js`.
+Run `npm test` for content, event and contact-form regression checks. The optional
+`scripts/check-browser.mjs` uses an existing Playwright/Chrome installation; see
+its opening comments. `scripts/check-contact-browser.mjs` tests form validation,
+spam-trap handling and simulated service responses without sending real enquiries.
+See the implementation notes for the required Netlify Forms and notification setup.
+No test or browser packages are required in production.
+
 ## 🎯 Routes
 
-- `/` - Home (Welcome, Location, Costs, FAQ)
+- `/` - Home and first-class introduction
+- `/beginners` - Start Aikido and first-class instructions
+- `/classes` - Class times, venue and membership fees
+- `/about` - Club history and instructor background
+- `/resources` - Student resources hub
+- `/contact` - Protected contact form and directions
+- `/blog` - Articles and dojo notes
+- `/instructors/antonis-pavlakis` - Original instructor profile
 - `/events` - Events & Courses
 - `/syllabus` - Aikido Syllabus & Grading
 
@@ -156,7 +176,6 @@ npm run preview
 - Website: https://leicesteraikikai.co.uk
 - Facebook: [@LeicesterAikikai](https://www.facebook.com/LeicesterAikikai)
 - Instagram: [@leicesteraikikai](https://www.instagram.com/leicesteraikikai/)
-- Twitter: [@leicesterdojo](https://twitter.com/leicesterdojo)
 - TikTok: [@leicesteraikikai](https://www.tiktok.com/@leicesteraikikai)
 
 ## 📄 License
