@@ -1,4 +1,5 @@
 <script setup>
+import ResponsiveImage from './ResponsiveImage.vue'
 import { formatBlogDate, formatBlogDateForUrl, getBlogAuthor, getBlogPostUrl } from '../data/blog.js'
 
 defineProps({ post: Object, featured: Boolean })
@@ -7,13 +8,9 @@ defineProps({ post: Object, featured: Boolean })
 <template>
   <article class="blog-post-card" :class="{ 'blog-post-featured': featured }">
     <router-link :to="getBlogPostUrl(post)" class="blog-post-photo">
-      <img
+      <ResponsiveImage
         :src="post.featuredImage || '/img/training-1280.webp'"
-        :alt="post.imageAlt || post.title"
-        width="1280"
-        height="960"
-        loading="lazy"
-      >
+        :alt="post.imageAlt || post.title" :priority="featured" />
     </router-link>
     <div class="blog-post-copy">
       <p class="eyebrow">{{ post.category }}</p>

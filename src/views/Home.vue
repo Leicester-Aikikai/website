@@ -1,4 +1,5 @@
 <script setup>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
 import { computed } from 'vue'
 import { club } from '../data/club.js'
 import { events } from '../data/events.js'
@@ -44,7 +45,7 @@ const benefits = [
           <p class="hero-note">{{ club.day }} · {{ club.hours }} · First class free<br>{{ club.venue }}, {{ club.city }}</p>
         </div>
         <figure class="hero-photo">
-          <img src="/img/training-1280.webp" srcset="/img/training-640.webp 640w, /img/training-960.webp 960w, /img/training-1280.webp 1280w" sizes="(min-width: 1200px) 52vw, (min-width: 768px) 50vw, 100vw" width="1334" height="750" alt="Leicester Aikikai students practising together on the mats at Aylestone Leisure Centre" fetchpriority="high">
+          <ResponsiveImage src="/img/training-1280.webp" sizes="(min-width: 1200px) 960px, (min-width: 768px) 80vw, 100vw" alt="Leicester Aikikai students practising together on the mats at Aylestone Leisure Centre" priority />
           <figcaption><span>On the mat at Leicester Aikikai</span><span aria-hidden="true">レスター 合気会</span></figcaption>
         </figure>
       </div>
@@ -79,14 +80,14 @@ const benefits = [
 
     <section id="the-instructor" class="section-space dark-section">
       <div class="container split-layout instructor-feature">
-        <img src="/img/instructor-800.webp" width="720" height="720" loading="lazy" alt="Antonios Pavlakis, Leicester Aikikai’s chief instructor">
+        <ResponsiveImage src="/img/instructor-800.webp" alt="Antonios Pavlakis, Leicester Aikikai’s chief instructor" />
         <div><p class="eyebrow">Meet your instructor</p><h2>{{ club.instructor.name }}</h2><p class="qualification">{{ club.instructor.qualification }}</p><p>Founder and chief instructor of Leicester Aikikai, Antonios began aikido in 1997 and established the club in May 2013. His teaching brings together long-standing practice and a welcoming approach to learning.</p><router-link :to="club.instructor.profile" class="text-link">Meet our instructor <span aria-hidden="true">↗</span></router-link></div>
       </div>
     </section>
 
     <section id="costs" class="section-space"><div class="container"><div class="section-heading"><div><p class="eyebrow">Clear costs. A free first step.</p><h2>Classes & prices</h2></div><router-link to="/classes" class="text-link">Complete class information <span aria-hidden="true">↗</span></router-link></div><PricingTable /></div></section>
 
-    <section id="location" class="section-space warm-section"><div class="container split-layout"><div><p class="eyebrow">Friday evenings in Leicester</p><h2>Find us</h2><img src="/img/venue-960.webp" width="960" height="720" class="feature-image" alt="The mat space at Aylestone Leisure Centre" loading="lazy"></div><ClubDetails travel /></div></section>
+    <section id="location" class="section-space warm-section"><div class="container split-layout"><div><p class="eyebrow">Friday evenings in Leicester</p><h2>Find us</h2><ResponsiveImage src="/img/venue-960.webp" class="feature-image" alt="The mat space at Aylestone Leisure Centre" /></div><ClubDetails travel /></div></section>
 
     <section id="faq" class="section-space"><div class="container split-layout"><div><p class="eyebrow">Before you step on the mat</p><h2>A few common questions</h2><p>Something else on your mind? <router-link to="/contact">Ask us about getting started.</router-link></p></div><BeginnerFaq /></div></section>
 

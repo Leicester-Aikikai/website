@@ -1,3 +1,4 @@
+import { getSocialImage } from './images.js'
 import { club } from '../data/club.js'
 
 /**
@@ -12,49 +13,30 @@ const SITE_IMAGE = `${SITE_URL}/img/training-1280.webp`
 /**
  * Set dynamic meta tags for SEO
  */
-export function setMeta({ title, description, image, url, type = 'website', keywords, author, publishedTime, modifiedTime, noindex = false }) {
-  // Title
-  document.title = title || SITE_NAME
-
-  // Standard meta
-  setMetaTag('description', description || SITE_DESCRIPTION)
-  setMetaTag('title', title || SITE_NAME)
-  setMetaTag('robots', noindex ? 'noindex, follow' : 'index, follow')
-  setMetaTag('keywords', keywords)
-  setMetaTag('author', author)
-
-  // Canonical URL
-  setLinkTag('canonical', url || window.location.href)
-
-  // Open Graph
-  setMetaTag('og:title', title || SITE_NAME, 'property')
-  setMetaTag('og:description', description || SITE_DESCRIPTION, 'property')
-  setMetaTag('og:image', image || SITE_IMAGE, 'property')
-  removeMetaTag('og:image:width', 'property')
-  removeMetaTag('og:image:height', 'property')
-  setMetaTag('og:image:alt', title || SITE_NAME, 'property')
-  setMetaTag('og:url', url || window.location.href, 'property')
-  setMetaTag('og:type', type, 'property')
-  setMetaTag('og:site_name', SITE_NAME, 'property')
-  setMetaTag('og:locale', 'en_GB', 'property')
-
-  // Article specific tags
-  if (type === 'article') {
-    setMetaTag('article:published_time', publishedTime, 'property')
-    setMetaTag('article:modified_time', modifiedTime, 'property')
-    setMetaTag('article:author', author, 'property')
-  } else {
-    removeMetaTag('article:published_time', 'property')
-    removeMetaTag('article:modified_time', 'property')
-    removeMetaTag('article:author', 'property')
+export function getMetaTags({ title = SITE_NAME, description = SITE_DESCRIPTION, image = SITE_IMAGE, imageAlt, url = SITE_URL + '/', type = 'website', keywords, author, publishedTime, modifiedTime, noindex = false }) {
+  const social = getSocialImage(image)
+  const imageUrl = social.src?.startsWith('/') ? SITE_URL + social.src : social.src
+  const tags = { title, description, robots: noindex ? 'noindex, follow' : 'index, follow', keywords, author,
+    'og:title': title, 'og:description': description, 'og:image': imageUrl,
+    'og:image:width': social.width, 'og:image:height': social.height,
+    'og:image:type': imageUrl?.endsWith('.jpg') ? 'image/jpeg' : undefined,
+    'og:image:alt': imageAlt || title, 'og:url': url, 'og:type': type,
+    'og:site_name': SITE_NAME, 'og:locale': 'en_GB',
+    'article:published_time': type === 'article' ? publishedTime : undefined,
+    'article:modified_time': type === 'article' ? modifiedTime : undefined,
+    'article:author': type === 'article' ? author : undefined,
+    'twitter:card': 'summary_large_image', 'twitter:title': title,
+    'twitter:description': description, 'twitter:image': imageUrl, 'twitter:image:alt': imageAlt || title
   }
+  return tags
+}
 
-  // Twitter Card
-  setMetaTag('twitter:card', 'summary_large_image')
-  setMetaTag('twitter:title', title || SITE_NAME)
-  setMetaTag('twitter:description', description || SITE_DESCRIPTION)
-  setMetaTag('twitter:image', image || SITE_IMAGE)
-  setMetaTag('twitter:image:alt', title || SITE_NAME)
+export function setMeta(meta) {
+  document.title = meta.title || SITE_NAME
+  setLinkTag('canonical', meta.url || SITE_URL + window.location.pathname)
+  for (const [name, content] of Object.entries(getMetaTags(meta))) {
+    setMetaTag(name, content, /^(og|article):/.test(name) ? 'property' : 'name')
+  }
 }
 
 /**
@@ -149,7 +131,7 @@ export function getOrganizationSchema() {
 }
 
 /**
- * Get WebSite schema with search action
+ * Get WebSite schema
  */
 export function getWebSiteSchema() {
   return {

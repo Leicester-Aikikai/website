@@ -24,7 +24,7 @@
           <span>{{ currentPost.readingTime }}</span>
         </div>
         <figure class="blog-article-photo">
-          <img :src="getPostImage(currentPost)" :alt="currentPost.imageAlt || currentPost.title" width="1280" height="960" itemprop="image" fetchpriority="high">
+          <ResponsiveImage :src="getPostImage(currentPost)" sizes="(min-width: 1040px) 904px, 90vw" :alt="currentPost.imageAlt || currentPost.title" itemprop="image" priority />
         </figure>
         <div class="blog-prose">
           <p class="lead" itemprop="description">{{ currentPost.introduction }}</p>
@@ -50,7 +50,7 @@
             <router-link :to="currentPost.callToAction.buttonLink" class="btn btn-primary">{{ currentPost.callToAction.buttonLabel }} <span aria-hidden="true">↗</span></router-link>
           </section>
           <section class="blog-author" aria-labelledby="blog-author-heading">
-            <img :src="currentAuthor.image" :alt="`${currentAuthor.name}, article author`" width="88" height="88" loading="lazy">
+            <ResponsiveImage :src="currentAuthor.image" sizes="88px" :alt="`${currentAuthor.name}, article author`" />
             <div>
               <p class="eyebrow">About the author</p>
               <h2 id="blog-author-heading" class="h4">{{ currentAuthor.name }}</h2>
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
 import {
   blogPosts,
   formatBlogDate,
@@ -103,15 +104,15 @@ import {
   getBlogRelatedPosts,
   parseBlogDate
 } from '../data/blog.js'
-import { setJsonLd, setMeta, SITE_URL, getOrganizationSchema, getWebSiteSchema } from '../utils/seo.js'
-import { club } from '../data/club.js'
+import { setJsonLd, setMeta } from '../utils/seo.js'
+import { getPage } from '../utils/pages.js'
 import PageIntro from '../components/PageIntro.vue'
 import BlogPostCard from '../components/BlogPostCard.vue'
 import JoinSection from '../components/JoinSection.vue'
 
 export default {
   name: 'Blog',
-  components: { PageIntro, BlogPostCard, JoinSection },
+  components: { ResponsiveImage, PageIntro, BlogPostCard, JoinSection },
   data() {
     return {
       posts: blogPosts
@@ -162,144 +163,11 @@ export default {
       return post.featuredImage || '/img/leicester-aikikai-dojo-hall.jpg'
     },
     formatDateForIso(dateStr) {
-      return `${formatBlogDateForUrl(dateStr)}T00:00:00+00:00`
+      return formatBlogDateForUrl(dateStr)
     },
     applySeo() {
-      if (this.currentPost) {
-        const author = this.currentAuthor
-        const postUrl = `${SITE_URL}${getBlogPostUrl(this.currentPost)}`
-        const description = this.currentPost.excerpt
-        const image = `${SITE_URL}${this.getPostImage(this.currentPost)}`
-
-        setMeta({
-          title: `${this.currentPost.title} | Leicester Aikikai Blog`,
-          description,
-          keywords: `${this.currentPost.tags.join(', ')}, Leicester Aikikai blog, aikido training, traditional aikido`,
-          author: author.name,
-          url: postUrl,
-          image,
-          type: 'article',
-          publishedTime: this.formatDateForIso(this.currentPost.publishedDate),
-          modifiedTime: this.formatDateForIso(this.currentPost.lastUpdated)
-        })
-
-        setJsonLd([
-          getOrganizationSchema(),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            '@id': `${postUrl}#blogposting`,
-            'headline': this.currentPost.title,
-            'description': description,
-            'author': {
-              '@type': 'Person',
-              'name': author.name,
-              'url': `${SITE_URL}${author.profile}`
-            },
-            'publisher': {
-              '@type': 'SportsOrganization',
-              'name': 'Leicester Aikikai Dojo',
-              'url': SITE_URL,
-              'logo': {
-                '@type': 'ImageObject',
-                'url': `${SITE_URL}${club.logo.image}`
-              }
-            },
-            'datePublished': this.formatDateForIso(this.currentPost.publishedDate),
-            'dateModified': this.formatDateForIso(this.currentPost.lastUpdated),
-            'image': [image],
-            'mainEntityOfPage': {
-              '@type': 'WebPage',
-              '@id': postUrl
-            },
-            'articleSection': this.currentPost.category,
-            'keywords': this.currentPost.tags,
-            'inLanguage': 'en-GB',
-            'isAccessibleForFree': true
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            'itemListElement': [
-              {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': 'Home',
-                'item': SITE_URL
-              },
-              {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': 'Blog',
-                'item': `${SITE_URL}/blog`
-              },
-              {
-                '@type': 'ListItem',
-                'position': 3,
-                'name': this.currentPost.title,
-                'item': postUrl
-              }
-            ]
-          }
-        ])
-      } else {
-        const listUrl = `${SITE_URL}/blog`
-        const postItems = this.sortedPosts.map((post, index) => {
-          const url = `${SITE_URL}${getBlogPostUrl(post)}`
-          return {
-            '@type': 'ListItem',
-            'position': index + 1,
-            'url': url,
-            'name': post.title,
-            'description': post.excerpt
-          }
-        })
-
-        setMeta({
-          title: 'Blog | Leicester Aikikai Dojo',
-          description: 'Aikido articles, beginner guidance, and dojo notes from Leicester Aikikai. Read practical posts about training, ukemi, consistency, and life on the mat.',
-          keywords: 'Leicester Aikikai blog, aikido blog, aikido training, ukemi, beginner aikido, traditional aikido, martial arts Leicester',
-          url: listUrl,
-          image: `${SITE_URL}${this.getPostImage(this.sortedPosts[0] || {})}`,
-          type: 'website'
-        })
-
-        setJsonLd([
-          getOrganizationSchema(),
-          getWebSiteSchema(),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'CollectionPage',
-            'name': 'Leicester Aikikai Blog',
-            'description': 'Aikido articles, beginner guidance, and dojo notes from Leicester Aikikai.',
-            'url': listUrl,
-            'mainEntity': {
-              '@type': 'ItemList',
-              'name': 'Leicester Aikikai Blog Articles',
-              'numberOfItems': postItems.length,
-              'itemListElement': postItems
-            }
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            'itemListElement': [
-              {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': 'Home',
-                'item': SITE_URL
-              },
-              {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': 'Blog',
-                'item': listUrl
-              }
-            ]
-          }
-        ])
-      }
+      const page = getPage(this.$route.path)
+      if (page) { setMeta(page.meta); setJsonLd(page.schemas) }
     }
   }
 }

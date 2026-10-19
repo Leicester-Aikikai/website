@@ -16,11 +16,12 @@
             </router-link>
           </div>
           <div class="col-md-7 text-center">
-            <img
+            <ResponsiveImage
               :src="instructor.image"
               :alt="`${instructor.name} - ${instructor.title}`"
               class="img-fluid rounded shadow-lg"
-              fetchpriority="high"
+              sizes="(min-width: 1200px) 720px, (min-width: 768px) 60vw, 100vw"
+              priority
             />
           </div>
         </div>
@@ -98,12 +99,14 @@
 </template>
 
 <script>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
+import { getPage } from '../utils/pages.js'
 import FirstClassCta from '../components/FirstClassCta.vue'
 import { setMeta, setJsonLd, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Instructor',
-  components: { FirstClassCta },
+  components: { ResponsiveImage, FirstClassCta },
   data() {
     return {
       instructors: {
@@ -167,67 +170,9 @@ export default {
       return
     }
 
-    // Set meta tags for SEO
-    setMeta({
-      title: `${this.instructor.name} - Instructor Profile | Leicester Aikikai Dojo`,
-      description: `${this.instructor.name}, ${this.instructor.title} at Leicester Aikikai Dojo. Learn about their aikido journey, qualifications, and teaching experience.`,
-      keywords: `${this.instructor.name}, aikido instructor Leicester, aikido teacher, ${this.instructor.title}, Leicester Aikikai instructor`,
-      url: this.instructorUrl,
-      image: `${SITE_URL}${this.instructor.image}`,
-      type: 'profile'
-    })
-
-    // Set structured data for Person
-    setJsonLd([
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        'name': this.instructor.name,
-        'alternateName': this.instructor.alternateName,
-        'jobTitle': this.instructor.title,
-        'description': this.instructor.bio.replace(/<[^>]*>/g, '').substring(0, 200),
-        'image': `${SITE_URL}${this.instructor.image}`,
-        'url': this.instructorUrl,
-        'memberOf': {
-          '@type': 'SportsOrganization',
-          'name': 'Leicester Aikikai Dojo',
-          'url': SITE_URL
-        },
-        'affiliation': this.instructor.affiliations.map(aff => ({
-          '@type': 'Organization',
-          'name': aff.name
-        })),
-        'knowsAbout': this.instructor.knowsAbout,
-        'alumniOf': {
-          '@type': 'Organization',
-          'name': this.instructor.alumniOf
-        }
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        'itemListElement': [
-          {
-            '@type': 'ListItem',
-            'position': 1,
-            'name': 'Home',
-            'item': SITE_URL
-          },
-          {
-            '@type': 'ListItem',
-            'position': 2,
-            'name': 'Instructors',
-            'item': `${SITE_URL}/instructors`
-          },
-          {
-            '@type': 'ListItem',
-            'position': 3,
-            'name': this.instructor.name,
-            'item': this.instructorUrl
-          }
-        ]
-      }
-    ])
+    const page = getPage(this.$route.path)
+    setMeta(page.meta)
+    setJsonLd(page.schemas)
   }
 }
 </script>

@@ -11,7 +11,7 @@ Club logo: https://leicesteraikikai.com/img/leicester-aikikai-logo-512.png (web-
 - [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and a next-upcoming-event banner at the top of the page.
 - [Start Aikido](https://leicesteraikikai.com/beginners): beginner experience, clothing, eligibility and how to attend a free introductory lesson.
 - [Classes & Prices](https://leicesteraikikai.com/classes): Friday 7:00pm–9:00pm at Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU.
-- [Contact](https://leicesteraikikai.com/contact): contact form and directions. Enquiries use Netlify Forms with spam filtering and a honeypot. Enquiries do not reserve a place in a class.
+- [Contact](https://leicesteraikikai.com/contact): contact form and directions. The form uses Netlify Forms with spam filtering and a honeypot when enabled on the deployed site; local previews cannot send enquiries. Enquiries do not reserve a place in a class.
 
 First introductory lesson is free. The club invites newcomers to come along without advance booking. Families should contact the instructor before bringing a child to confirm eligibility and availability. The club’s published guidance requires children aged 12 and under to have a parent training too. Do not infer a lower age limit from this statement.
 
@@ -37,9 +37,14 @@ Separate annual UK Aikikai membership: adult £35, concession £27, under 18 £2
 
 Do not invent grading requirements, events, age policies, testimonials or insurance terms. Source content remains in src/data/events.js and src/data/blog.js; shared practical information is in src/data/club.js.
 
+## Machine-readable content
+
+- [Extended content summary](https://leicesteraikikai.com/llms-full.txt): generated from the same club, event and blog data used by the website. Contains event dates, venues and article text; use the event date to distinguish historical records.
+- [XML sitemap](https://leicesteraikikai.com/sitemap.xml): canonical public URLs and image references.
+
 ## Technical information
 
-Vue 3 SPA, Vue Router HTML5 history, Bootstrap 5, Vite and Netlify static hosting.
+Vue 3 SPA, Vue Router HTML5 history, Bootstrap 5, Vite and Netlify static hosting. Production builds include route-specific initial metadata and structured data; page bodies render with JavaScript.
 Sitemap: https://leicesteraikikai.com/sitemap.xml
 Robots: https://leicesteraikikai.com/robots.txt
 Legacy home anchors /#our-journey, /#location, /#costs, /#faq and /#the-instructor remain available.

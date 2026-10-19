@@ -1,4 +1,5 @@
 <script setup>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { events } from '../data/events.js'
@@ -32,7 +33,7 @@ function downloadCalendar(event) {
         <h3>Instructors</h3><ul><li v-for="(person, index) in singleEvent.instructors" :key="index"><template v-if="typeof person === 'string'">{{ person }}</template><router-link v-else-if="person.profile?.startsWith('/')" :to="person.profile">{{ person.name }}</router-link><a v-else-if="person.profile" :href="person.profile">{{ person.name }}</a><span v-else>{{ person.name }}</span></li></ul>
         <button v-if="!isPast" type="button" class="btn btn-primary" @click="downloadCalendar(singleEvent)">Add to calendar</button>
         <nav class="action-row mt-4" aria-label="Share this event"><a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL + getEventUrl(singleEvent))}`" target="_blank" rel="noopener noreferrer">Share on Facebook</a><a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL + getEventUrl(singleEvent))}`" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a></nav>
-      </div><img v-if="singleEvent.image" :src="singleEvent.image" :alt="`${singleEvent.title} event poster or photograph`" class="event-detail-image" width="960" height="960" fetchpriority="high">
+      </div><ResponsiveImage v-if="singleEvent.image" :src="singleEvent.image" :alt="`${singleEvent.title} event poster or photograph`" class="event-detail-image" priority />
     </div></section>
     <template v-else>
       <section id="upcoming-events" class="section-space"><div class="container"><div class="section-heading"><h2>Upcoming events</h2><a href="#past-events">Explore past events ↓</a></div><div v-if="grouped.upcoming.length" class="event-grid"><EventCard v-for="event in grouped.upcoming" :key="getEventUrl(event)" :event="event" /></div><div v-else class="content-panel"><h3>No upcoming events currently scheduled</h3><p>Our regular Friday practice continues. <router-link to="/classes">See weekly class details</router-link> or browse past courses below.</p></div></div></section>

@@ -15,11 +15,12 @@
             </a>
           </div>
           <div class="col-md-7 text-center">
-            <img
+            <ResponsiveImage
               src="/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp"
               alt="Leicester Aikikai bokken shiko dachi circle exercise"
               class="img-fluid rounded shadow-lg"
-              fetchpriority="high"
+              sizes="(min-width: 1200px) 720px, (min-width: 768px) 60vw, 100vw"
+              priority
             />
           </div>
         </div>
@@ -955,14 +956,16 @@
 </template>
 
 <script>
+import ResponsiveImage from '../components/ResponsiveImage.vue'
 import 'bootstrap/js/dist/collapse.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { setJsonLd, SITE_URL } from '../utils/seo.js'
+import { club } from '../data/club.js'
 import SyllabusDisclosure from '../components/SyllabusDisclosure.vue'
 
 export default {
   name: 'Syllabus',
-  components: { SyllabusDisclosure },
+  components: { ResponsiveImage, SyllabusDisclosure },
   mounted() {
     // Add structured data for aikido syllabus/course content
     setJsonLd([
@@ -970,7 +973,7 @@ export default {
       {
         '@context': 'https://schema.org',
         '@type': 'Course',
-        'name': 'Traditional Aikido Training Program',
+        'name': 'Traditional Aikido Training Programme',
         'description': 'Comprehensive aikido training syllabus including taijutsu (body art), bokken (wooden sword), and jo (wooden staff) techniques following teachings of Kazuo Chiba shihan and Morihiro Saito shihan.',
         'provider': {
           '@type': 'Organization',
@@ -982,21 +985,22 @@ export default {
           'courseMode': 'Onsite',
           'location': {
             '@type': 'Place',
-            'name': 'Aylestone Leisure Centre',
+            'name': club.venue,
             'address': {
               '@type': 'PostalAddress',
-              'streetAddress': '2 Knighton Lane East',
-              'addressLocality': 'Leicester',
-              'postalCode': 'LE2 6LU',
+              'streetAddress': club.street,
+              'addressLocality': club.city,
+              'postalCode': club.postcode,
               'addressCountry': 'GB'
             }
           },
           'courseSchedule': {
             '@type': 'Schedule',
             'repeatFrequency': 'P1W',
+            'scheduleTimezone': 'Europe/London',
             'byDay': 'Friday',
-            'startTime': '19:00',
-            'endTime': '21:00'
+            'startTime': club.start,
+            'endTime': club.end
           }
         },
         'educationalCredentialAwarded': 'Kyu and Dan Grades (UKA certified)',

@@ -241,3 +241,69 @@ Red remains for contact-form errors, important cancellation notices and the
 existing red-belt grading information. Grading colours and all technical content
 are unchanged. Blue text/buttons provide a calculated contrast ratio of 6.3:1
 against white, with links also exceeding 4.5:1 on the warm and pale-blue surfaces.
+
+## SEO, discovery files and responsive images (19 October 2026)
+
+Route metadata now lives in `src/data/route-metadata.js`, with concrete event,
+article and instructor pages assembled by `src/utils/pages.js` from the existing
+content data. The client and build share titles, descriptions, canonicals,
+sharing tags and base structured data. Instructor breadcrumbs now point to the
+real About page. Blog dates use the recorded calendar dates rather than invented
+midnight timestamps. Syllabus schedule data reads shared venue/times and includes
+Europe/London.
+
+After Vite builds, `scripts/build-seo.mjs` generates initial HTML heads for all 27
+HTML routes. Exact Netlify rewrites precede the original SPA fallback. The PDF and
+contact form remain ordinary static files. The generated pages contain metadata
+and JSON-LD before JavaScript runs; Vue still renders page bodies in the browser.
+This is not full server rendering. Internal `/_pages/` URLs are excluded from
+crawling and point canonically to the public URLs. Netlify normalises trailing
+slashes, so the rewrite list does not attempt slash-only HTTP redirects. Vue
+normalises route paths while preserving query parameters and fragments. Vite's
+preview middleware mirrors the known-page rewrites for local checks.
+
+The sitemap is generated from the same concrete page registry: 28 unique public
+URLs including the PDF. It includes discoverable image URLs. Only the blog's
+recorded update date is emitted as lastmod; a deployment date is not substituted
+for an unknown content update date. Priority and changefreq were removed. XML
+values are escaped. Robots has a single universal crawler rule and the canonical
+sitemap reference.
+
+`public/llms.txt` has been refreshed, with a linked `public/llms-full.txt` generated
+before each build from club, event and blog data. The extended file includes the
+page directory, practical class information, dated event records and blog text.
+It preserves the child eligibility caveat, publication context, and deployment
+requirement for the enquiry form. It makes no promise of search/AI rankings.
+The curated overview still needs reviewing when club policy or site structure
+changes; event and blog detail text updates automatically.
+
+`ResponsiveImage.vue` uses a generated manifest with 320/640/960/up-to-1280px
+variants, intrinsic dimensions, lazy loading below the main content and priority
+loading for prominent images. Hero crops and wide article images have tailored
+sizes. Images with an already smaller original retain it as the largest source.
+The 18 unique photographic/poster sources total 5,021,296 bytes in their originals;
+the largest selected web variants total 2,463,897 bytes, about 51% less. This is an
+aggregate asset comparison, not a measured page-speed or Core Web Vitals result.
+JPEG sharing variants have recorded dimensions and image types. Fingerprinted
+image assets receive immutable cache headers. All original assets, logos,
+favicons and legacy image URLs remain intact.
+
+Image maintenance is optional: run `SHARP_MODULE=/path/to/sharp npm run images`
+using a local Sharp installation, then build. Generated assets and the manifest
+are committed; ordinary builds require no new image-processing dependency.
+
+Validation: `npm run build`, all 18 Node tests, XML parsing and `git diff --check`
+passed. Browser regression checks covered all 27 HTML routes at 320, 375, 768,
+1024 and 1440px plus 29 internal links, keyboard interactions, event calendars,
+unknown routes, image decoding and enquiry fallback. No horizontal overflow,
+broken images or console errors were found. Additional browser checks verified
+initial metadata with JavaScript disabled and responsive hero image selection.
+Desktop/mobile home and event/article layouts were visually inspected.
+
+Production Netlify rewrite behaviour, CDN headers, search indexing, sharing-cache
+refreshes and field performance still need verification after deployment. No
+public deployment, sitemap submission or Netlify account change was performed.
+
+References: [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap),
+[Google JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics),
+[Netlify redirect options](https://docs.netlify.com/manage/routing/redirects/redirect-options/).
