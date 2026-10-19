@@ -8,7 +8,7 @@ Club logo: https://leicesteraikikai.com/img/leicester-aikikai-logo-512.png (web-
 
 ## Getting started
 
-- [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and a next-upcoming-event banner at the top of the page.
+- [Home](https://leicesteraikikai.com/): next-class notice with the date and UK time, including any confirmed cancellation or changed hours; a separate next-upcoming-event banner; introduction, first-class guidance, fees, location and FAQs. Check the class notice before travelling.
 - [Start Aikido](https://leicesteraikikai.com/beginners): beginner experience, clothing, eligibility and how to attend a free introductory lesson.
 - [Classes & Prices](https://leicesteraikikai.com/classes): Friday 7:00pm–9:00pm at Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU.
 - [Contact](https://leicesteraikikai.com/contact): contact form and directions. The form uses Netlify Forms with spam filtering and a honeypot when enabled on the deployed site; local previews cannot send enquiries. Enquiries do not reserve a place in a class.

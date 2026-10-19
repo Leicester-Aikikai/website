@@ -4,7 +4,8 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { events } from '../src/data/events.js'
 import { blogPosts, getBlogPostUrl } from '../src/data/blog.js'
-import { getEventUrl, splitEvents } from '../src/utils/events.js'
+import { getEventUrl, splitEvents, formatTime } from '../src/utils/events.js'
+import { getNextClass } from '../src/utils/classes.js'
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright')
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173'
 const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) })
@@ -45,6 +46,13 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     assert.ok(!result.robots.includes('noindex'), path)
     assert.ok(!JSON.stringify(result.schema).includes('AggregateRating'), path)
     assert.equal(result.schema.filter(schema => schema['@type'] === 'SportsActivityLocation').length, 1, path)
+    if (path === '/') {
+      assert.match(await page.locator('#next-class').innerText(), /Friday,? 23 October 2026/)
+      const session = getNextClass(new Date('2026-10-19T12:00:00Z'))
+      assert.ok((await page.locator('#next-class').innerText()).includes(`${formatTime(session.start)} – ${formatTime(session.end)}`))
+      assert.ok(await page.locator('#next-class').getByRole('link', { name: 'Class details' }).isVisible())
+      assert.ok(await page.locator('#latest-event').isVisible(), 'Upcoming event remains alongside the class notice')
+    }
     if (width === 1440) result.links.forEach(link => links.add(link))
   }
   console.log(`Checked ${urls.length} routes at ${width}px`)
@@ -126,8 +134,10 @@ await page.getByText('Online enquiries are temporarily unavailable.', { exact: f
 assert.ok(await page.getByRole('button', { name: 'Send enquiry', exact: true }).isDisabled())
 assert.equal(await page.locator('a[href^="mailto:"]').count(), 0)
 await page.goto(base + '/')
+await page.screenshot({ path: '/tmp/aikikai-next-class-desktop.png' })
 await page.screenshot({ path: '/tmp/aikikai-home-desktop.png', fullPage: true })
 await page.setViewportSize({ width: 375, height: 850 })
+await page.screenshot({ path: '/tmp/aikikai-next-class-mobile.png' })
 await page.screenshot({ path: '/tmp/aikikai-home-mobile.png', fullPage: true })
 assert.deepEqual(errors, [])
 console.log('PASS: responsive routes, links, images, landmarks, control names, metadata, schema, mobile keyboard menu, FAQs, syllabus, event ordering, calendar download and unavailable-form handling. No console/page errors.')

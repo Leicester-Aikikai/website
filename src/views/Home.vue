@@ -1,8 +1,9 @@
 <script setup>
 import ResponsiveImage from '../components/ResponsiveImage.vue'
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { club } from '../data/club.js'
 import { events } from '../data/events.js'
+import { getNextClass, formatClassDate } from '../utils/classes.js'
 import { getEventUrl, eventDateIso, formatEventDate, formatTime, splitEvents } from '../utils/events.js'
 import FirstClassCta from '../components/FirstClassCta.vue'
 import PricingTable from '../components/PricingTable.vue'
@@ -10,7 +11,19 @@ import ClubDetails from '../components/ClubDetails.vue'
 import BeginnerFaq from '../components/BeginnerFaq.vue'
 import JoinSection from '../components/JoinSection.vue'
 
-const nextEvent = computed(() => splitEvents(events).upcoming[0])
+const now = ref(new Date())
+const nextClass = computed(() => getNextClass(now.value))
+const nextEvent = computed(() => splitEvents(events, now.value).upcoming[0])
+const refreshTime = () => { now.value = new Date() }
+let clockInterval
+onMounted(() => {
+  clockInterval = window.setInterval(refreshTime, 60_000)
+  document.addEventListener('visibilitychange', refreshTime)
+})
+onUnmounted(() => {
+  window.clearInterval(clockInterval)
+  document.removeEventListener('visibilitychange', refreshTime)
+})
 const benefits = [
   { number: '01', title: 'Beginners welcome', text: 'No previous martial arts experience is necessary.' },
   { number: '02', title: 'Experienced instruction', text: 'Learn traditional aikido with guidance from an experienced instructor.' },
@@ -21,6 +34,19 @@ const benefits = [
 
 <template>
   <main id="main-content" tabindex="-1" class="home">
+    <aside id="next-class" class="next-class-notice" :class="{ 'class-cancelled': nextClass.cancelled }" aria-label="Next class">
+      <div class="container next-class-layout">
+        <div aria-live="polite" aria-atomic="true">
+          <span class="eyebrow">{{ nextClass.inProgress ? 'Class in progress' : 'Next class' }}</span>
+          <p class="next-class-time"><time :datetime="nextClass.date">{{ formatClassDate(nextClass.date) }}</time><span>{{ formatTime(nextClass.start) }} – {{ formatTime(nextClass.end) }}</span></p>
+          <p v-if="nextClass.cancelled" class="class-update">Class cancelled — no training on this date.</p>
+          <p v-else-if="nextClass.changed" class="class-update">Time changed for this class.</p>
+          <p v-if="nextClass.message" class="class-message">{{ nextClass.message }}</p>
+          <p class="class-venue">{{ club.venue }}, {{ club.city }} · UK time</p>
+        </div>
+        <router-link to="/classes" class="text-link">Class details <span aria-hidden="true">↗</span></router-link>
+      </div>
+    </aside>
     <aside v-if="nextEvent" id="latest-event" class="next-event-banner" aria-label="Next upcoming event">
       <div class="container next-event-layout">
         <div class="next-event-date">

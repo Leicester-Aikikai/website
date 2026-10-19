@@ -307,3 +307,35 @@ public deployment, sitemap submission or Netlify account change was performed.
 References: [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap),
 [Google JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics),
 [Netlify redirect options](https://docs.netlify.com/manage/routing/redirects/redirect-options/).
+
+## Next-class notice and one-off changes
+
+The home page now shows the next Friday class above the separate upcoming-event
+banner. Regular hours come from `club.start` / `club.end` (19:00–21:00). Dates,
+current-session status and automatic rollover use Europe/London, including BST.
+The notice refreshes every minute and when the page becomes visible again.
+
+Edit `src/data/classes.js` to publish a confirmed exception, then build/deploy:
+
+```js
+export const classOverrides = {
+  // Example dates only: replace with the actual confirmed class date.
+  '2026-12-25': { cancelled: true, message: 'No training this Friday.' },
+  '2026-12-18': { start: '18:30', end: '20:30', message: 'Earlier training this week.' }
+}
+```
+
+Keys use YYYY-MM-DD for the regular Friday date; times use 24-hour UK local time.
+A cancellation remains visible through the end of that scheduled class rather
+than silently skipping it. Changed hours have a visible text label; cancellations
+also use the existing red error colour and struck-through hours. At class end the
+notice advances automatically, and past overrides no longer affect future weeks.
+No example cancellations or changed times are enabled in the actual data.
+The generated LLM summary includes any recorded exceptions as explicitly dated
+records, while the curated overview points visitors to the live home notice.
+
+Validation: build and all 24 Node tests passed, including next-Friday selection,
+in-progress/end boundaries, cancellation visibility, changed hours, automatic
+return to defaults, BST/GMT and UK date boundaries. Browser regression checks
+passed on all 27 routes at five widths, with explicit checks for the class date,
+hours and retained event banner. Desktop/mobile notice layouts were inspected.

@@ -1,6 +1,7 @@
 // Generated content companion; keep the curated public/llms.txt overview in sync too.
 import { writeFileSync } from 'node:fs'
 import { club, beginnerFaqs } from '../src/data/club.js'
+import { classOverrides } from '../src/data/classes.js'
 import { events } from '../src/data/events.js'
 import { blogPosts, getBlogPostUrl, getBlogAuthor } from '../src/data/blog.js'
 import { getEventUrl, eventDateIso, instructorNames } from '../src/utils/events.js'
@@ -13,6 +14,8 @@ const content = [
   `Canonical website: ${SITE_URL}`,
   '## Classes and first visit',
   `${club.day}, ${club.hours}. ${club.venue}, ${club.street}, ${club.city}, ${club.postcode}. First introductory lesson free. Advance booking is not required for the introductory class.`,
+  'The home page shows the next class in Europe/London time, including confirmed cancellations or changed hours. Check the home page before travelling.',
+  ...Object.entries(classOverrides).sort(([a], [b]) => a.localeCompare(b)).map(([date, change]) => `Class exception dated ${date}: ${change.cancelled ? 'cancelled' : `${change.start || club.start}–${change.end || club.end} (Europe/London)`}.${change.message ? ` ${change.message}` : ''}`),
   club.ageGuidance, club.clothing,
   ...club.fees.map(fee => `${fee.label}: £${fee.monthly} monthly training; £${fee.annual} separate annual UK Aikikai membership.`),
   `Guest session: £${club.guestFee}. Ask the instructor about registration, insurance cover and payment.`,

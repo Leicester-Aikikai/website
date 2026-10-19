@@ -73,6 +73,17 @@ address { font-style: normal; }
 .primary-menu .is-active { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: .5rem; }
 .primary-menu .btn { font-size: .74rem; white-space: nowrap; }
 .menu-toggle { display: none; background: white; border: 1px solid var(--line); border-radius: 3px; padding: .5rem .75rem; min-height: 44px; font-size: .85rem; }
+.next-class-notice { background: white; border-bottom: 1px solid var(--line); }
+.next-class-layout { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem 2rem; padding-block: 1rem; }
+.next-class-layout > div { min-width: 0; }
+.next-class-notice .eyebrow { color: var(--accent); margin-bottom: .25rem; }
+.next-class-time { display: flex; flex-wrap: wrap; gap: .2rem 1.25rem; font-size: .95rem; font-weight: 650; margin: 0; }
+.next-class-time span { white-space: nowrap; }
+.next-class-notice .class-venue, .next-class-notice .class-message { margin: .2rem 0 0; color: var(--muted); font-size: .8rem; }
+.next-class-notice .class-update { margin: .3rem 0 0; font-weight: 650; color: var(--accent); font-size: .9rem; }
+.next-class-notice.class-cancelled { border-left: 4px solid var(--danger); background: #fff6f5; }
+.class-cancelled .eyebrow, .class-cancelled .class-update { color: var(--danger); }
+.class-cancelled .next-class-time span { text-decoration: line-through; }
 .next-event-banner { background: var(--accent-soft); border-bottom: 1px solid var(--line); }
 .next-event-layout { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; padding-block: 1.25rem; }
 .next-event-date { border-left: 3px solid var(--accent); padding-left: 1rem; }
