@@ -17,7 +17,7 @@ const content = [
   'The home page shows the next class in Europe/London time, including confirmed cancellations or changed hours. Check the home page before travelling.',
   ...Object.entries(classOverrides).sort(([a], [b]) => a.localeCompare(b)).map(([date, change]) => `Class exception dated ${date}: ${change.cancelled ? 'cancelled' : `${change.start || club.start}–${change.end || club.end} (Europe/London)`}.${change.message ? ` ${change.message}` : ''}`),
   club.ageGuidance, club.clothing,
-  ...club.fees.map(fee => `${fee.label}: £${fee.monthly} monthly training; £${fee.annual} separate annual UK Aikikai membership.`),
+  ...club.fees.map(fee => `${fee.label}: £${fee.monthly} monthly training; £${fee.annual} separate annual UK Aikikai membership, including liability insurance.`),
   `Guest session: £${club.guestFee}. Ask the instructor about registration, insurance cover and payment.`,
   `Contact: ${SITE_URL}/contact. Sending an enquiry does not reserve a class place. The form requires Netlify Forms to be enabled on the deployed site.`,
   '## Club',
