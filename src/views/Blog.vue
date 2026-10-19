@@ -311,7 +311,7 @@ export default {
 .blog-metadata { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 2rem; font-size: .8rem; color: var(--muted); }
 .blog-article-photo { margin-bottom: 3rem; }
 .blog-article-photo img { display: block; width: 100%; height: auto; }
-.blog-contents { background: var(--warm); border-left: 2px solid var(--red); padding: 1.5rem 2rem; margin-block: 2.5rem 3rem; }
+.blog-contents { background: var(--warm); border-left: 2px solid var(--accent); padding: 1.5rem 2rem; margin-block: 2.5rem 3rem; }
 .blog-contents ol { margin-bottom: 0; padding-left: 1.25rem; }
 .blog-contents a { display: inline-block; padding-block: .4rem; }
 .blog-body-section { margin-block: 3rem; }

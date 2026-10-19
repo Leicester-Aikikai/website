@@ -137,8 +137,8 @@ onBeforeUnmount(() => { clearTimeout(timeout); controller?.abort() })
 .form-control { min-height: 48px; border-color: #80877e; font-size: 1rem; }
 textarea.form-control { min-height: 150px; }
 .field-note { font-size: .85rem; color: var(--muted); font-weight: 400; }
-.form-notice { padding: 1rem; margin-block: 1.25rem; border-left: 3px solid var(--red); background: var(--warm); }
+.form-notice { padding: 1rem; margin-block: 1.25rem; border-left: 3px solid var(--accent); background: var(--warm); }
 .form-notice p:last-child { margin-bottom: 0; }
 .form-success { border-color: #386044; }
-.form-error { color: #81211f; }
+.form-error { color: var(--danger-strong); border-color: var(--danger); }
 </style>

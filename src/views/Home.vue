@@ -36,7 +36,7 @@ const benefits = [
     <section class="home-hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="red-line" aria-hidden="true"></span> Traditional aikido · Leicester</p>
+          <p class="eyebrow"><span class="accent-line" aria-hidden="true"></span> Traditional aikido · Leicester</p>
           <h1>Learn Aikido<br>in Leicester<span class="accent">.</span></h1>
           <p class="lead">Traditional aikido. Friendly people.<br>A place to begin.</p>
           <p>Discover traditional Japanese aikido in a friendly and welcoming environment. Whether you’re completely new to martial arts or returning to training, develop movement, coordination and martial arts skills at your own pace.</p>

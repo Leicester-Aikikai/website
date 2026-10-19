@@ -35,7 +35,7 @@ defineProps({ post: Object, featured: Boolean })
 .blog-post-photo { display: block; background: var(--warm); }
 .blog-post-photo img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .blog-post-copy { padding: clamp(1.5rem, 3vw, 2.5rem); }
-.blog-post-copy .eyebrow { color: var(--red); margin-bottom: .75rem; }
+.blog-post-copy .eyebrow { color: var(--accent); margin-bottom: .75rem; }
 .blog-post-copy h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.25; }
 .blog-post-copy h3 a { color: var(--ink); text-decoration: none; }
 .blog-post-copy h3 a:hover { text-decoration: underline; }

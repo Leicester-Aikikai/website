@@ -9,7 +9,7 @@ blog, instructor and syllabus URLs and technical content. Add `/beginners`,
 Centralise practical club information, fees, beginner answers and navigation.
 Build reusable first-class actions, venue details, prices, FAQs and an unpublished
 testimonial component. Replace the homepage and navigation with a responsive,
-charcoal/off-white/red design using existing club photographs. Keep legacy home
+charcoal/off-white/blue design using existing club photographs. Keep legacy home
 anchors working. Use a protected enquiry form, without suggesting an enquiry is a booking.
 
 Unify metadata and schema on the existing `.com` canonical domain, include new
@@ -62,7 +62,7 @@ travel, FAQs and the next future event. Its hero exposes the class time, venue a
 free lesson. New pages share club data, prices and FAQ answers. Testimonials remain
 unpublished. Enquiries use a short protected contact form; they do not reserve a place in a class.
 
-The visual system uses charcoal, warm off-white and red, genuine club photography,
+The visual system uses charcoal, warm off-white and subdued blue, genuine club photography,
 system fonts, responsive grids and native FAQ disclosures. Navigation supports
 keyboard operation, Escape, current-page indication and a skip link. Route changes
 focus the new content; reduced-motion preferences are respected.
@@ -227,3 +227,17 @@ Validation: build, all 13 tests and diff checks passed. Browser checks at 320,
 working home links, no overflow, served favicon image types, and updated local
 organisation/article publisher logo metadata. Desktop and mobile branding were
 visually inspected. ICO size variants were checked with Pillow.
+
+
+## Logo-aligned blue accents
+
+Replaced decorative red with muted blue (`#24658f`) across primary buttons, links,
+current-navigation indicators, dividers, topic labels, the event banner and weapons
+controls. Pale blue (`#edf4f8`) is limited to the event and joining panels; the
+warm-white backgrounds and charcoal typography remain. Darker blue hover/active
+states and a blue focus outline keep interactions consistent.
+
+Red remains for contact-form errors, important cancellation notices and the
+existing red-belt grading information. Grading colours and all technical content
+are unchanged. Blue text/buttons provide a calculated contrast ratio of 6.3:1
+against white, with links also exceeding 4.5:1 on the warm and pale-blue surfaces.
