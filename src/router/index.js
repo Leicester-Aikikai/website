@@ -1,137 +1,95 @@
+import { routeMetadata } from '../data/route-metadata.js'
+import { getPage } from '../utils/pages.js'
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Events from '../views/Events.vue'
-import Blog from '../views/Blog.vue'
-import Syllabus from '../views/Syllabus.vue'
-import Instructor from '../views/Instructor.vue'
-import { setMeta, SITE_URL } from '../utils/seo.js'
+const Events = () => import('../views/Events.vue')
+const Blog = () => import('../views/Blog.vue')
+const Syllabus = () => import('../views/Syllabus.vue')
+const Instructor = () => import('../views/Instructor.vue')
+import { setMeta, setJsonLd, SITE_URL } from '../utils/seo.js'
+import { events } from '../data/events.js'
+import { blogPosts, getBlogPostUrl } from '../data/blog.js'
+import { getEventUrl } from '../utils/events.js'
+const Beginners = () => import('../views/Beginners.vue')
+const Classes = () => import('../views/Classes.vue')
+const About = () => import('../views/About.vue')
+const Resources = () => import('../views/Resources.vue')
+const Contact = () => import('../views/Contact.vue')
+const NotFound = () => import('../views/NotFound.vue')
 
 const routes = [
+  { path: '/beginners', name: 'Beginners', component: Beginners, meta: routeMetadata['/beginners'] },
+  { path: '/classes', name: 'Classes', component: Classes, meta: routeMetadata['/classes'] },
+  { path: '/about', name: 'About', component: About, meta: routeMetadata['/about'] },
+  { path: '/resources', name: 'Resources', component: Resources, meta: routeMetadata['/resources'] },
+  { path: '/contact', name: 'Contact', component: Contact, meta: routeMetadata['/contact'] },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound, meta: routeMetadata['/:pathMatch(.*)*'] },
   {
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      title: 'Leicester Aikikai Dojo :: Traditional Aikido in the East Midlands :: レスター 合気会',
-      description: 'Leicester Aikikai is a UK Aikikai Aikido dojo based in Leicester teaching traditional aikido. Learn this non-competitive martial art. First class FREE.',
-      keywords: 'Leicester Aikido, Aikikai, traditional aikido, martial arts Leicester, aikido classes, self-defence, UKA, East Midlands',
-      image: `${SITE_URL}/img/leicester-aikikai-aylestone-leisure-centre.jpeg`
-    }
+    meta: routeMetadata['/']
   },
   {
     path: '/events',
     name: 'Events',
     component: Events,
-    meta: {
-      title: 'Aikido Events & Courses :: Leicester Aikikai Dojo',
-      description: 'Upcoming and past aikido events, courses, and seminars at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
-      keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
-      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
-    }
+    meta: routeMetadata['/events']
   },
   {
     path: '/events/:date/:title',
     name: 'EventDetail',
     component: Events,
-    meta: {
-      title: 'Aikido Event :: Leicester Aikikai Dojo',
-      description: 'Aikido event details at Leicester Aikikai. Join our dojo courses with guest instructors from UK Aikikai and beyond.',
-      keywords: 'aikido events Leicester, aikido courses, aikido seminars, martial arts events, aikido training Leicester',
-      image: `${SITE_URL}/img/antonis-pavlakis-with-iain-cooper.webp`
-    }
+    meta: routeMetadata['/events/:date/:title']
   },
   {
     path: '/blog',
     name: 'Blog',
     component: Blog,
-    meta: {
-      title: 'Blog | Leicester Aikikai Dojo',
-      description: 'Aikido articles, beginner guidance, and dojo notes from Leicester Aikikai. Read practical posts about training, ukemi, consistency, and life on the mat.',
-      keywords: 'Leicester Aikikai blog, aikido blog, aikido training, ukemi, beginner aikido, traditional aikido, martial arts Leicester',
-      image: `${SITE_URL}/img/aylestone-leisure-centre-mat-space.jpeg`
-    }
+    meta: routeMetadata['/blog']
   },
   {
     path: '/blog/:date/:title',
     name: 'BlogDetail',
     component: Blog,
-    meta: {
-      title: 'Aikido Blog Article :: Leicester Aikikai Dojo',
-      description: 'Read aikido articles and dojo notes from Leicester Aikikai. Practical guidance for beginners, training insights, and traditional aikido reflections.',
-      keywords: 'Leicester Aikikai blog article, aikido training article, ukemi, beginner aikido, traditional aikido, martial arts Leicester',
-      image: `${SITE_URL}/img/aylestone-leisure-centre-mat-space.jpeg`,
-      type: 'article'
-    }
+    meta: routeMetadata['/blog/:date/:title']
   },
   {
     path: '/instructors/:name',
     name: 'Instructor',
     component: Instructor,
-    meta: {
-      title: 'Instructor Profile :: Leicester Aikikai Dojo',
-      description: 'Meet our aikido instructors at Leicester Aikikai. Learn about their experience, qualifications, and teaching background.',
-      keywords: 'aikido instructor Leicester, aikido teacher, martial arts instructor, aikido sensei',
-      image: `${SITE_URL}/img/leicester-aikikai-antonios-pavlakis-2016.jpg`
-    }
+    meta: routeMetadata['/instructors/:name']
   },
   {
     path: '/syllabus',
     name: 'Syllabus',
     component: Syllabus,
-    meta: {
-      title: 'Aikido Syllabus & Grading :: Leicester Aikikai Dojo',
-      description: 'Complete aikido syllabus including taijutsu (body art), weapons training (bokken, jo), kyu grades, and examination requirements at Leicester Aikikai.',
-      keywords: 'aikido syllabus, aikido grading, aikido kyu grades, aikido weapons, bokken, jo, aikido techniques',
-      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`
-    }
+    meta: routeMetadata['/syllabus']
   },
   {
     path: '/syllabus/6th-kyu',
     name: 'Syllabus6thKyu',
     component: Syllabus,
-    meta: {
-      title: '6th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
-      description: 'Complete 6th kyu (red belt) aikido syllabus including solo exercises, partner movements, tachi waza, suwari waza techniques at Leicester Aikikai.',
-      keywords: 'aikido 6th kyu, aikido red belt, aikido grading, aikido techniques, ikkyo, iriminage, shihonage',
-      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
-      grade: '6th-kyu'
-    }
+    meta: routeMetadata['/syllabus/6th-kyu']
   },
   {
     path: '/syllabus/5th-kyu',
     name: 'Syllabus5thKyu',
     component: Syllabus,
-    meta: {
-      title: '5th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
-      description: '5th kyu (yellow belt) aikido syllabus with techniques including nikyo, kotegaeshi, shiho nage from various attacks at Leicester Aikikai.',
-      keywords: 'aikido 5th kyu, aikido yellow belt, nikyo, kotegaeshi, shiho nage, aikido grading',
-      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
-      grade: '5th-kyu'
-    }
+    meta: routeMetadata['/syllabus/5th-kyu']
   },
   {
     path: '/syllabus/4th-kyu',
     name: 'Syllabus4thKyu',
     component: Syllabus,
-    meta: {
-      title: '4th Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
-      description: '4th kyu (orange belt) aikido syllabus featuring sankyo, yonkyo, rokkyo and advanced throwing techniques from multiple attacks.',
-      keywords: 'aikido 4th kyu, aikido orange belt, sankyo, yonkyo, rokkyo, aikido grading',
-      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
-      grade: '4th-kyu'
-    }
+    meta: routeMetadata['/syllabus/4th-kyu']
   },
   {
     path: '/syllabus/3rd-kyu',
     name: 'Syllabus3rdKyu',
     component: Syllabus,
-    meta: {
-      title: '3rd Kyu Aikido Grading Syllabus :: Leicester Aikikai Dojo',
-      description: '3rd kyu (green belt) aikido syllabus including gokyo, hanmi handachi waza, and ushiro waza (attacks from behind) techniques.',
-      keywords: 'aikido 3rd kyu, aikido green belt, gokyo, hanmi handachi, ushiro waza, aikido grading',
-      image: `${SITE_URL}/img/leicester-aikikai-bokken-shiko-dachi-circle-exercise.webp`,
-      grade: '3rd-kyu'
-    }
+    meta: routeMetadata['/syllabus/3rd-kyu']
   },
   {
     path: '/docs/welcome-to-aikido-uka-booklet.pdf',
@@ -139,12 +97,7 @@ const routes = [
     beforeEnter() {
       window.location.href = '/docs/welcome-to-aikido-uka-booklet.pdf'
     },
-    meta: {
-      title: 'Welcome to Aikido - UKA Booklet :: Leicester Aikikai Dojo',
-      description: 'Download the official UK Aikikai Welcome to Aikido booklet. An introduction to traditional aikido practice, etiquette, and philosophy.',
-      keywords: 'aikido booklet, aikido guide, UK Aikikai, aikido introduction, aikido etiquette, aikido beginner guide',
-      image: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`
-    }
+    meta: routeMetadata['/docs/welcome-to-aikido-uka-booklet.pdf']
   }
 ]
 
@@ -155,7 +108,7 @@ const router = createRouter({
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       }
     } else if (savedPosition) {
       return savedPosition
@@ -165,22 +118,22 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
-  // Set dynamic meta tags for SEO
-  const meta = to.meta || {}
-  const url = `${SITE_URL}${to.path}`
+router.beforeEach(to => {
+  const path = to.path === '/' ? '/' : to.path.replace(/\/+$/, '')
+  if (path !== to.path) return { path, query: to.query, hash: to.hash, replace: true }
+  if (to.name === 'EventDetail' && !events.some(event => getEventUrl(event) === to.path)) return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+  if (to.name === 'BlogDetail' && !blogPosts.some(post => getBlogPostUrl(post) === to.path)) return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+  if (to.name === 'Instructor' && to.params.name !== 'antonis-pavlakis') return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+  const page = getPage(to.path)
+  setMeta(page?.meta || { ...to.meta, url: SITE_URL + to.path })
+  setJsonLd(page?.schemas || [])
+})
 
-  setMeta({
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    image: meta.image,
-    url: url,
-    type: meta.type || 'website'
-  })
-
-  next()
+router.afterEach(async (to, from) => {
+  if (from.matched.length && to.path !== from.path) {
+    await nextTick()
+    document.getElementById('main-content')?.focus({ preventScroll: true })
+  }
 })
 
 export default router
-

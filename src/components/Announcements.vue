@@ -57,15 +57,11 @@ export default {
 </script>
 
 <style scoped>
-/*
-  The navbar uses Bootstrap's fixed-top (z-index: 1030).
-  The banner sits just below it using margin-top and a lower z-index.
-  position: sticky keeps it visible as the user scrolls.
-*/
+
 .announcement-banner {
-  margin-top: 62px; /* offset for fixed navbar height */
-  position: sticky;
-  top: 62px;
+  margin-top: 0; /* offset for fixed navbar height */
+  position: relative;
+  top: 0;
   z-index: 1025;
   /* Deep red: background #991b1b, text #ffffff — contrast ratio ~6.6:1 (WCAG AA ✓) */
   background-color: #991b1b;
@@ -114,7 +110,9 @@ export default {
   cursor: pointer;
   font-size: 1.25rem;
   line-height: 1;
-  padding: 0.1rem 0.45rem;
+  padding: 0.5rem 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
   flex-shrink: 0;
   transition: background 0.2s ease, border-color 0.2s ease;
 }

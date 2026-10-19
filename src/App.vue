@@ -1,27 +1,13 @@
-<template>
-  <div id="app">
-    <Announcements />
-    <Navbar />
-    <router-view />
-    <Footer />
-  </div>
-</template>
-
-<script>
+<script setup>
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import Announcements from './components/Announcements.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Navbar,
-    Footer,
-    Announcements
-  }
-}
 </script>
 
-<style>
-/* Global styles are imported in main.js */
-</style>
+<template>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <Navbar />
+  <Announcements />
+  <router-view :key="$route.path" />
+  <Footer />
+</template>
