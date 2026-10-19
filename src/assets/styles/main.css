@@ -70,6 +70,14 @@ address { font-style: normal; }
 .primary-menu .is-active { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: .5rem; }
 .primary-menu .btn { font-size: .74rem; white-space: nowrap; }
 .menu-toggle { display: none; background: white; border: 1px solid var(--line); border-radius: 3px; padding: .5rem .75rem; min-height: 44px; font-size: .85rem; }
+.next-event-banner { background: #eeece3; border-bottom: 1px solid var(--line); }
+.next-event-layout { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; padding-block: 1.25rem; }
+.next-event-date { border-left: 3px solid var(--red); padding-left: 1rem; }
+.next-event-date .eyebrow { color: var(--red); margin-bottom: .3rem; }
+.next-event-date time { font-size: .9rem; font-weight: 650; }
+.next-event-summary { min-width: 0; }
+.next-event-title { display: inline-block; color: var(--ink); font-size: .95rem; font-weight: 650; line-height: 1.5; }
+.next-event-summary p { margin: .25rem 0 0; color: var(--muted); font-size: .8rem; }
 .home-hero { background: var(--warm); }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-block: 4rem; align-items: center; }
 .hero-copy { padding-block: 1rem; }
@@ -174,6 +182,10 @@ address { font-style: normal; }
   .primary-menu .btn { align-self: start; font-size: .9rem; }
 }
 @media (max-width: 767px) {
+  .next-event-layout { grid-template-columns: 1fr; gap: .75rem; }
+  .next-event-layout .btn { justify-self: start; }
+  .next-event-date .eyebrow { margin-bottom: .2rem; }
+
   .hero-grid, .split-layout { grid-template-columns: 1fr; }
   .hero-grid { padding-block: 2.5rem; gap: 2rem; }
   .hero-copy h1 { font-size: clamp(3rem, 9vw, 4.5rem); }

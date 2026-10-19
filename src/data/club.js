@@ -11,7 +11,6 @@ export const club = {
   street: '2 Knighton Lane East',
   city: 'Leicester',
   postcode: 'LE2 6LU',
-  email: 'leicester.aikikai@gmail.com',
   directions: 'https://www.google.com/maps/search/?api=1&query=Aylestone+Leisure+Centre+2+Knighton+Lane+East+Leicester+LE2+6LU',
   venueUrl: 'https://www.leicester.gov.uk/leisure-and-culture/sport-and-leisure/sports-and-leisure-centres/aylestone-leisure-centre/',
   membershipUrl: 'https://ukaikikai.org.uk/membership/',
@@ -37,8 +36,6 @@ export const club = {
   ]
 }
 
-export const enquiryUrl = `mailto:${club.email}?subject=${encodeURIComponent('First aikido class enquiry')}`
-
 export const navigation = [
   { label: 'Home', path: '/' },
   { label: 'Start Aikido', path: '/beginners' },
@@ -56,5 +53,5 @@ export const beginnerFaqs = [
   { question: 'Is there a minimum age?', answer: club.ageGuidance },
   { question: 'What happens during my first class?', answer: 'Meet the instructor and let them know you are new. Aikido practice includes partner movement, throws and learning how to fall and roll. The instructor can explain how you will begin; the exact lesson content varies.' },
   { question: 'How much does training cost?', answer: `Your first introductory lesson is free. Monthly training is ${club.fees.map(fee => `£${fee.monthly} for ${fee.label.toLowerCase()}`).join(', ')}. Separate annual UK Aikikai membership fees apply if you continue.` },
-  { question: 'Do I need to book in advance?', answer: 'The club invites newcomers to come along on a Friday; advance booking is not required for the introductory class. You are welcome to email first with questions. Please enquire before bringing a child.' }
+  { question: 'Do I need to book in advance?', answer: 'The club invites newcomers to come along on a Friday; advance booking is not required for the introductory class. You are welcome to contact us first with questions. Please enquire before bringing a child.' }
 ]

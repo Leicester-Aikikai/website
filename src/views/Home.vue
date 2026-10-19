@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { club } from '../data/club.js'
 import { events } from '../data/events.js'
-import { getEventUrl, formatEventDate, splitEvents, instructorNames } from '../utils/events.js'
+import { getEventUrl, eventDateIso, formatEventDate, formatTime, splitEvents } from '../utils/events.js'
 import FirstClassCta from '../components/FirstClassCta.vue'
 import PricingTable from '../components/PricingTable.vue'
 import ClubDetails from '../components/ClubDetails.vue'
@@ -20,6 +20,19 @@ const benefits = [
 
 <template>
   <main id="main-content" tabindex="-1" class="home">
+    <aside v-if="nextEvent" id="latest-event" class="next-event-banner" aria-label="Next upcoming event">
+      <div class="container next-event-layout">
+        <div class="next-event-date">
+          <span class="eyebrow">Next upcoming event</span>
+          <time :datetime="eventDateIso(nextEvent.date)">{{ formatEventDate(nextEvent.date) }}</time>
+        </div>
+        <div class="next-event-summary">
+          <router-link :to="getEventUrl(nextEvent)" class="next-event-title">{{ nextEvent.title }}</router-link>
+          <p>{{ nextEvent.location.name }} · {{ formatTime(nextEvent.time.start) }} – {{ formatTime(nextEvent.time.end) }}</p>
+        </div>
+        <router-link :to="getEventUrl(nextEvent)" class="btn btn-outline-dark">View event details <span aria-hidden="true">↗</span></router-link>
+      </div>
+    </aside>
     <section class="home-hero">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -60,7 +73,7 @@ const benefits = [
 
     <section class="section-space">
       <div class="container split-layout"><div><p class="eyebrow">The first step is a simple one</p><h2>Your first aikido class</h2><p>You don’t need to know the terminology or own a training suit to get started.</p><router-link to="/beginners" class="text-link">Read our beginner guide <span aria-hidden="true">↗</span></router-link></div>
-        <ol class="step-list"><li><h3>Check the details or get in touch</h3><p>See the Friday class information and email us with any questions.</p></li><li><h3>Visit the dojo and meet the instructor</h3><p>Come to Aylestone Leisure Centre and let the instructor know you are new.</p></li><li><h3>Try aikido for yourself</h3><p>Your introductory class is free. See how you feel and decide whether you would like to continue.</p></li></ol>
+        <ol class="step-list"><li><h3>Check the details or get in touch</h3><p>See the Friday class information and contact us with any questions.</p></li><li><h3>Visit the dojo and meet the instructor</h3><p>Come to Aylestone Leisure Centre and let the instructor know you are new.</p></li><li><h3>Try aikido for yourself</h3><p>Your introductory class is free. See how you feel and decide whether you would like to continue.</p></li></ol>
       </div>
     </section>
 
@@ -78,9 +91,8 @@ const benefits = [
     <section id="faq" class="section-space"><div class="container split-layout"><div><p class="eyebrow">Before you step on the mat</p><h2>A few common questions</h2><p>Something else on your mind? <router-link to="/contact">Ask us about getting started.</router-link></p></div><BeginnerFaq /></div></section>
 
     <section id="our-journey" class="section-space warm-section"><div class="container split-layout">
-      <div><p class="eyebrow">Beyond the weekly class</p><h2>{{ nextEvent ? 'Next in our community' : 'Part of a wider aikido community' }}</h2><p>Since 2013, the club has brought people together for regular practice, visiting instructors and shared courses.</p><router-link to="/about">Our journey so far</router-link></div>
-      <article v-if="nextEvent" class="content-panel"><p class="eyebrow">Upcoming event · <time :datetime="nextEvent.date.split('.').reverse().join('-')">{{ formatEventDate(nextEvent.date) }}</time></p><h3><router-link :to="getEventUrl(nextEvent)">{{ nextEvent.title }}</router-link></h3><p>{{ nextEvent.location.name }}<br>{{ nextEvent.location.address }}</p><p>{{ instructorNames(nextEvent).join(', ') }}</p><router-link :to="getEventUrl(nextEvent)" class="text-link">View event details <span aria-hidden="true">↗</span></router-link></article>
-      <div v-else class="content-panel"><h3>Learn together, on and off the mat</h3><p>Explore our past courses and guest instructor visits, or read the latest dojo notes.</p><router-link to="/events" class="text-link">Explore club events</router-link></div>
+      <div><p class="eyebrow">Beyond the weekly class</p><h2>Part of a wider aikido community</h2><p>Since 2013, the club has brought people together for regular practice, visiting instructors and shared courses.</p><router-link to="/about">Our journey so far</router-link></div>
+      <div class="content-panel"><h3>Learn together, on and off the mat</h3><p>Explore our courses and guest instructor visits, or read the latest dojo notes.</p><div class="action-row"><router-link to="/events" class="text-link">Explore club events</router-link><router-link to="/blog" class="text-link">Read dojo notes</router-link></div></div>
     </div></section>
     <JoinSection />
   </main>

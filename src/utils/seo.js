@@ -142,7 +142,6 @@ export function getOrganizationSchema() {
     url: SITE_URL,
     logo: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`,
     image: SITE_IMAGE,
-    email: club.email,
     address: { '@type': 'PostalAddress', streetAddress: club.street, addressLocality: club.city, postalCode: club.postcode, addressCountry: 'GB' },
     geo: { '@type': 'GeoCoordinates', latitude: 52.6093325, longitude: -1.1334088 },
     openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: 'https://schema.org/Friday', opens: club.start, closes: club.end },

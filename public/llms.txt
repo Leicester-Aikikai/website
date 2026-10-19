@@ -6,10 +6,10 @@ Canonical website: https://leicesteraikikai.com
 
 ## Getting started
 
-- [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and next upcoming event.
+- [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and a next-upcoming-event banner at the top of the page.
 - [Start Aikido](https://leicesteraikikai.com/beginners): beginner experience, clothing, eligibility and how to attend a free introductory lesson.
 - [Classes & Prices](https://leicesteraikikai.com/classes): Friday 7:00pm–9:00pm at Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU.
-- [Contact](https://leicesteraikikai.com/contact): email leicester.aikikai@gmail.com and directions. Email enquiries do not reserve a class; the website does not submit a booking form.
+- [Contact](https://leicesteraikikai.com/contact): contact form and directions. Enquiries use Netlify Forms with spam filtering and a honeypot. Enquiries do not reserve a place in a class.
 
 First introductory lesson is free. The club invites newcomers to come along without advance booking. Families should contact the instructor before bringing a child to confirm eligibility and availability. The club’s published guidance requires children aged 12 and under to have a parent training too. Do not infer a lower age limit from this statement.
 

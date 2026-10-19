@@ -4,7 +4,7 @@ import { readFileSync, existsSync } from 'node:fs'
 import { events } from '../src/data/events.js'
 import { blogPosts, getBlogPostUrl } from '../src/data/blog.js'
 import { getEventUrl } from '../src/utils/events.js'
-import { club, enquiryUrl } from '../src/data/club.js'
+import { club } from '../src/data/club.js'
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
 test('sitemap covers new and preserved content and matches the deployed copy', () => {
@@ -18,8 +18,6 @@ test('published content images and resources are real public files', () => {
   for (const file of files.filter(Boolean)) assert.ok(existsSync(new URL(`../public${file}`, import.meta.url)), file)
 })
 
-test('enquiry opens the verified email address and no unsupported payment method is asserted', () => {
-  assert.equal(new URL(enquiryUrl).pathname, 'leicester.aikikai@gmail.com')
-  assert.equal(new URL(enquiryUrl).searchParams.get('subject'), 'First aikido class enquiry')
+test('published training and association fees remain unchanged', () => {
   assert.deepEqual(club.fees.map(fee => [fee.monthly, fee.annual]), [[25, 35], [20, 27], [15, 20]])
 })

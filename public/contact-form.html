@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form | Leicester Aikikai</title>
+  </head>
+  <body data-contact-definition>
+    <!-- Static definition for Netlify's build-time form detection. Keep field
+         names in sync with Contact.vue. Recipient notifications belong only in
+         Netlify's account settings; never add a receiving address here. -->
+    <form name="first-class-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" type="text">
+      <input name="name" type="text">
+      <input name="email" type="email">
+      <input name="preferred-friday" type="date">
+      <textarea name="message"></textarea>
+    </form>
+    <p><a href="/contact">Contact Leicester Aikikai</a></p>
+  </body>
+</html>

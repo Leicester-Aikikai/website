@@ -10,7 +10,7 @@ Centralise practical club information, fees, beginner answers and navigation.
 Build reusable first-class actions, venue details, prices, FAQs and an unpublished
 testimonial component. Replace the homepage and navigation with a responsive,
 charcoal/off-white/red design using existing club photographs. Keep legacy home
-anchors working. Use email enquiries, without suggesting an enquiry is a booking.
+anchors working. Use a protected enquiry form, without suggesting an enquiry is a booking.
 
 Unify metadata and schema on the existing `.com` canonical domain, include new
 routes in the sitemap and llms.txt, optimise new prominent photographs, and retain
@@ -24,8 +24,7 @@ disclosures, calendar exports, responsive layouts and metadata.
   covering the knees, monthly fees £25/£20/£15, annual UKA fees £35/£27/£20,
   £8 guest session, May 2013 founding and instructor milestones.
 - https://ukaikikai.org.uk/club/leicester-aikikai/ (checked 19 October 2026):
-  confirms class times, venue, monthly fees, 4th Dan Fukushidoin and publishes
-  `leicester.aikikai@gmail.com`. No enquiry has been sent as part of this work.
+  confirms class times, venue, monthly fees, 4th Dan Fukushidoin and publishes a club contact address. The receiving address now belongs only in Netlify notification settings, not site source or metadata.
 - https://ukaikikai.org.uk/membership/ (checked 19 October 2026): confirms annual
   fees and states liability insurance is included. The site refers visitors to the
   instructor for cover and joining details, without promising trial-class cover.
@@ -40,14 +39,13 @@ disclosures, calendar exports, responsive layouts and metadata.
   published information; visitors should check the venue for current arrangements.
 - No consented testimonials found. Component remains unused pending quotations
   and publication permission; no ratings or reviews are added to schema.
-- No analytics or supported submission backend found. Use a verified mailto link;
-  no new tracking or hosted form service is introduced.
+- No analytics installed. The owner subsequently selected Netlify Forms using the existing host. No new tracking is introduced; form submissions require Netlify processing and account activation.
 
 ## Follow-up opportunities
 
 Consider static rendering/prerendering for route HTML and sharing crawlers,
 deployment-level canonical host redirects once domain ownership is confirmed,
-and a properly managed enquiry backend only if email becomes insufficient.
+and review of form spam and submission retention as enquiry volume grows.
 Run field Core Web Vitals and assistive-technology testing after deployment.
 
 ## Delivered pages and behaviour
@@ -55,14 +53,14 @@ Run field Core Web Vitals and assistive-technology testing after deployment.
 Primary navigation is Home (`/`), Start Aikido (`/beginners`), Classes & Prices
 (`/classes`), About Us (`/about`), Student Resources (`/resources`), Events
 (`/events`) and Contact (`/contact`). The free-class action goes to
-`/beginners#first-class`, which explains attendance and links to email and directions.
+`/beginners#first-class`, which explains attendance and links to the enquiry form and directions.
 The original blog, instructor, syllabus, grade and event routes remain available.
 The footer and resources hub keep the blog and technical resources discoverable.
 
 The homepage introduces aikido, beginners, instruction, first-class steps, prices,
 travel, FAQs and the next future event. Its hero exposes the class time, venue and
 free lesson. New pages share club data, prices and FAQ answers. Testimonials remain
-unpublished. Email contact uses the UKA-published address; there is no booking form.
+unpublished. Enquiries use a short protected contact form; they do not reserve a place in a class.
 
 The visual system uses charcoal, warm off-white and red, genuine club photography,
 system fonts, responsive grids and native FAQ disclosures. Navigation supports
@@ -99,8 +97,7 @@ collapse code and icon fonts load on demand. No new dependency or tracking was a
   FAQs, and Bootstrap syllabus disclosures. All four original grade routes opened
   the corresponding panel with matching ARIA state. Event ordering, detail-page
   navigation, calendar file download and BST/GMT behaviour were verified.
-- The contact mechanism's mailto destination was checked. No email was sent and
-  inbox delivery has not been tested. No submission-success claim is shown.
+- The original email mechanism was replaced by Netlify Forms in the follow-up below. Live Netlify acceptance and notification delivery remain unverified.
 - Desktop and mobile screenshots were visually inspected. Original event and blog
   data and technical grading requirements are retained.
 
@@ -110,3 +107,64 @@ Playwright installation rather than adding it to the production project. Chrome
 was tested; full assistive-technology and other-browser testing, field Core Web
 Vitals, production hosting headers/redirects and non-JavaScript sharing-crawler
 behaviour remain unverified. No deployment or public-domain change was performed.
+
+## Protected contact form follow-up
+
+Replaced public email links with `/contact` and removed the receiving mailbox from
+shared data, JavaScript, JSON-LD and `public/llms.txt`. The form asks for name and
+reply email, with optional preferred Friday and message. It includes native
+validation, accessible labels/status/focus, duplicate-submit protection, preserved
+input after errors, and a brief explanation of data handling. No marketing opt-in
+or additional tracking is added.
+
+`public/contact-form.html` registers `first-class-enquiry` with Netlify. The static
+definition and visible form share the same fields, including the hidden honeypot.
+Netlify's own spam filtering applies when the form is active. The UI checks for
+Netlify's injected form-name and stripped registration attribute before enabling
+submission. Static preview responses and ordinary SPA fallback HTML are rejected;
+only an accepted form response triggers the confirmation. No enquiry is sent by
+our tests: browser submission scenarios use intercepted responses.
+
+### Hosting setup still required
+
+1. In the site's Netlify dashboard, check the account's Forms allowance, usage and
+   billing before activating. No account or billing changes have been made here.
+2. Under **Forms**, enable form detection, then deploy this build. Verify the
+   `first-class-enquiry` form appears with honeypot protection.
+3. Under **Forms → Submission notifications**, add an email notification for this
+   form using the club's receiving mailbox. Configure it in Netlify only; keep it
+   out of source, public environment variables and form markup.
+4. Send an authorised real enquiry after deployment. Verify it appears in verified
+   submissions and reaches the intended inbox; check the spam folder too.
+5. Restrict access to submissions to club organisers and remove old enquiries
+   when no longer needed. Review spam periodically before adding a CAPTCHA.
+
+References: [form setup](https://docs.netlify.com/manage/forms/setup/),
+[spam protection](https://docs.netlify.com/manage/forms/spam-filters/),
+[notifications](https://docs.netlify.com/manage/forms/notifications/),
+[usage and billing](https://docs.netlify.com/manage/forms/usage-and-billing/).
+
+Without active Netlify processing the form displays an unavailable notice, keeps
+submission disabled, and offers the existing Facebook contact link and Friday
+practice as alternatives. Netlify setup and real delivery cannot be verified from
+this local checkout. No public deployment has been performed.
+
+Follow-up verification: `npm run build`, all 13 Node tests and `git diff --check`
+passed. The full browser check passed again for all 27 HTML routes at five widths
+and 29 internal links. The dedicated contact browser checks passed for unavailable
+processing, required/Friday validation, encoded submission, honeypot rejection,
+pending state, simulated acceptance, HTTP/network failures, static fallback
+responses and retained input. Desktop and mobile viewport screenshots were checked.
+Receiving-address removal was checked against both public sources and built assets.
+All form responses were intercepted locally; no real submission or notification
+was sent. The hosting-account and delivery checks above remain outstanding.
+
+
+## Homepage event visibility follow-up
+
+The next upcoming event is highlighted immediately below the navigation, before
+its introductory hero. The banner shows the next event's date, title, venue,
+time and direct details link on desktop and mobile. It uses the shared chronological
+upcoming-event selection and disappears when no future event is listed. The
+community section remains lower down with links to events and dojo notes.
+The original `/#latest-event` anchor is available again when an event is scheduled.
