@@ -4,6 +4,8 @@
 
 Canonical website: https://leicesteraikikai.com
 
+Club logo: https://leicesteraikikai.com/img/leicester-aikikai-logo-512.png (web-optimised from leicester-aikikai-main-logo.png).
+
 ## Getting started
 
 - [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and a next-upcoming-event banner at the top of the page.
@@ -26,7 +28,7 @@ Separate annual UK Aikikai membership: adult £35, concession £27, under 18 £2
 ## Student resources
 
 - [Student Resources](https://leicesteraikikai.com/resources): beginner fundamentals, grading, weapons, terminology and further reading.
-- [Full syllabus](https://leicesteraikikai.com/syllabus): original body-art and weapons training material, with accessible expandable grading panels.
+- [Full syllabus](https://leicesteraikikai.com/syllabus): original body-art and weapons training material, with accessible expandable grading panels. Bokken and jo detail sections start collapsed, with show/hide buttons.
 - [6th kyu](https://leicesteraikikai.com/syllabus/6th-kyu)
 - [5th kyu](https://leicesteraikikai.com/syllabus/5th-kyu)
 - [4th kyu](https://leicesteraikikai.com/syllabus/4th-kyu)

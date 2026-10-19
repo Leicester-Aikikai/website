@@ -7,6 +7,7 @@ const Syllabus = () => import('../views/Syllabus.vue')
 const Instructor = () => import('../views/Instructor.vue')
 import { setMeta, setJsonLd, getBreadcrumbSchema, getPersonSchema, SITE_URL } from '../utils/seo.js'
 import { events } from '../data/events.js'
+import { club } from '../data/club.js'
 import { blogPosts, getBlogPostUrl } from '../data/blog.js'
 import { getEventUrl, getEventSchema } from '../utils/events.js'
 const Beginners = () => import('../views/Beginners.vue')
@@ -159,7 +160,7 @@ const routes = [
       title: 'Welcome to Aikido - UKA Booklet :: Leicester Aikikai Dojo',
       description: 'Download the official UK Aikikai Welcome to Aikido booklet. An introduction to traditional aikido practice, etiquette, and philosophy.',
       keywords: 'aikido booklet, aikido guide, UK Aikikai, aikido introduction, aikido etiquette, aikido beginner guide',
-      image: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`
+      image: `${SITE_URL}${club.logo.image}`
     }
   }
 ]

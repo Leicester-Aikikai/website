@@ -66,9 +66,8 @@
             <h3 class="h3 fw-bold mb-3">Bokken <small class="text-muted">(The wooden sword)</small></h3>
             <div class="gradient-border mb-4" style="width: 200px;"></div>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Five basic stances of sword</h4>
+            <SyllabusDisclosure id="bokken-stances-details">
+              <template #heading>Five basic stances of sword</template>
                 <ol class="mb-0">
                   <li>Chudan no Kamae <small class="text-muted">(middle stance)</small></li>
                   <li>Jodan no Kamae <small class="text-muted">(high stance)</small></li>
@@ -76,24 +75,20 @@
                   <li>Waki Gamae <small class="text-muted">(concealed stance)</small></li>
                   <li>Gedan no Kamae <small class="text-muted">(lower stance)</small></li>
                 </ol>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Suburi <small class="text-muted">(basic exercises)</small></h4>
+            <SyllabusDisclosure id="bokken-suburi-details">
+              <template #heading>Suburi <small class="text-muted">(basic exercises)</small></template>
                 <ul class="mb-0">
                   <li>Chiba sensei's - 8 suburi</li>
                   <li>Saito sensei's - 7 suburi</li>
                   <li>Saito sensei's - shiho giri (4-direction cuts)</li>
                   <li>Saito sensei's - happo giri (8-direction cuts)</li>
                 </ul>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Saito sensei's - Kumitachi <small class="text-muted">(bokken partner practice)</small></h4>
+            <SyllabusDisclosure id="bokken-kumitachi-details">
+              <template #heading>Saito sensei's - Kumitachi <small class="text-muted">(bokken partner practice)</small></template>
                 <ol class="mb-0">
                   <li>Ichi-no-tachi</li>
                   <li>Ni-no-tachi</li>
@@ -102,19 +97,16 @@
                   <li>Go-no-tachi</li>
                   <li>Kimusubi-no-tachi</li>
                 </ol>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Saito sensei's - Renzoku Uchikomi <small class="text-muted">(continuous stepping and striking practice)</small></h4>
+            <SyllabusDisclosure id="bokken-renzoku-details">
+              <template #heading>Saito sensei's - Renzoku Uchikomi <small class="text-muted">(continuous stepping and striking practice)</small></template>
                 <ul class="mb-0">
                   <li>Shomen Uchikomi</li>
                   <li>Tsuki Uchikomi</li>
                   <li>Kirigaeshi Uchikomi</li>
                 </ul>
-              </div>
-            </div>
+            </SyllabusDisclosure>
           </div>
 
           <!-- Jo Section -->
@@ -122,9 +114,8 @@
             <h3 class="h3 fw-bold mb-3">Jo <small class="text-muted">(The wooden staff)</small></h3>
             <div class="gradient-border mb-4" style="width: 200px;"></div>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Five basic stances of Jo</h4>
+            <SyllabusDisclosure id="jo-stances-details">
+              <template #heading>Five basic stances of Jo</template>
                 <ol class="mb-0">
                   <li>Chudan Jyunte - pointing at partner <small class="text-muted">(Normal grip - thumbs pointing to the same direction)</small></li>
                   <li>Chudan Gyakute - pointing at partner <small class="text-muted">(Reverse grip - thumbs pointing towards each other)</small></li>
@@ -132,12 +123,10 @@
                   <li>Hasso no Kamae <small class="text-muted">(8 stages / octagonal stance)</small></li>
                   <li>Jyunte and Gyakute - Holding the Jo in posture vertically covering your front knee</li>
                 </ol>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Saito sensei's - 20 Jo suburi <small class="text-muted">(basic exercises)</small></h4>
+            <SyllabusDisclosure id="jo-suburi-details">
+              <template #heading>Saito sensei's - 20 Jo suburi <small class="text-muted">(basic exercises)</small></template>
 
                 <h5 class="h6 fw-bold mt-3 mb-2">Tsuki no bu</h5>
                 <ul class="mb-3">
@@ -178,19 +167,16 @@
                   <li>Hidari nagare gaeshi uchi <small class="text-muted">(Left flowing counter strike)</small></li>
                   <li>Migi nagare gaeshi uchi <small class="text-muted">(Right flowing counter strike)</small></li>
                 </ul>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
-            <div class="card shadow-sm mb-4">
-              <div class="card-body">
-                <h4 class="h5 fw-bold mb-3">Kata <small class="text-muted">(forms)</small></h4>
+            <SyllabusDisclosure id="jo-kata-details">
+              <template #heading>Kata <small class="text-muted">(forms)</small></template>
                 <ul class="mb-0">
                   <li>Chiba sensei's - 9-count kata</li>
                   <li>Saito sensei's - 13-count kata</li>
                   <li>Saito sensei's - 31-count kata</li>
                 </ul>
-              </div>
-            </div>
+            </SyllabusDisclosure>
 
             <div class="card shadow-sm mb-4">
               <div class="card-body">
@@ -972,9 +958,11 @@
 import 'bootstrap/js/dist/collapse.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { setJsonLd, SITE_URL } from '../utils/seo.js'
+import SyllabusDisclosure from '../components/SyllabusDisclosure.vue'
 
 export default {
   name: 'Syllabus',
+  components: { SyllabusDisclosure },
   mounted() {
     // Add structured data for aikido syllabus/course content
     setJsonLd([

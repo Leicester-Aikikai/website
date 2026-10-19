@@ -176,7 +176,6 @@ npm run preview
 - Website: https://leicesteraikikai.co.uk
 - Facebook: [@LeicesterAikikai](https://www.facebook.com/LeicesterAikikai)
 - Instagram: [@leicesteraikikai](https://www.instagram.com/leicesteraikikai/)
-- Twitter: [@leicesterdojo](https://twitter.com/leicesterdojo)
 - TikTok: [@leicesteraikikai](https://www.tiktok.com/@leicesteraikikai)
 
 ## 📄 License

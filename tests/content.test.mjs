@@ -14,7 +14,7 @@ test('sitemap covers new and preserved content and matches the deployed copy', (
 })
 
 test('published content images and resources are real public files', () => {
-  const files = [...events.map(event => event.image), ...blogPosts.map(post => post.featuredImage), club.instructor.image, '/img/training-640.webp', '/img/training-960.webp', '/img/training-1280.webp', '/img/instructor-800.webp', '/img/venue-960.webp', '/img/community-1280.webp', '/img/club-mark.webp', '/docs/welcome-to-aikido-uka-booklet.pdf']
+  const files = [...events.map(event => event.image), ...blogPosts.map(post => post.featuredImage), club.instructor.image, '/img/training-640.webp', '/img/training-960.webp', '/img/training-1280.webp', '/img/instructor-800.webp', '/img/venue-960.webp', '/img/community-1280.webp', club.logo.image, '/img/leicester-aikikai-logo-160.png', '/img/leicester-aikikai-logo-320.png', '/img/leicester-aikikai-logo-512.png', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png', '/apple-touch-icon.png', '/docs/welcome-to-aikido-uka-booklet.pdf']
   for (const file of files.filter(Boolean)) assert.ok(existsSync(new URL(`../public${file}`, import.meta.url)), file)
 })
 

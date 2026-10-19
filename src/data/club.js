@@ -2,6 +2,12 @@
 // See docs/website-modernisation.md for sources and unresolved age eligibility.
 export const club = {
   name: 'Leicester Aikikai',
+  logo: {
+    image: '/img/leicester-aikikai-logo-512.png',
+    srcset: '/img/leicester-aikikai-logo-160.png 160w, /img/leicester-aikikai-logo-320.png 320w, /img/leicester-aikikai-logo-512.png 512w',
+    width: 512,
+    height: 402
+  },
   established: 'May 2013',
   day: 'Fridays',
   hours: '7:00pm – 9:00pm',
@@ -31,8 +37,7 @@ export const club = {
   social: [
     { label: 'Facebook', url: 'https://www.facebook.com/LeicesterAikikai' },
     { label: 'Instagram', url: 'https://www.instagram.com/leicesteraikikai/' },
-    { label: 'TikTok', url: 'https://www.tiktok.com/@leicesteraikikai' },
-    { label: 'Twitter', url: 'https://twitter.com/leicesterdojo' }
+    { label: 'TikTok', url: 'https://www.tiktok.com/@leicesteraikikai' }
   ]
 }
 

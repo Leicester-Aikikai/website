@@ -168,3 +168,62 @@ time and direct details link on desktop and mobile. It uses the shared chronolog
 upcoming-event selection and disappears when no future event is listed. The
 community section remains lower down with links to events and dojo notes.
 The original `/#latest-event` anchor is available again when an event is scheduled.
+
+
+## Blog theme and social-link follow-up
+
+Removed the Twitter profile from the shared social list (including organisation
+schema), Twitter event-sharing links and account-specific sharing metadata.
+Generic sharing-card metadata remains available. Fixed the beginner page's
+lowercasing of the shared Friday day name; technical field identifiers keep their
+existing lowercase names.
+
+The blog index and original article routes now share the site's warm-white page
+header, charcoal typography, red accents, restrained cards and first-class footer
+section. A reusable post card presents the latest article prominently, with
+publication/update dates, author and reading time. Article pages retain their
+content, author profile, table of contents, CTA and structured data, with a
+comfortable reading width and related posts shown only when available.
+
+Verification: production build and all 13 existing tests passed. Chrome checks
+passed for the blog, article, beginner and event-detail pages at 320, 375, 768,
+1024 and 1440px. Checks covered overflow, images, Friday capitalisation, removed
+Twitter links, article navigation, keyboard-operated contents links and metadata
+reset on return to the listing. Desktop and mobile layouts were visually checked.
+
+
+## Weapons disclosure follow-up
+
+Bokken and jo topic headings remain visible, while all seven sections containing
+technique details start collapsed. The shared SyllabusDisclosure component provides
+Show details/Hide details buttons with matching expanded state and controlled-panel
+IDs. Sections open independently and reset on a fresh page load. The heading-only
+Jo awase item has no empty disclosure. All existing technique text, grading panels,
+URLs and weapons anchors are preserved.
+
+The production build and all 13 existing tests passed. Browser checks verified
+initially collapsed panels, Enter/Space operation, expanded state, reload behaviour,
+no horizontal overflow at 320, 375, 768, 1024 and 1440px, and all four grade routes.
+
+## Main logo follow-up
+
+The supplied `public/img/leicester-aikikai-main-logo.png` is the source for the
+shared ClubLogo component used in the header and footer. The original is retained.
+Web derivatives remove transparent outer margins, preserve the blue/black/white
+artwork and alpha background, and provide 160, 320 and 512px optimised PNG sizes. Palette PNGs were smaller
+and kept the line artwork cleaner than the WebP alternatives. The 512px PNG is
+also used by structured-data consumers. Intrinsic dimensions
+reserve the correct image shape. The footer uses a white panel to keep the black
+wordmark legible against its dark background.
+
+Favicons use the two-person pictorial mark from the same source, without the tiny
+wordmark: 16/32px PNGs, a 16/32/48px ICO, and a 180px white-backed Apple touch icon.
+The old `/img/favicon.ico` URL also serves the new icon. Organisation and blog
+publisher schema and the booklet sharing fallback now reference the new logo.
+The owner's renamed old logo files remain intact.
+
+Validation: build, all 13 tests and diff checks passed. Browser checks at 320,
+375, 768, 1024 and 1440px confirmed header/footer imagery, responsive selection,
+working home links, no overflow, served favicon image types, and updated local
+organisation/article publisher logo metadata. Desktop and mobile branding were
+visually inspected. ICO size variants were checked with Pillow.

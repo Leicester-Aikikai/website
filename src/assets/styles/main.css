@@ -61,9 +61,7 @@ address { font-style: normal; }
 .skip-link:focus { transform: none; }
 .site-header { background: white; border-bottom: 1px solid var(--line); }
 .site-nav { display: flex; align-items: center; gap: 1.5rem; min-height: 94px; }
-.club-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); flex-shrink: 0; font-weight: 750; font-size: .83rem; letter-spacing: .025em; }
-.club-brand small { display: block; font-weight: 400; font-size: .67rem; letter-spacing: .015em; }
-.club-brand img { object-fit: contain; }
+.club-brand { display: block; flex-shrink: 0; padding-block: .5rem; }
 .primary-menu { display: flex; align-items: center; justify-content: flex-end; gap: 1.25rem; flex: 1; }
 .primary-menu ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
 .primary-menu li a { display: block; padding: .65rem 0; font-size: .74rem; text-decoration: none; color: var(--ink); white-space: nowrap; }
@@ -155,7 +153,7 @@ address { font-style: normal; }
 .site-footer a { color: #e2e5df; }
 .site-footer a:hover { color: white; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; font-size: .8rem; }
-.footer-brand { display: inline-block; font-size: 1.6rem; font-weight: 650; text-decoration: none; margin-bottom: 1rem; }
+.footer-brand { display: inline-block; max-width: 100%; padding: .75rem; background: white; border-radius: 3px; margin-bottom: 1.5rem; }
 .site-footer .plain-list a { display: inline-block; padding-block: .35rem; }
 .footer-bottom { border-top: 1px solid #49514a; margin-top: 3rem; padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: .7rem; color: #c0c7bd; }
 /* Retain existing technical and article layouts while sharing the new palette. */
@@ -203,9 +201,6 @@ address { font-style: normal; }
   .hero-section img { max-height: 300px; }
 }
 @media (max-width: 374px) {
-  .club-brand { font-size: .7rem; }
-  .club-brand small { font-size: .6rem; }
-  .club-brand img { width: 32px; }
   .site-nav { gap: .5rem; }
   .benefit-grid, .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > div:first-child { grid-column: auto; }

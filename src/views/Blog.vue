@@ -1,296 +1,95 @@
 <template>
-  <div class="blog">
-    <section class="hero-section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-7 mb-4 mb-md-0">
-            <p class="text-uppercase mb-3 opacity-75">Insights - 気づき</p>
-            <h1 class="display-3 fw-bold mb-4">
-              {{ currentPost ? currentPost.title : 'Leicester Aikikai Blog' }}
-            </h1>
-            <p class="lead mb-4" v-if="currentPost">
-              {{ currentPost.excerpt }}
-            </p>
-            <p class="lead mb-4" v-else>
-              Read practical articles about aikido training, beginner guidance, dojo culture, and what regular practice looks like at Leicester Aikikai.
-            </p>
-            <router-link v-if="currentPost" to="/blog" class="btn btn-light btn-lg rounded-pill px-4 shadow back-to-blog-link">
-              ← Back to Blog
-            </router-link>
+  <main id="main-content" tabindex="-1" class="blog">
+    <PageIntro
+      :eyebrow="currentPost ? currentPost.category : 'From the dojo'"
+      :title="currentPost ? currentPost.title : 'Blog & dojo notes'"
+      :text="currentPost ? currentPost.excerpt : 'Stories from the club, reflections on practice and guidance for your time on the mat.'"
+    >
+      <router-link v-if="currentPost" to="/blog" class="text-link">← All articles</router-link>
+    </PageIntro>
+
+    <article v-if="currentPost" class="section-space" itemscope itemtype="https://schema.org/BlogPosting">
+      <div class="container blog-reading">
+        <nav aria-label="Breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
+            <li class="breadcrumb-item"><router-link to="/blog">Blog</router-link></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ currentPost.title }}</li>
+          </ol>
+        </nav>
+        <div class="blog-metadata">
+          <span>Published <time itemprop="datePublished" :datetime="formatDateForIso(currentPost.publishedDate)">{{ formatBlogDate(currentPost.publishedDate) }}</time></span>
+          <span v-if="currentPost.lastUpdated !== currentPost.publishedDate">Updated <time itemprop="dateModified" :datetime="formatDateForIso(currentPost.lastUpdated)">{{ formatBlogDate(currentPost.lastUpdated) }}</time></span>
+          <span>By <router-link :to="currentAuthor.profile">{{ currentAuthor.name }}</router-link></span>
+          <span>{{ currentPost.readingTime }}</span>
+        </div>
+        <figure class="blog-article-photo">
+          <img :src="getPostImage(currentPost)" :alt="currentPost.imageAlt || currentPost.title" width="1280" height="960" itemprop="image" fetchpriority="high">
+        </figure>
+        <div class="blog-prose">
+          <p class="lead" itemprop="description">{{ currentPost.introduction }}</p>
+          <nav v-if="currentPost.sections.length > 1" aria-label="Table of contents" class="blog-contents">
+            <h2 class="h5">In this article</h2>
+            <ol>
+              <li v-for="section in currentPost.sections" :key="section.slug"><a :href="`#${section.slug}`">{{ section.heading }}</a></li>
+            </ol>
+          </nav>
+          <div itemprop="articleBody">
+            <section v-for="section in currentPost.sections" :key="section.slug" :id="section.slug" class="blog-body-section">
+              <h2>{{ section.heading }}</h2>
+              <p v-for="(paragraph, index) in section.paragraphs" :key="index">{{ paragraph }}</p>
+            </section>
+            <section class="blog-body-section">
+              <h2>Conclusion</h2>
+              <p>{{ currentPost.conclusion }}</p>
+            </section>
           </div>
-          <div class="col-md-5 text-center">
-            <img
-              :src="currentPost ? getPostImage(currentPost) : '/img/aylestone-leisure-centre-mat-space.jpeg'"
-              :alt="currentPost ? (currentPost.imageAlt || currentPost.title) : 'Aikido training area at Leicester Aikikai'"
-              class="img-fluid rounded shadow-lg"
-              fetchpriority="high"
-              width="1280"
-              height="960"
-            />
-          </div>
+          <section class="blog-cta">
+            <h2>{{ currentPost.callToAction.heading }}</h2>
+            <p>{{ currentPost.callToAction.text }}</p>
+            <router-link :to="currentPost.callToAction.buttonLink" class="btn btn-primary">{{ currentPost.callToAction.buttonLabel }} <span aria-hidden="true">↗</span></router-link>
+          </section>
+          <section class="blog-author" aria-labelledby="blog-author-heading">
+            <img :src="currentAuthor.image" :alt="`${currentAuthor.name}, article author`" width="88" height="88" loading="lazy">
+            <div>
+              <p class="eyebrow">About the author</p>
+              <h2 id="blog-author-heading" class="h4">{{ currentAuthor.name }}</h2>
+              <p>{{ currentAuthor.bio }}</p>
+              <router-link :to="currentAuthor.profile" class="text-link">Meet the instructor <span aria-hidden="true">↗</span></router-link>
+            </div>
+          </section>
         </div>
       </div>
+      <section v-if="relatedPosts.length" class="container blog-related">
+        <h2>More from the dojo</h2>
+        <div class="blog-post-grid"><BlogPostCard v-for="post in relatedPosts" :key="post.id" :post="post" /></div>
+      </section>
+    </article>
 
-      <div class="wave-divider">
-        <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
-              <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-              <path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
-              <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
-            </g>
-          </g>
-        </svg>
+    <section v-else-if="postNotFound" class="section-space">
+      <div class="container reading-width">
+        <h2>Blog post not found</h2>
+        <p>The article you are looking for may have moved or may no longer be available.</p>
+        <router-link to="/blog" class="btn btn-primary">Browse all articles</router-link>
       </div>
     </section>
 
-    <main id="main-content" tabindex="-1" class="py-5 bg-light">
-      <div v-if="currentPost">
-        <article class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-10 mx-auto">
-                <nav aria-label="Breadcrumb" class="mb-4">
-                  <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item">
-                      <router-link to="/">Home</router-link>
-                    </li>
-                    <li class="breadcrumb-item">
-                      <router-link to="/blog">Blog</router-link>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ currentPost.title }}</li>
-                  </ol>
-                </nav>
-
-                <figure class="mb-4">
-                  <img
-                    :src="getPostImage(currentPost)"
-                    :alt="currentPost.imageAlt || currentPost.title"
-                    class="img-fluid rounded shadow-lg w-100"
-                    itemprop="image"
-                  />
-                </figure>
-
-                <div class="d-flex flex-wrap gap-3 align-items-center text-muted small mb-4">
-                  <span>
-                    <strong>Published:</strong>
-                    <time itemprop="datePublished" :datetime="formatDateForIso(currentPost.publishedDate)">{{ formatBlogDate(currentPost.publishedDate) }}</time>
-                  </span>
-                  <span v-if="currentPost.lastUpdated !== currentPost.publishedDate">
-                    <strong>Last updated:</strong>
-                    <time itemprop="dateModified" :datetime="formatDateForIso(currentPost.lastUpdated)">{{ formatBlogDate(currentPost.lastUpdated) }}</time>
-                  </span>
-                  <span>
-                    <strong>Author:</strong>
-                    <router-link :to="currentAuthor.profile" class="text-decoration-none">{{ currentAuthor.name }}</router-link>
-                  </span>
-                  <span>
-                    <strong>Reading time:</strong> {{ currentPost.readingTime }}
-                  </span>
-                </div>
-
-                <p class="lead mb-4" itemprop="description">
-                  {{ currentPost.introduction }}
-                </p>
-
-                <nav
-                  v-if="currentPost.sections.length > 1"
-                  aria-label="Table of contents"
-                  class="card shadow-sm border-0 mb-5"
-                >
-                  <div class="card-body">
-                    <h2 class="h5 fw-bold mb-3">Table of Contents</h2>
-                    <ul class="mb-0 ps-3">
-                      <li v-for="section in currentPost.sections" :key="section.slug" class="mb-2">
-                        <a :href="`#${section.slug}`" class="text-decoration-none">{{ section.heading }}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </nav>
-
-                <div itemprop="articleBody">
-                  <section v-for="section in currentPost.sections" :key="section.slug" :id="section.slug" class="mb-5">
-                    <h2 class="h3 fw-bold mb-3">{{ section.heading }}</h2>
-                    <p v-for="(paragraph, index) in section.paragraphs" :key="index" class="mb-3">
-                      {{ paragraph }}
-                    </p>
-                  </section>
-                </div>
-
-                <section class="mb-5">
-                  <div class="card border-0 shadow-sm bg-white">
-                    <div class="card-body p-4 p-md-5">
-                      <h2 class="h3 fw-bold mb-3">Conclusion</h2>
-                      <p class="mb-0">{{ currentPost.conclusion }}</p>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="mb-5">
-                  <div class="cta-card rounded-4 p-4 p-md-5 text-white">
-                    <div class="row align-items-center g-4">
-                      <div class="col-md-8">
-                        <h2 class="h3 fw-bold mb-3">{{ currentPost.callToAction.heading }}</h2>
-                        <p class="mb-0">{{ currentPost.callToAction.text }}</p>
-                      </div>
-                      <div class="col-md-4 text-md-end">
-                        <router-link
-                          :to="currentPost.callToAction.buttonLink"
-                          class="btn btn-light btn-lg rounded-pill px-4"
-                        >
-                          {{ currentPost.callToAction.buttonLabel }}
-                        </router-link>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="mb-5">
-                  <div class="card border-0 shadow-sm">
-                    <div class="card-body p-4 p-md-5">
-                      <div class="row align-items-center g-4">
-                        <div class="col-md-3 col-lg-2 text-center">
-                          <img
-                            :src="currentAuthor.image"
-                            :alt="`${currentAuthor.name} profile photo`"
-                            class="img-fluid rounded-circle author-image"
-                          />
-                        </div>
-                        <div class="col-md-9 col-lg-10">
-                          <p class="text-uppercase small text-muted mb-2">Author</p>
-                          <h2 class="h4 fw-bold mb-2">{{ currentAuthor.name }}</h2>
-                          <p class="mb-3">{{ currentAuthor.bio }}</p>
-                          <router-link :to="currentAuthor.profile" class="btn btn-outline-primary rounded-pill">
-                            View instructor profile
-                          </router-link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="mb-4">
-                  <h2 class="h3 fw-bold mb-4">Related Articles</h2>
-                  <div class="row g-4">
-                    <div v-for="post in relatedPosts" :key="post.id" class="col-md-6 col-lg-4">
-                      <article class="card h-100 border-0 shadow-sm">
-                        <img
-                          :src="getPostImage(post)"
-                          :alt="post.imageAlt || post.title"
-                          class="card-img-top blog-card-image"
-                          loading="lazy"
-                        />
-                        <div class="card-body d-flex flex-column">
-                          <p class="text-uppercase small text-muted mb-2">{{ post.category }}</p>
-                          <h3 class="h5 fw-bold mb-3">
-                            <router-link :to="getBlogPostUrl(post)" class="text-decoration-none stretched-link">
-                              {{ post.title }}
-                            </router-link>
-                          </h3>
-                          <p class="text-muted mb-3">{{ post.excerpt }}</p>
-                          <p class="text-muted small mb-0 mt-auto">
-                            {{ formatBlogDate(post.publishedDate) }} · {{ post.readingTime }}
-                          </p>
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div v-else-if="postNotFound">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="card shadow-sm border-0">
-                <div class="card-body p-4 p-md-5 text-center">
-                  <h2 class="h3 fw-bold mb-3">Blog post not found</h2>
-                  <p class="text-muted mb-4">
-                    The article you are looking for may have moved or may no longer be available.
-                  </p>
-                  <router-link to="/blog" class="btn btn-primary btn-lg rounded-pill px-4">
-                    Back to Blog
-                  </router-link>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section v-else class="section-space">
+      <div class="container">
+        <div v-if="sortedPosts.length">
+          <div class="section-heading"><h2>Latest from the dojo</h2><router-link to="/events" class="text-link">Explore club events <span aria-hidden="true">↗</span></router-link></div>
+          <BlogPostCard :post="sortedPosts[0]" featured />
+          <div v-if="sortedPosts.length > 1" class="blog-post-grid mt-4"><BlogPostCard v-for="post in sortedPosts.slice(1)" :key="post.id" :post="post" /></div>
+        </div>
+        <div v-else class="content-panel reading-width">
+          <h2>No articles published yet</h2>
+          <p>There are no published dojo notes at the moment. You can explore our class information and upcoming events.</p>
+          <div class="action-row"><router-link to="/classes" class="text-link">Classes & prices</router-link><router-link to="/events" class="text-link">Explore club events</router-link></div>
         </div>
       </div>
-
-      <div v-else>
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-lg-10 mx-auto">
-              <div class="card border-0 shadow-sm">
-                <div class="card-body p-4 p-md-5">
-                  <p class="text-uppercase small text-muted mb-2">Blog</p>
-                  <h2 class="section-title text-center mb-3">Aikido articles and dojo notes</h2>
-                  <div class="section-divider"></div>
-                  <p class="mb-0 text-center">
-                    Explore beginner-friendly guidance, reflections on training, and practical articles about traditional Aikido at Leicester Aikikai.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="sortedPosts.length" class="row g-4">
-            <div v-for="post in sortedPosts" :key="post.id" class="col-md-6 col-lg-4">
-              <article class="card h-100 border-0 shadow-sm">
-                <img
-                  :src="getPostImage(post)"
-                  :alt="post.imageAlt || post.title"
-                  class="card-img-top blog-card-image"
-                  loading="lazy"
-                />
-                <div class="card-body d-flex flex-column">
-                  <p class="text-uppercase small text-muted mb-2">{{ post.category }}</p>
-                  <h2 class="h5 fw-bold mb-3">
-                    <router-link :to="getBlogPostUrl(post)" class="text-decoration-none stretched-link">
-                      {{ post.title }}
-                    </router-link>
-                  </h2>
-                  <p class="text-muted mb-3">{{ post.excerpt }}</p>
-                  <ul class="list-unstyled small text-muted mb-3">
-                    <li>Published: {{ formatBlogDate(post.publishedDate) }}</li>
-                    <li v-if="post.lastUpdated !== post.publishedDate">Updated: {{ formatBlogDate(post.lastUpdated) }}</li>
-                    <li>Author: {{ getAuthor(post.authorId).name }}</li>
-                    <li>Reading time: {{ post.readingTime }}</li>
-                  </ul>
-                  <div class="mt-auto">
-                    <router-link :to="getBlogPostUrl(post)" class="btn btn-primary rounded-pill px-4">
-                      Read article
-                    </router-link>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <div v-else class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="card border-0 shadow-sm text-center">
-                <div class="card-body p-4 p-md-5">
-                  <h2 class="h3 fw-bold mb-3">No articles published yet</h2>
-                  <p class="text-muted mb-4">
-                    We are preparing new blog posts about aikido training, beginner guidance, and dojo life at Leicester Aikikai.
-                  </p>
-                  <router-link to="/events" class="btn btn-primary btn-lg rounded-pill px-4">
-                    View upcoming events
-                  </router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
+    </section>
+    <JoinSection />
+  </main>
 </template>
 
 <script>
@@ -305,9 +104,14 @@ import {
   parseBlogDate
 } from '../data/blog.js'
 import { setJsonLd, setMeta, SITE_URL, getOrganizationSchema, getWebSiteSchema } from '../utils/seo.js'
+import { club } from '../data/club.js'
+import PageIntro from '../components/PageIntro.vue'
+import BlogPostCard from '../components/BlogPostCard.vue'
+import JoinSection from '../components/JoinSection.vue'
 
 export default {
   name: 'Blog',
+  components: { PageIntro, BlogPostCard, JoinSection },
   data() {
     return {
       posts: blogPosts
@@ -398,7 +202,7 @@ export default {
               'url': SITE_URL,
               'logo': {
                 '@type': 'ImageObject',
-                'url': `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`
+                'url': `${SITE_URL}${club.logo.image}`
               }
             },
             'datePublished': this.formatDateForIso(this.currentPost.publishedDate),
@@ -502,85 +306,27 @@ export default {
 </script>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%);
-  color: white;
-  padding: 9rem 0 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 80px;
-  background: linear-gradient(to bottom right, transparent 49%, #f8f9fa 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-section .container,
-.hero-section .wave-divider {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-section .container {
-  z-index: 2;
-}
-
-.back-to-blog-link {
-  position: relative;
-  z-index: 3;
-}
-
-.wave-divider {
-  position: relative;
-  bottom: -1px;
-  pointer-events: none;
-}
-
-.wave-divider svg {
-  display: block;
-  pointer-events: none;
-}
-
-.blog-article {
-  padding-bottom: 2rem;
-}
-
-.blog-card-image {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-.cta-card {
-  background: linear-gradient(90deg, #2465c7 0%, #525bd3 100%);
-  box-shadow: 0 1rem 2rem rgba(36, 101, 199, 0.25);
-}
-
-.author-image {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border: 4px solid #e9ecef;
-}
-
+.blog-reading { max-width: 1000px; }
+.blog-prose { max-width: 720px; margin-inline: auto; }
+.blog-metadata { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 2rem; font-size: .8rem; color: var(--muted); }
+.blog-article-photo { margin-bottom: 3rem; }
+.blog-article-photo img { display: block; width: 100%; height: auto; }
+.blog-contents { background: var(--warm); border-left: 2px solid var(--red); padding: 1.5rem 2rem; margin-block: 2.5rem 3rem; }
+.blog-contents ol { margin-bottom: 0; padding-left: 1.25rem; }
+.blog-contents a { display: inline-block; padding-block: .4rem; }
+.blog-body-section { margin-block: 3rem; }
+.blog-body-section h2, .blog-cta h2 { font-size: clamp(1.6rem, 2.7vw, 2.2rem); }
+.blog-cta { background: var(--warm); padding: clamp(1.5rem, 4vw, 2.5rem); margin-block: 3rem; }
+.blog-author { display: grid; grid-template-columns: 88px 1fr; gap: 1.5rem; padding-block: 2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.blog-author img { width: 88px; height: 88px; object-fit: cover; }
+.blog-author .eyebrow { margin-bottom: .5rem; }
+.blog-author p:not(.eyebrow) { font-size: .9rem; }
+.blog-post-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.blog-related { margin-top: 4rem; }
+.breadcrumb { font-size: .8rem; }
 @media (max-width: 767px) {
-  .hero-section {
-    padding-top: 7.5rem;
-  }
-
-  .blog-card-image {
-    aspect-ratio: 4 / 3;
-  }
-
-  .cta-card .text-md-end {
-    text-align: left !important;
-  }
+  .blog-post-grid { grid-template-columns: 1fr; }
+  .blog-author { grid-template-columns: 1fr; }
+  .blog-contents { padding: 1.25rem; }
 }
 </style>
-
-
-

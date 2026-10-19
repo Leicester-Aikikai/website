@@ -55,8 +55,6 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
   setMetaTag('twitter:description', description || SITE_DESCRIPTION)
   setMetaTag('twitter:image', image || SITE_IMAGE)
   setMetaTag('twitter:image:alt', title || SITE_NAME)
-  setMetaTag('twitter:site', '@leicesterdojo')
-  setMetaTag('twitter:creator', '@leicesterdojo')
 }
 
 /**
@@ -140,7 +138,7 @@ export function getOrganizationSchema() {
     alternateName: 'レスター 合気会',
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    logo: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`,
+    logo: `${SITE_URL}${club.logo.image}`,
     image: SITE_IMAGE,
     address: { '@type': 'PostalAddress', streetAddress: club.street, addressLocality: club.city, postalCode: club.postcode, addressCountry: 'GB' },
     geo: { '@type': 'GeoCoordinates', latitude: 52.6093325, longitude: -1.1334088 },
