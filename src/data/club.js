@@ -27,7 +27,13 @@ export const club = {
     name: 'Antonios Pavlakis',
     profile: '/instructors/antonis-pavlakis',
     qualification: '4th Dan · Fukushidoin',
-    image: '/img/leicester-aikikai-antonios-pavlakis-2016.jpg'
+    image: '/img/leicester-aikikai-antonios-pavlakis-2016.jpg',
+    credentials: [
+      { year: '2023', title: '4th Dan (Yondan)' },
+      { year: '2018', title: 'Fukushidoin (Teaching Qualification)' },
+      { year: '2022', title: 'JAC Coaching Level 3' },
+      { year: '2026', title: 'DBS (Enhanced)' }
+    ]
   },
   fees: [
     { label: 'Adult (waged)', monthly: 25, annual: 35 },

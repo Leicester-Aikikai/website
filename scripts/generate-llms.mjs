@@ -19,6 +19,8 @@ const content = [
   `Contact: ${SITE_URL}/contact. Sending an enquiry does not reserve a class place. The form requires Netlify Forms to be enabled on the deployed site.`,
   '## Club',
   `Founded ${club.established}. Chief instructor and founder: ${club.instructor.name}, ${club.instructor.qualification}. United Kingdom Aikikai affiliation.`,
+  '### Current instructor qualifications and certifications',
+  ...club.instructor.credentials.map(credential => `- ${credential.title} (${credential.year})`),
   '## Beginner questions', ...beginnerFaqs.flatMap(faq => [`### ${faq.question}`, faq.answer]),
   '## Page directory', ...getPages().map(page => `- [${page.meta.title}](${SITE_URL}${page.path}): ${page.meta.description}`),
   '## Events — dated records',

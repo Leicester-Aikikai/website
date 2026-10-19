@@ -58,10 +58,10 @@
               </div>
 
               <div v-if="instructor.credentials && instructor.credentials.length > 0" class="mt-5">
-                <h3 class="h4 fw-bold mb-3">Credentials & Qualifications</h3>
+                <h3 class="h4 fw-bold mb-3">Current Qualifications & Certifications</h3>
                 <ul class="list-unstyled">
                   <li v-for="(credential, index) in instructor.credentials" :key="index" class="mb-2">
-                    <strong>{{ credential.year }}:</strong> {{ credential.title }}
+                    <strong>{{ credential.title }}</strong> <span class="text-muted">({{ credential.year }})</span>
                   </li>
                 </ul>
               </div>
@@ -101,6 +101,7 @@
 <script>
 import ResponsiveImage from '../components/ResponsiveImage.vue'
 import { getPage } from '../utils/pages.js'
+import { club } from '../data/club.js'
 import FirstClassCta from '../components/FirstClassCta.vue'
 import { setMeta, setJsonLd, SITE_URL } from '../utils/seo.js'
 
@@ -127,7 +128,7 @@ export default {
             </p>
 
             <p class="mb-3">
-              <strong>Teaching Career:</strong> After receiving his teaching qualifications (Coaching Level 1) in 2009,
+              <strong>Teaching Career:</strong> After qualifying as a coach in 2009,
               Antonis became an assistant instructor at DMU Aikido Club. In May 2013, he established Leicester Aikikai dojo
               (レスター 合気道 道場) with a vision to create an inclusive training environment welcoming practitioners of all levels.
               In 2018, he was awarded the Fukushidoin teaching title, allowing him to grade students up to 1st kyu.
@@ -139,11 +140,7 @@ export default {
               and the Joint Aikikai Council (JAC), ensuring all grades meet national and international standards.
             </p>
           `,
-          credentials: [
-            { year: '2023', title: '4th Dan (Yondan)' },
-            { year: '2018', title: 'Fukushidoin (Teaching Qualification)' },
-            { year: '2009', title: 'Coaching Level 1' }
-          ],
+          credentials: club.instructor.credentials,
           affiliations: [
             { name: 'United Kingdom Aikikai (UKA)', url: 'https://ukaikikai.org.uk/' },
             { name: 'Joint Aikikai Council (JAC)', url: 'http://jointaikikaicouncil.co.uk/' }
@@ -193,4 +190,3 @@ export default {
   }
 }
 </style>
-

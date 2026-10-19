@@ -21,7 +21,7 @@ Separate annual UK Aikikai membership: adult £35, concession £27, under 18 £2
 ## Club and community
 
 - [About Us](https://leicesteraikikai.com/about): club history, teaching approach and affiliation with United Kingdom Aikikai (UKA), part of the Joint Aikikai Council (JAC).
-- [Antonios Pavlakis](https://leicesteraikikai.com/instructors/antonis-pavlakis): founder and chief instructor, 4th Dan Fukushidoin. Started aikido in 1997, Coaching Level 1 in 2009, Fukushidoin in 2018, 4th Dan in 2023.
+- [Antonios Pavlakis](https://leicesteraikikai.com/instructors/antonis-pavlakis): founder and chief instructor; started aikido in 1997. Current qualifications and certifications: 4th Dan (Yondan) (2023), Fukushidoin teaching qualification (2018), JAC Coaching Level 3 (2022), DBS (Enhanced) (2026).
 - [Events](https://leicesteraikikai.com/events): upcoming courses in chronological order and a separate past-event archive. Individual URLs remain /events/YYYY-MM-DD/event-slug. Past events are historical records, not upcoming classes.
 - [Blog](https://leicesteraikikai.com/blog): dojo notes and articles; individual URLs remain /blog/YYYY-MM-DD/post-slug.
 
