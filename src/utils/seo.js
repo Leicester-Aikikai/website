@@ -1,3 +1,5 @@
+import { club } from '../data/club.js'
+
 /**
  * SEO Utilities for dynamic meta tags and JSON-LD structured data
  */
@@ -5,17 +7,19 @@
 const SITE_URL = 'https://leicesteraikikai.com'
 const SITE_NAME = 'Leicester Aikikai Dojo'
 const SITE_DESCRIPTION = 'Leicester Aikikai is a UK Aikikai Aikido dojo based in Leicester teaching traditional aikido in the East Midlands.'
-const SITE_IMAGE = `${SITE_URL}/src/assets/img/leicester-aikikai-dojo-hall.jpg`
+const SITE_IMAGE = `${SITE_URL}/img/training-1280.webp`
 
 /**
  * Set dynamic meta tags for SEO
  */
-export function setMeta({ title, description, image, url, type = 'website', keywords, author, publishedTime, modifiedTime }) {
+export function setMeta({ title, description, image, url, type = 'website', keywords, author, publishedTime, modifiedTime, noindex = false }) {
   // Title
   document.title = title || SITE_NAME
 
   // Standard meta
   setMetaTag('description', description || SITE_DESCRIPTION)
+  setMetaTag('title', title || SITE_NAME)
+  setMetaTag('robots', noindex ? 'noindex, follow' : 'index, follow')
   setMetaTag('keywords', keywords)
   setMetaTag('author', author)
 
@@ -26,8 +30,8 @@ export function setMeta({ title, description, image, url, type = 'website', keyw
   setMetaTag('og:title', title || SITE_NAME, 'property')
   setMetaTag('og:description', description || SITE_DESCRIPTION, 'property')
   setMetaTag('og:image', image || SITE_IMAGE, 'property')
-  setMetaTag('og:image:width', '1200', 'property')
-  setMetaTag('og:image:height', '630', 'property')
+  removeMetaTag('og:image:width', 'property')
+  removeMetaTag('og:image:height', 'property')
   setMetaTag('og:image:alt', title || SITE_NAME, 'property')
   setMetaTag('og:url', url || window.location.href, 'property')
   setMetaTag('og:type', type, 'property')
@@ -105,12 +109,12 @@ export function setJsonLd(data) {
     if (el.dataset.dynamic) el.remove()
   })
 
-  // Add new JSON-LD
-  if (Array.isArray(data)) {
-    data.forEach(item => addJsonLdScript(item))
-  } else {
-    addJsonLdScript(data)
-  }
+  const items = [getOrganizationSchema(), getWebSiteSchema(), ...(Array.isArray(data) ? data : [data])]
+  const seen = new Set()
+  items.filter(Boolean).forEach(item => {
+    const key = item['@id'] || JSON.stringify(item)
+    if (!seen.has(key)) { seen.add(key); addJsonLdScript(item) }
+  })
 }
 
 /**
@@ -132,44 +136,18 @@ export function getOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'SportsActivityLocation',
     '@id': `${SITE_URL}/#organization`,
-    'name': 'Leicester Aikikai Dojo',
-    'alternateName': 'レスター 合気会',
-    'description': 'Traditional Aikido dojo in Leicester, UK, affiliated with United Kingdom Aikikai (UKA) and teaching Aikikai style aikido.',
-    'url': SITE_URL,
-    'logo': `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`,
-    'image': SITE_IMAGE,
-    'telephone': '',
-    'email': '',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': '2 Knighton Lane East',
-      'addressLocality': 'Leicester',
-      'postalCode': 'LE2 6LU',
-      'addressCountry': 'GB'
-    },
-    'geo': {
-      '@type': 'GeoCoordinates',
-      'latitude': 52.6093325,
-      'longitude': -1.1334088
-    },
-    'openingHoursSpecification': {
-      '@type': 'OpeningHoursSpecification',
-      'dayOfWeek': 'Friday',
-      'opens': '19:00',
-      'closes': '21:00'
-    },
-    'sameAs': [
-      'https://www.facebook.com/LeicesterAikikai',
-      'https://www.instagram.com/leicesteraikikai/',
-      'https://twitter.com/leicesterdojo',
-      'https://www.tiktok.com/@leicesteraikikai'
-    ],
-    'sport': 'Aikido',
-    'memberOf': {
-      '@type': 'Organization',
-      'name': 'United Kingdom Aikikai',
-      'url': 'https://ukaikikai.org.uk/'
-    }
+    name: `${club.name} Dojo`,
+    alternateName: 'レスター 合気会',
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    logo: `${SITE_URL}/img/Leicester-Aikikai-Dojo-Logo.png`,
+    image: SITE_IMAGE,
+    email: club.email,
+    address: { '@type': 'PostalAddress', streetAddress: club.street, addressLocality: club.city, postalCode: club.postcode, addressCountry: 'GB' },
+    geo: { '@type': 'GeoCoordinates', latitude: 52.6093325, longitude: -1.1334088 },
+    openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: 'https://schema.org/Friday', opens: club.start, closes: club.end },
+    sameAs: club.social.map(social => social.url),
+    memberOf: { '@type': 'Organization', name: 'United Kingdom Aikikai', url: 'https://ukaikikai.org.uk/' }
   }
 }
 
@@ -199,10 +177,10 @@ export function getPersonSchema() {
     '@context': 'https://schema.org',
     '@type': 'Person',
     'name': 'Antonios Pavlakis',
-    'alternateName': 'Adoni',
+    'alternateName': 'Antonis Pavlakis',
     'jobTitle': 'Chief Instructor',
     'description': '4th dan (yondan so-Hombu Fukushidoin 副指導員) and chief instructor at Leicester Aikikai dojo',
-    'image': `${SITE_URL}/src/assets/img/leicester-aikikai-antonios-pavlakis-2016.jpg`,
+    'image': `${SITE_URL}${club.instructor.image}`,
     'worksFor': {
       '@id': `${SITE_URL}/#organization`
     }
@@ -211,3 +189,10 @@ export function getPersonSchema() {
 
 export { SITE_URL, SITE_NAME, SITE_DESCRIPTION, SITE_IMAGE }
 
+
+export function getBreadcrumbSchema(path, label, parent) {
+  const items = [{ name: 'Home', item: SITE_URL }]
+  if (parent) items.push({ name: parent.label, item: `${SITE_URL}${parent.path}` })
+  items.push({ name: label, item: `${SITE_URL}${path}` })
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map((item, index) => ({ '@type': 'ListItem', position: index + 1, ...item })) }
+}

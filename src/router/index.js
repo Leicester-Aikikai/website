@@ -1,21 +1,37 @@
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Events from '../views/Events.vue'
-import Blog from '../views/Blog.vue'
-import Syllabus from '../views/Syllabus.vue'
-import Instructor from '../views/Instructor.vue'
-import { setMeta, SITE_URL } from '../utils/seo.js'
+const Events = () => import('../views/Events.vue')
+const Blog = () => import('../views/Blog.vue')
+const Syllabus = () => import('../views/Syllabus.vue')
+const Instructor = () => import('../views/Instructor.vue')
+import { setMeta, setJsonLd, getBreadcrumbSchema, getPersonSchema, SITE_URL } from '../utils/seo.js'
+import { events } from '../data/events.js'
+import { blogPosts, getBlogPostUrl } from '../data/blog.js'
+import { getEventUrl, getEventSchema } from '../utils/events.js'
+const Beginners = () => import('../views/Beginners.vue')
+const Classes = () => import('../views/Classes.vue')
+const About = () => import('../views/About.vue')
+const Resources = () => import('../views/Resources.vue')
+const Contact = () => import('../views/Contact.vue')
+const NotFound = () => import('../views/NotFound.vue')
 
 const routes = [
+  { path: '/beginners', name: 'Beginners', component: Beginners, meta: { title: 'Beginner Aikido Classes Leicester | First Class Free', description: 'Start aikido in Leicester with a free introductory lesson. Find out what to wear, what to expect and how to join our friendly Friday class.', label: 'Start Aikido' } },
+  { path: '/classes', name: 'Classes', component: Classes, meta: { title: 'Aikido Classes & Prices Leicester | Leicester Aikikai', description: 'Friday aikido classes, 7:00pm–9:00pm at Aylestone Leisure Centre. See monthly training fees, annual UKA membership and free first-class information.', label: 'Classes & Prices' } },
+  { path: '/about', name: 'About', component: About, meta: { title: 'About Leicester Aikikai | Traditional Aikido Since 2013', description: 'Meet Leicester Aikikai, founded in May 2013, and chief instructor Antonios Pavlakis, 4th Dan Fukushidoin. Learn about our history and UKA affiliation.', label: 'About Us' } },
+  { path: '/resources', name: 'Resources', component: Resources, meta: { title: 'Aikido Student Resources & Grading | Leicester Aikikai', description: 'Find Leicester Aikikai’s grading syllabus, bokken and jo training, aikido terminology, beginner booklet and dojo notes in one place.', label: 'Student Resources' } },
+  { path: '/contact', name: 'Contact', component: Contact, meta: { title: 'Contact Leicester Aikikai | First-Class Enquiries', description: 'Ask about your first free aikido class at Leicester Aikikai. Email the club, find Aylestone Leisure Centre and check Friday training information.', label: 'Contact' } },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound, meta: { title: 'Page Not Found | Leicester Aikikai', description: 'Find your way back to Leicester Aikikai classes, beginner information and student resources.', noindex: true } },
   {
     path: '/',
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Leicester Aikikai Dojo :: Traditional Aikido in the East Midlands :: レスター 合気会',
-      description: 'Leicester Aikikai is a UK Aikikai Aikido dojo based in Leicester teaching traditional aikido. Learn this non-competitive martial art. First class FREE.',
+      title: 'Aikido Classes in Leicester | Leicester Aikikai Dojo',
+      description: 'Learn traditional Japanese aikido in Leicester. Friendly classes for beginners and experienced students every Friday. First class free at Aylestone Leisure Centre.',
       keywords: 'Leicester Aikido, Aikikai, traditional aikido, martial arts Leicester, aikido classes, self-defence, UKA, East Midlands',
-      image: `${SITE_URL}/img/leicester-aikikai-aylestone-leisure-centre.jpeg`
+      image: `${SITE_URL}/img/training-1280.webp`
     }
   },
   {
@@ -155,7 +171,7 @@ const router = createRouter({
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       }
     } else if (savedPosition) {
       return savedPosition
@@ -165,22 +181,29 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
-  // Set dynamic meta tags for SEO
-  const meta = to.meta || {}
-  const url = `${SITE_URL}${to.path}`
+router.beforeEach(to => {
+  const meta = { ...to.meta }
+  let schemas = [getBreadcrumbSchema(to.path, meta.label || meta.title?.split(' :: ')[0].split(' | ')[0] || String(to.name))]
+  if (to.name === 'EventDetail') {
+    const event = events.find(event => getEventUrl(event) === to.path)
+    if (!event) return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+    meta.title = `${event.title} | Leicester Aikikai Dojo`
+    meta.description = event.description
+    meta.image = `${SITE_URL}${event.image || '/img/training-1280.webp'}`
+    meta.type = 'article'
+    schemas = [getBreadcrumbSchema(to.path, event.title, { label: 'Events', path: '/events' }), getEventSchema(event, SITE_URL)]
+  }
+  if (to.name === 'BlogDetail' && !blogPosts.some(post => getBlogPostUrl(post) === to.path)) return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+  if (to.name === 'Instructor' && to.params.name !== 'antonis-pavlakis') return { name: 'NotFound', params: { pathMatch: to.path.slice(1).split('/') }, replace: true }
+  setMeta({ ...meta, url: `${SITE_URL}${to.path}`, keywords: meta.keywords || 'aikido Leicester, beginner aikido Leicester, traditional aikido Leicester' })
+  setJsonLd(to.path === '/' ? [getPersonSchema()] : meta.noindex ? [] : schemas)
+})
 
-  setMeta({
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    image: meta.image,
-    url: url,
-    type: meta.type || 'website'
-  })
-
-  next()
+router.afterEach(async (to, from) => {
+  if (from.matched.length && to.path !== from.path) {
+    await nextTick()
+    document.getElementById('main-content')?.focus({ preventScroll: true })
+  }
 })
 
 export default router
-

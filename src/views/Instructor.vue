@@ -1,10 +1,8 @@
 <template>
   <div class="instructor-profile" v-if="instructor">
-    <!-- Skip link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Hero Section -->
-    <section class="hero-section" role="banner">
+    <section class="hero-section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-5 mb-4 mb-md-0">
@@ -43,7 +41,7 @@
     </section>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <!-- Instructor Details Section -->
       <section class="py-5" itemscope itemtype="https://schema.org/Person">
         <div class="container">
@@ -92,9 +90,7 @@
           <h2 class="display-5 fw-bold mb-4">Train with us</h2>
           <div style="height: 4px; width: 64px; background: white; opacity: 0.5; margin: 0 auto 2rem;"></div>
           <h3 class="h4 mb-4">Come down on a Friday night to give it a go. First class is FREE.</h3>
-          <router-link to="/" class="btn btn-light btn-lg rounded-pill px-4 shadow">
-            Learn More
-          </router-link>
+          <FirstClassCta />
         </div>
       </section>
     </main>
@@ -102,10 +98,12 @@
 </template>
 
 <script>
+import FirstClassCta from '../components/FirstClassCta.vue'
 import { setMeta, setJsonLd, SITE_URL } from '../utils/seo.js'
 
 export default {
   name: 'Instructor',
+  components: { FirstClassCta },
   data() {
     return {
       instructors: {

@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <section class="hero-section" role="banner">
+    <section class="hero-section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-7 mb-4 mb-md-0">
@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <main id="main-content" class="py-5 bg-light">
+    <main id="main-content" tabindex="-1" class="py-5 bg-light">
       <div v-if="currentPost">
         <article class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
           <div class="container">

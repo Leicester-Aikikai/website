@@ -180,3 +180,47 @@ When adding a new article:
 3. Provide descriptive `featuredImage` and `imageAlt` values.
 4. Regenerate the sitemap with `node scripts/generate-sitemap.mjs`.
 5. Verify the `/blog` page and article route render correctly and remain responsive.
+
+# Leicester Aikikai Website — Development Guidelines
+
+## Project priorities
+
+1. Attract and welcome new aikido students.
+2. Preserve the authenticity of traditional Aikikai aikido.
+3. Maintain accurate club information.
+4. Ensure accessibility and mobile usability.
+5. Preserve the existing syllabus and technical resources.
+
+## Content rules
+
+- Always use British English.
+- Never invent instructor qualifications or affiliations.
+- Never invent training schedules, membership prices or events.
+- Never fabricate testimonials.
+- Avoid exaggerated martial arts or self-defence claims.
+- Keep beginner information friendly and accessible.
+- Preserve accurate Japanese aikido terminology.
+
+## Design rules
+
+- Prefer minimalist, contemporary design.
+- Use authentic club photography.
+- Maintain consistent typography and spacing.
+- Prioritise mobile-first layouts.
+- Follow WCAG 2.2 AA accessibility principles.
+- Avoid unnecessary animations or visual complexity.
+
+## Development rules
+
+- Inspect existing code before modifying it.
+- Reuse existing components where appropriate.
+- Avoid unnecessary dependencies.
+- Preserve existing functionality and URLs.
+- Keep shared club information centralised.
+- Test affected functionality after changes.
+- Report any unverified facts requiring owner confirmation.
+
+## Primary website objective
+
+Make it as straightforward as possible for a prospective student
+to attend their first free aikido class at Leicester Aikikai.

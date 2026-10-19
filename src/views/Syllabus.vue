@@ -1,7 +1,7 @@
 <template>
   <div class="syllabus">
     <!-- Hero Section -->
-    <section class="hero-section" role="banner">
+    <section class="hero-section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-5 mb-4 mb-md-0">
@@ -11,7 +11,7 @@
               Listed below is the material we cover that includes <span title="Taijutsu body art 体術">body art</span> and weapons.
             </p>
             <a href="#grading-syllabus" class="text-white text-decoration-underline">
-              Click here for the grading syllabus.
+              Explore the grading syllabus.
             </a>
           </div>
           <div class="col-md-7 text-center">
@@ -40,7 +40,7 @@
     </section>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <!-- Weapons Section -->
       <section id="weapons-syllabus" class="py-5 bg-white">
         <div class="container">
@@ -969,6 +969,8 @@
 </template>
 
 <script>
+import 'bootstrap/js/dist/collapse.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { setJsonLd, SITE_URL } from '../utils/seo.js'
 
 export default {
@@ -1087,6 +1089,9 @@ export default {
             const el = document.getElementById(id)
             if (el && id !== gradeInfo.collapse) {
               el.classList.remove('show')
+              const trigger = document.querySelector(`[data-bs-target="#${id}"]`)
+              trigger?.setAttribute('aria-expanded', 'false')
+              trigger?.classList.add('collapsed')
             }
           })
 
@@ -1094,6 +1099,9 @@ export default {
           const targetCollapse = document.getElementById(gradeInfo.collapse)
           if (targetCollapse) {
             targetCollapse.classList.add('show')
+            const trigger = document.querySelector(`[data-bs-target="#${gradeInfo.collapse}"]`)
+            trigger?.setAttribute('aria-expanded', 'true')
+            trigger?.classList.remove('collapsed')
 
             // Scroll to the specific grade card
             setTimeout(() => {
@@ -1102,7 +1110,7 @@ export default {
                 // Scroll with some offset to account for header
                 const yOffset = -20 // 20px offset from top
                 const y = gradeCard.getBoundingClientRect().top + window.pageYOffset + yOffset
-                window.scrollTo({ top: y, behavior: 'smooth' })
+                window.scrollTo({ top: y, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
               }
             }, 150)
           }

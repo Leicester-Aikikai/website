@@ -1,171 +1,45 @@
-# Leicester Aikikai Dojo
+# Leicester Aikikai
 
-> Traditional Aikido in the East Midlands, UK
+> Traditional Aikikai aikido in Leicester, UK. A friendly club founded in May 2013.
 
-## Overview
+Canonical website: https://leicesteraikikai.com
 
-Leicester Aikikai (レスター 合気会) is a UK Aikikai Aikido dojo based in Leicester teaching traditional aikido. We started in May 2013 with the aim to ensure everyone is welcome to join and train in a friendly environment.
+## Getting started
 
-## Website Information
+- [Home](https://leicesteraikikai.com/): introduction, first-class guidance, fees, location, FAQs and next upcoming event.
+- [Start Aikido](https://leicesteraikikai.com/beginners): beginner experience, clothing, eligibility and how to attend a free introductory lesson.
+- [Classes & Prices](https://leicesteraikikai.com/classes): Friday 7:00pm–9:00pm at Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU.
+- [Contact](https://leicesteraikikai.com/contact): email leicester.aikikai@gmail.com and directions. Email enquiries do not reserve a class; the website does not submit a booking form.
 
-- **URL**: https://leicesteraikikai.com
-- **Organisation**: Leicester Aikikai Dojo
-- **Location**: Aylestone Leisure Centre, Leicester, UK
-- **Affiliation**: United Kingdom Aikikai (UKA), Joint Aikikai Council (JAC)
-- **Style**: Traditional Aikido (Aikikai)
-- **App Type**: Single Page Application (SPA) built with Vue 3 and Vue Router (HTML5 history mode)
+First introductory lesson is free. The club invites newcomers to come along without advance booking. Families should contact the instructor before bringing a child to confirm eligibility and availability. The club’s published guidance requires children aged 12 and under to have a parent training too. Do not infer a lower age limit from this statement.
 
-## Main Sections
+Monthly club training fees: adult (waged) £25, adult (concession) £20, under 18 £15.
+Separate annual UK Aikikai membership: adult £35, concession £27, under 18 £20. UKA membership includes liability insurance; ask the instructor about registration, cover and payment. Guest session £8. Refer to the Classes page for current information.
 
-### Home (/)
-The homepage introduces Leicester Aikikai, showcases the dojo's journey since 2013, and provides information about:
-- Welcome section
-- Dojo history and journey
-- Affiliation information (UKA, JAC)
-- Class times and location
-- Instructor section
-- Contact information
+## Club and community
 
-The home page also links to class schedule and practical joining information; classes are suitable for adults and older teens, including complete beginners.
+- [About Us](https://leicesteraikikai.com/about): club history, teaching approach and affiliation with United Kingdom Aikikai (UKA), part of the Joint Aikikai Council (JAC).
+- [Antonios Pavlakis](https://leicesteraikikai.com/instructors/antonis-pavlakis): founder and chief instructor, 4th Dan Fukushidoin. Started aikido in 1997, Coaching Level 1 in 2009, Fukushidoin in 2018, 4th Dan in 2023.
+- [Events](https://leicesteraikikai.com/events): upcoming courses in chronological order and a separate past-event archive. Individual URLs remain /events/YYYY-MM-DD/event-slug. Past events are historical records, not upcoming classes.
+- [Blog](https://leicesteraikikai.com/blog): dojo notes and articles; individual URLs remain /blog/YYYY-MM-DD/post-slug.
 
-### Events (/events)
-Lists upcoming and past aikido events, courses, and seminars including:
-- Dojo courses with guest instructors
-- Joint courses with other dojos (e.g., Melton Byakko-kan)
-- Beginners courses
-- Anniversary celebrations
-- Each event has a detail page at `/events/YYYY-MM-DD/event-slug` where `YYYY-MM-DD` is the event date and `event-slug` is a hyphenated version of the event title
+## Student resources
 
-### Blog (/blog)
-The blog index at `/blog` is in place as a centralized content-driven section.
-- Current article: `/blog/2026-06-14/leicester-aikikai-aikido-guest-instructors-july-2026`
-- Blog content is maintained centrally so posts can be added without editing the page layout directly
+- [Student Resources](https://leicesteraikikai.com/resources): beginner fundamentals, grading, weapons, terminology and further reading.
+- [Full syllabus](https://leicesteraikikai.com/syllabus): original body-art and weapons training material, with accessible expandable grading panels.
+- [6th kyu](https://leicesteraikikai.com/syllabus/6th-kyu)
+- [5th kyu](https://leicesteraikikai.com/syllabus/5th-kyu)
+- [4th kyu](https://leicesteraikikai.com/syllabus/4th-kyu)
+- [3rd kyu](https://leicesteraikikai.com/syllabus/3rd-kyu)
+- [UKA Welcome to Aikido booklet](https://leicesteraikikai.com/docs/welcome-to-aikido-uka-booklet.pdf)
 
-#### Upcoming Events (2025)
+Do not invent grading requirements, events, age policies, testimonials or insurance terms. Source content remains in src/data/events.js and src/data/blog.js; shared practical information is in src/data/club.js.
 
-**December 14, 2025 - Xmas 2025 course with Melton Byakko-Kan Aikido**
-- Location: Jubilee Sports Centre, Melton Mowbray
-- Time: 10:30am - 2:30pm
-- Price: £10
-- Instructors: Naoko Suzuki, Sergio Cardoso, Antonis Pavlakis, Terry Mickowski
-- URL: `/events/2025-12-14/xmas-2025-course-with-melton-byakko-kan-aikido`
+## Technical information
 
-**November 28, 2025 - Guest instructor Iain Cooper sensei**
-- Location: Aylestone Leisure Centre, Leicester
-- Time: 7pm - 9pm
-- Instructor: Iain Cooper (4th dan Fukushidoin), Antonis Pavlakis
-- URL: `/events/2025-11-28/guest-instructor-iain-cooper-sensei`
+Vue 3 SPA, Vue Router HTML5 history, Bootstrap 5, Vite and Netlify static hosting.
+Sitemap: https://leicesteraikikai.com/sitemap.xml
+Robots: https://leicesteraikikai.com/robots.txt
+Legacy home anchors /#our-journey, /#location, /#costs, /#faq and /#the-instructor remain available.
 
-**November 22, 2025 - Aikido Course at Fight Ministry Hull**
-- Location: Fight Ministry, Hull
-- Time: 2pm - 5pm
-- Instructors: Philip Smith (Shihan), Antonis Pavlakis
-- URL: `/events/2025-11-22/aikido-course-at-fight-ministry-hull`
-
-**November 14, 2025 - Guest instructor Tim Sullivan sensei from Warwick University**
-- Location: Aylestone Leisure Centre, Leicester
-- Time: 7pm - 9pm
-- Instructors: Tim Sullivan, Antonis Pavlakis
-- URL: `/events/2025-11-14/guest-instructor-tim-sullivan-sensei-from-warwick-university`
-
-#### Upcoming Events (2026)
-
-**September 13, 2026 - Joint Course with Tokon Aikido from Grantham**
-- Location: Aylestone Leisure Centre, Leicester
-- Time: 12:30pm - 3:30pm
-- Price: £15
-- Instructors: Antonis Pavlakis, Sergio Cardoso
-- Description: Joint aikido course bringing together Leicester Aikikai and Tokon Aikido from Grantham for traditional Aikikai training
-- URL: `/events/2026-09-13/joint-course-with-tokon-aikido-from-grantham-september-2026`
-
-**July 19, 2026 - Course with Stuart Lovering 6th dan shidoin from Tudor Grange dojo**
-- Location: Aylestone Leisure Centre, Leicester
-- Time: 12:30pm - 4:30pm
-- Price: Adults - £20, Concession - £15, Under 18's - £12
-- Instructors: Antonis Pavlakis, Stuart Lovering (6th Dan shidoin from Tudor Grange dojo)
-- Description: Three-class aikido course with guest instructor and mock grading session for yudansha
-- URL: `/events/2026-07-19/course-with-stuart-lovering-6th-dan-shidoin-from-tudor-grange-dojo`
-
-**March 29, 2026 - Course with Neil Mould 6th Dan shidoin from Sotenjuku dojo**
-- Location: Aylestone Leisure Centre, Leicester
-- Time: 12:30pm - 4:30pm
-- Price: Adults - £15, Concession - £12, Under 18's - £8
-- Instructors: Antonis Pavlakis, Neil Mould (6th Dan shidoin from Sotenjuku dojo)
-- URL: `/events/2026-03-29/course-with-neil-mould-6th-dan-shidoin-from-sotenjuku-dojo`
-
-#### Past Events (Selected)
-
-**June 11, 2023 - Dojo 10th Year Anniversary Course**
-- Guest instructors: Ian Grubb (6th dan Shidoin), Terry Mickowski (4th dan Fukushidoin), Iain Cooper (3rd dan Fukushidoin), Antonis Pavlakis (3rd dan Fukushidoin)
-- A milestone celebration bringing together instructors from UK Aikikai
-
-**December 10, 2023 - Joint course with Melton Byakko-Kan Aikido**
-- Regular collaborative event with neighboring dojo
-- Instructors: Naoko Suzuki, Terry Mickowski, Andy Thompson, Antonis Pavlakis
-
-**October 22, 2023 - Leicester Aikikai Dojo Course**
-- Guest instructor: Iain Cooper sensei
-- 4-hour intensive training session
-
-**September 15, 2023 - Aikido Beginner's Course**
-- 3-month program running from September to December 2023
-- Introduction to aikido fundamentals, ukemi, and self-defence
-
-#### Event Types
-
-- **Dojo Courses**: Regular courses at Leicester Aikikai with guest instructors from UK Aikikai and other associations
-- **Joint Courses**: Collaborative events with other dojos (particularly Melton Byakko-Kan Aikido, Warwick University Aikido)
-- **Beginner's Courses**: 3-month introductory programs for new students
-- **Anniversary Events**: Special milestone celebrations (e.g., 10th anniversary in 2023)
-- **Regional Courses**: Events where Leicester Aikikai instructors teach at other dojos across the UK
-- **Guest Instructor Sessions**: Regular training sessions featuring visiting sensei
-
-#### Event Locations
-
-- **Primary Venue**: Aylestone Leisure Centre, 2 Knighton Lane East, Leicester, LE2 6LU
-
-#### Typical Event Structure
-
-- Event durations range from 2 hours (evening sessions) to 4-5 hours (weekend courses)
-- Pricing typically: Adults £10-£20, Concessions £8-£15, Under 12s often free for members
-- Open to practitioners from all aikido associations
-- Mix of fundamentals, advanced techniques, and weapons training depending on the event
-
-Actual dates, times, instructors, and prices may change; always refer to the Events page for the latest information.
-
-### Syllabus (/syllabus)
-Complete aikido syllabus information with grade-specific pages:
-- `/syllabus/6th-kyu` - 6th Kyu grade techniques
-- `/syllabus/5th-kyu` - 5th Kyu grade techniques
-- `/syllabus/4th-kyu` - 4th Kyu grade techniques
-- `/syllabus/3rd-kyu` - 3rd Kyu grade techniques
-
-### Instructors (/instructors)
-Information about dojo instructors:
-- `/instructors/antonis-pavlakis` - Chief instructor profile
-
-## Important Files
-
-- `/sitemap.xml` - Auto-generated sitemap for search engines
-- `/robots.txt` - Search engine directives
-- `/_redirects` - Netlify SPA routing configuration
-- `/docs/welcome-to-aikido-uka-booklet.pdf` - Welcome booklet for new students
-
-## Content Guidelines
-
-- The dojo teaches traditional Aikikai style aikido
-- Affiliated with UK Aikikai (UKA) and Joint Aikikai Council (JAC)
-- Kyu grades recognized nationally, Dan grades internationally
-- Non-competitive martial art focused on using opponent's strength
-- Welcoming environment for all ages and skill levels
-- First class is FREE
-
-A note on affiliations: UKA is the national Aikikai organisation; JAC is the Joint Aikikai Council which helps coordinate recognition of grades nationally and internationally.
-
-## Contact Information
-
-Classes are held at Aylestone Leisure Centre in Leicester. The dojo welcomes visitors from other aikido associations and offers a friendly training environment.
-
-## Last Updated
-
-August 2026
+Last updated: 19 October 2026.

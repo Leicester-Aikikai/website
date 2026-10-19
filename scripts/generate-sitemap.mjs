@@ -40,6 +40,7 @@ const formatDateForUrl = (dateStr) => {
 // Define routes with priority and change frequency
 const routes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
+  ...['/beginners', '/classes', '/about', '/resources', '/contact'].map(path => ({ path, priority: '0.9', changefreq: 'monthly' })),
   { path: '/events', priority: '0.9', changefreq: 'weekly' },
   { path: '/blog', priority: '0.9', changefreq: 'weekly' },
   // Add individual event routes
