@@ -2,6 +2,33 @@
 
 export const events = [
   {
+    date: '13.12.2026',
+    title: 'Byakko-Kan Annual Course',
+    description: 'The Byakko-Kan Annual Course, hosted by Yoshinkan Aikido Melton Mowbray, with instructors Naoko Suzuki, Terry Mickowski and Antonis Pavlakis. Join the course in Melton Mowbray on Sunday 13 December 2026, from 10:30 to 13:30. Cost: £15.00.',
+    type: 'course',
+    id: 'event-2026-12-13',
+    image: '/img/byakko-kan-annual-course-december-2026.jpg',
+    imageAlt: 'Red Japanese maple leaves surrounding a stone lantern in a Japanese garden',
+    host: {
+      name: 'Yoshinkan Aikido Melton Mowbray',
+      url: 'https://www.facebook.com/profile.php?id=100063530262664'
+    },
+    location: {
+      name: 'Melton Mowbray',
+      address: 'Jubilee Street, Melton Mowbray, LE13 1ND, United Kingdom'
+    },
+    time: {
+      start: '10:30',
+      end: '13:30'
+    },
+    price: '£15.00',
+    instructors: [
+      'Naoko Suzuki',
+      'Terry Mickowski',
+      { name: 'Antonis Pavlakis', profile: '/instructors/antonis-pavlakis' }
+    ]
+  },
+  {
     date: '13.09.2026',
     title: 'Joint Course with Tokon Aikido from Grantham - September 2026',
     description: 'Join us for a joint aikido course at Aylestone Leisure Centre with instructors Antonis Pavlakis and Sergio Cardoso. A great opportunity to train together and develop your aikido skills.',

@@ -15,7 +15,7 @@ export function getPages() {
   }))
   for (const event of events) {
     const path = getEventUrl(event)
-    pages.push({ path, meta: { title: `${event.title} | Leicester Aikikai Dojo`, description: event.description, image: SITE_URL + event.image, imageAlt: `${event.title} event poster or photograph`, type: 'website', keywords, url: SITE_URL + path }, schemas: [getBreadcrumbSchema(path, event.title, { label: 'Events', path: '/events' }), getEventSchema(event, SITE_URL)] })
+    pages.push({ path, meta: { title: `${event.title} | Leicester Aikikai Dojo`, description: event.description, image: SITE_URL + event.image, imageAlt: event.imageAlt || `${event.title} event poster or photograph`, type: 'website', keywords, url: SITE_URL + path }, schemas: [getBreadcrumbSchema(path, event.title, { label: 'Events', path: '/events' }), getEventSchema(event, SITE_URL)] })
   }
   for (const post of blogPosts) {
     const path = getBlogPostUrl(post)

@@ -57,6 +57,7 @@ export function getEventSchema(event, siteUrl) {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     ...(event.image ? { image: `${siteUrl}${event.image}` } : {}),
     location: { '@type': 'Place', name: event.location.name, address: event.location.address },
+    ...(event.host ? { organizer: { '@type': 'Organization', name: event.host.name, url: event.host.url } } : {}),
     performer: instructorNames(event).map(name => ({ '@type': 'Person', name }))
   }
 }
