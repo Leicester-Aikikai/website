@@ -206,5 +206,14 @@ export const images = {
     "social": "/img/optimised/leicester-aikikai-joint-course-march-17th-2024-8679654dfe-social.jpg",
     "socialWidth": 1125,
     "socialHeight": 490
+  },
+  "/img/byakko-kan-annual-course-december-2026.jpg": {
+    "src": "/img/optimised/byakko-kan-annual-course-december-2026-3bc0f6728a-960.webp",
+    "srcset": "/img/optimised/byakko-kan-annual-course-december-2026-3bc0f6728a-320.webp 320w, /img/optimised/byakko-kan-annual-course-december-2026-3bc0f6728a-640.webp 640w, /img/optimised/byakko-kan-annual-course-december-2026-3bc0f6728a-960.webp 960w",
+    "width": 960,
+    "height": 720,
+    "social": "/img/optimised/byakko-kan-annual-course-december-2026-3bc0f6728a-social.jpg",
+    "socialWidth": 960,
+    "socialHeight": 720
   }
 }
